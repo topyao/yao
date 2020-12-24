@@ -8,6 +8,6 @@ class Index
 {
     public function index()
     {
-        return view('index@index');
+        abort('可以开始了!', 200);
     }
 }
