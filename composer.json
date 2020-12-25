@@ -21,7 +21,7 @@
   },
   "require": {
     "php": ">=7.4",
-    "chengyao/framework": "^0.0.2",
+    "chengyao/framework": "^0.0.4",
     "chengyao/migrate": "^0.0.1"
   }
 }
