@@ -112,7 +112,7 @@ AUTO_START=true
 
 
 # 路由
-所有的路由都添加在`route/route.php`文件中，如果需要分文件存放，可以将其他文件引入该文件
+路由可以添加在`route/route.php`文件中，如果需要分文件存放，可以将其他文件引入该文件或者在route目录下新建文件
 
 > 注意：需要引入`Yao\Facade\Route`类
 
@@ -214,6 +214,13 @@ Route::get('/(\w+)-index(\d+).html',function($a,$b){
 
 > 注意：正则路由中的正则不需要添加定界符，多个参数是按匹配到的顺序传递的。
 
+## 路由支持注册别名，例如
+```
+Route::get('/','index@index/index')->alias('index');
+```
+
+之后就可以在任意位置使用url助手函数获取路由地址，例如url('index') 返回'/'，如果url() 函数中传入的参数并没有被注册别名，那么会原样返回。
+
 
 # 请求
 ## 获取请求参数
@@ -225,6 +232,9 @@ Route::get('/(\w+)-index(\d+).html',function($a,$b){
 
 获取所有`$_REQUEST`使用`Yao\Facade\Request::param();`
 >post和param使用方法和get一样。可以给这些方法添加第二个参数，第一个参数为字符串且不存在的时候会返回默认参数
+
+## 获取$_SETVER 变量
+替代地，可以使用Request::server($name) 获取$_SERVER中的值，如果不存在返回null
 
 ## 判断请求类型
 判断请求类型是否为get
