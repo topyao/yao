@@ -2,9 +2,7 @@
 
 namespace App\Http;
 
-use \Yao\Controller as BaseController;
-
-class Controller extends BaseController
+class Controller extends \Yao\Controller
 {
 
 }
