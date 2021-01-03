@@ -52,11 +52,11 @@ if ($rule_0 = "21"){
 - app  应用目录
   - Http 基础服务目录
     - Controller.php
-    - Event.php
+    - Provider.php
     - Validate.php
   - Index 应用目录
     - Controller 控制器目录
-    - Event 事件目录
+    - Services 服务目录
     - Facade 用户自定义门面目录
     - Migrate 迁移文件目录
     - Model 模型目录
