@@ -18,8 +18,8 @@
       "app/common.php"
     ]
   },
-  "require": {
+  "require-dev": {
     "php": ">=7.4",
-    "chengyao/framework": "^0.0.2"
+    "chengyao/framework": "dev-master"
   }
 }
