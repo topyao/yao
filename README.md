@@ -221,6 +221,14 @@ Route::get('/','index@index/index')->alias('index');
 
 之后就可以在任意位置使用url助手函数获取路由地址，例如url('index') 返回'/'，如果url() 函数中传入的参数并没有被注册别名，那么会原样返回。
 
+### 跨域支持【开发中】
+
+可以在定义路由的时候设置允许跨域
+```
+Route::get('/','index@index/index')->cross('*'); 
+```
+
+
 
 # 请求
 ## 获取请求参数
@@ -249,6 +257,11 @@ Route::get('/','index@index/index')->alias('index');
 请求是可以设置函数进行过滤的，可以在`app.php`中的`filter`数组中添加过滤函数，注意函数必须只能传入一个参数，并且返回过滤后的字符串。如果使用`Request`类获取参数默认是被过滤的。不需要过滤可以使用`$_GET`数组。
 
 注意：如果需要获取的参数不存在，该参数的值将会是null，例如`Request::get(['a','b'])`当b不存在的时候会是`null`，此时需要用`is_null`判断。
+
+
+# 响应
+
+## 在控制器中可以直接return 一个数组，框架会自动转为json输出，也可以使用json() 助手函数，或者response()函数,可以使用连贯操作，例如json(array $data)->code(202)->header(['Content-Type:application/json']);
 
 # 验证器
 
