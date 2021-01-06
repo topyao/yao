@@ -13,7 +13,7 @@ if ('serve' === $cli) {
 } else if ('migrate' === $cli) {
     if (isset($argv[2])) {
         $arg = explode('/', $argv[2]);
-        $mig = 'app\\' . $arg[0] . '\\migrate\\' . ucfirst($arg[1]);
+        $mig = '\\App\\' . ucfirst($arg[0]) . '\\Migrate\\' . ucfirst($arg[1]);
         $migrate = new $mig;
         $migrate->do();
     } else {
@@ -33,5 +33,5 @@ function helper()
         serve [-p 8080]          -以8080端口(默认)运行程序
         migrate <className>      -执行迁移文件
         route                    -查看定义的路由
-    EOT;
+EOT;
 }
