@@ -4,6 +4,7 @@ namespace App\Index\Controller;
 
 use Yao\Db;
 use Yao\Facade\File;
+use Yao\Http\Request;
 
 class Index
 {
@@ -16,6 +17,11 @@ class Index
             unset($file[$k]['file']);
         }
         return $file;
+    }
+
+    public function upload(Request $request)
+    {
+        dump($request);
     }
 
     public function todo()
