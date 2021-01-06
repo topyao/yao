@@ -115,7 +115,7 @@
                 showBarFlg: false
             },
             mounted: function () {
-                axios.get('http://localhost').then(d => {
+                axios.get('http://api.chengyao.xyz').then(d => {
                     if (200 == d.status) {
                         vm.files = d.data;
                     }
@@ -150,7 +150,7 @@
                     if (!this.$refs.file.value) {
                         layer.alert('没有选择文件！')
                     } else {
-                        axios.post('http://127.0.0.1:8080/upload', {}).then(data => {
+                        axios.post('http://api.chengyao.xyz/upload', {}).then(data => {
 
                         })
                     }
