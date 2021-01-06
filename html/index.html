@@ -115,7 +115,7 @@
                 showBarFlg: false
             },
             mounted: function () {
-                axios.get('http://127.0.0.1:8080/').then(d => {
+                axios.get('http://localhost').then(d => {
                     if (200 == d.status) {
                         vm.files = d.data;
                     }

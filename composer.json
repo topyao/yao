@@ -20,6 +20,7 @@
   },
   "require-dev": {
     "php": ">=7.4",
-    "chengyao/framework": "dev-master"
+    "chengyao/framework": "dev-master",
+    "chengyao/migrate": "dev-master"
   }
 }
