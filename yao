@@ -22,6 +22,8 @@ if ('serve' === $cli) {
 } else if ('route' == $cli) {
     \Yao\Facade\Route::register();
     dump(array_filter(\Yao\Facade\Route::getRoute()));
+} else if ('html' == $cli) {
+    passthru("php -S 127.0.0.1:8888 -t html");
 } else {
     helper();
 }
