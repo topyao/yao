@@ -2,9 +2,12 @@
 
 namespace App\Index\Controller;
 
-use Yao\Db;
-use Yao\Facade\File;
-use Yao\Http\Request;
+use Yao\{
+    Facade\Db,
+    Facade\File,
+    Http\Request,
+};
+
 
 class Index
 {

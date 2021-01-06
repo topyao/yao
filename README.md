@@ -106,7 +106,7 @@ AUTO_START=true
 
 
 
-如果需要自定义一个配置文件，可以在`/config`目录下新建例如`alipay.php`文件并返回一个数组。使用`Config::get('alipay.param')`获取配置的值
+如果需要自定义一个配置文件，可以在`/config`目录下新建例如`alipay.php`文件并返回一个数组。使用Config::load('alipay')将加载配置，就可以用`Config::get('alipay.param')`获取配置的值
 
 >可以使用辅助函数config() ，例如config('app.debug')
 
