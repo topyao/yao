@@ -392,7 +392,7 @@ class UserCheck extends Facade
 ## 删除
 > db('users')->where(['id' => 1])->delete();
 ## 查询
-> yao\Db::name('表名')->field('字段')->where([条件])->limit(1,3)->find()/select();
+> yao\Facade\Db::name('表名')->field('字段')->where([条件])->limit(1,3)->find()/select();
 查询到的是数据集对象，可以使用toArray或者toJson获取
 
 ## 更新
@@ -401,10 +401,10 @@ class UserCheck extends Facade
 其中`field`默认为`*`，`where`可以传入字符串或者一维数组，`find`查询一条，`select`查询所有。`limit`可以传入1到2个参数，对应`mysql`的`limit`。目前只对`where`条件做了预处理
 
 例如我可以写如下语句
-> yao\Db::name('users')->field('username')->where(['age' => 19])->limit(1,2)->select();
+> \yao\Facade\Db::name('users')->field('username')->where(['age' => 19])->limit(1,2)->select();
 
 表示我要查询users表中年龄为19的用户名，并且取出偏移量为2，限制条数为1的用户名。
-当然可以使用`yao\Db::name('users')->select()` 查询全部
+当然可以使用`\yao\Facade\Db::name('users')->select()` 查询全部
 可以使用助手函数例如：`db($tableName)->select();`
 
 添加`whereLike(array $array)` 需要传入一个数组，数组的键为字段名，数组的值为模糊匹配值，例如%name%
@@ -428,7 +428,7 @@ Db::exec('UPDATE users SET name=? where id = ?',['zhangsan',1]);
 
 ## 删除
 ```
-yao\Db::name('users')->where('id > 10')->delete();
+yao\Facade\Db::name('users')->where('id > 10')->delete();
 ```
 
 删除id大于10的用户。
