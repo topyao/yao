@@ -3,14 +3,13 @@
 
 namespace App\Http;
 
-use Yao\Services\Development;
-
 class Provider extends \Yao\Provider
 {
     public function services()
     {
         return [
-            Development::class
+            //线上环境可以删除
+            \Yao\Services\Development::class
         ];
     }
 }
