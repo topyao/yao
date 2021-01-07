@@ -327,6 +327,8 @@ ul.bar > li {
     list-style: none;
     padding: 0;
     text-align: left;
+    border-bottom: 1px solid #f4faff;
+    padding-left:20px;
     display: block;
     color: black;
     height: 2.5em;
