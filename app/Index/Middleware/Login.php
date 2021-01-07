@@ -4,8 +4,10 @@ namespace App\Index\Middleware;
 
 class Login
 {
-    public function handler($request, \Closure $next)
+    public function handle($request, \Closure $next)
     {
-        return $next($request);
+        $response = $next($request);
+
+        return $response;
     }
 }
