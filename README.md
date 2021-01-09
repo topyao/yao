@@ -219,7 +219,12 @@ Route::get('/(\w+)-index(\d+).html',function($a,$b){
 Route::get('/','index@index/index')->alias('index');
 ```
 
-之后就可以在任意位置使用url助手函数获取路由地址，例如url('index') 返回'/'，如果url() 函数中传入的参数并没有被注册别名，那么会原样返回。
+之后就可以在任意位置使用url助手函数获取路由地址，例如url('index') 返回'/'，如果url() 函数中传入的参数并没有被注册别名，那么会原样返回。url函数可以添加第二个参数来给正则路由传递参数，例如
+```
+Route::get('/b(.*)\.html','index@index/index')->alias('blog');
+```
+
+此时可以使用url('blog',[1]); 生成的url地址为/b1.html ，这里url的第二个参数为一个索引数组
 
 ### 跨域支持【开发中】
 

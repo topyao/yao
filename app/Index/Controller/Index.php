@@ -11,7 +11,7 @@ use Yao\{
 
 class Index
 {
-    public function index()
+    public function index(Request $request)
     {
         $file = Db::name('files')->field(['file', 'filename', 'md5'])->order(['id' => 'desc'])->select()->toArray();
         foreach ($file as $k => $v) {
@@ -38,5 +38,10 @@ class Index
         if (!empty($file)) {
             return File::download($file['filename'], $file['file']);
         }
+    }
+
+    public function test($id = 0)
+    {
+        return $id;
     }
 }
