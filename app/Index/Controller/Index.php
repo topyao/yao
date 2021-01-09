@@ -19,6 +19,7 @@ class Index
             $file[$k]['size'] = $filesize;
             unset($file[$k]['file']);
         }
+
         return $file;
     }
 
@@ -37,6 +38,8 @@ class Index
         $file = Db::name('files')->where(['md5' => $request->get('hash')])->find();
         if (!empty($file)) {
             return File::download($file['filename'], $file['file']);
+        } else {
+            abort('文件找不到了!');
         }
     }
 
