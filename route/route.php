@@ -11,3 +11,5 @@ Route::get('/', [\App\Index\Controller\Index::class, 'index'])->alias('index')->
 Route::post('/upload', 'index@index/upload')->cross('http://www.chengyao.xyz');
 
 Route::get('test(\d*)\.html', 'index@index/test')->cross('*')->alias('name');
+
+Route::get('todo', 'index@index/todo');

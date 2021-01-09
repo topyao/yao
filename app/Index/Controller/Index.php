@@ -36,11 +36,7 @@ class Index
     public function download(\Yao\Http\Request $request)
     {
         $file = Db::name('files')->where(['md5' => $request->get('hash')])->find();
-        if (!empty($file)) {
-            return File::download($file['filename'], $file['file']);
-        } else {
-            abort('文件找不到了!');
-        }
+        return File::download($file['filename'], $file['file']);
     }
 
     public function test($id = 0)

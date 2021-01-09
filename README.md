@@ -228,7 +228,13 @@ Route::get('/b(.*)\.html','index@index/index')->alias('blog');
 
 此时可以使用url('blog',[1]); 生成的url地址为/b1.html ，这里url的第二个参数为一个索引数组
 
-### 跨域支持【开发中】
+## 路由可以设置缓存
+>php yao route:cache 设置缓存文件
+>php yao route:cache -d 删除缓存文件
+
+设置缓存文件后路由不会再通过调用/route下文件中的大量方法来注册，而是直接冲缓存文件中读取，所以在开发环境上建议不要使用路由缓存，否则新增或删除路由不能及时更新
+
+## 跨域支持【开发中】
 
 可以在定义路由的时候设置允许跨域
 ```
@@ -401,6 +407,8 @@ class UserCheck extends Facade
 ## 查询
 > yao\Facade\Db::name('表名')->field('字段')->where([条件])->limit(1,3)->find()/select();
 查询到的是数据集对象，可以使用toArray或者toJson获取
+
+可以使用value($fiels); 获取某一个字段的值
 
 ## 更新
 > db('users')->where('id > 10')->update(['name' => 'zhangsan']);

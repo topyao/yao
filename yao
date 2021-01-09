@@ -1,9 +1,8 @@
 #!/usr/bin/env php
 <?php
-define('ROOT', './');
 require('./vendor/autoload.php');
 $cli = $argv[1];
-
+define('ROOT', '.' . DIRECTORY_SEPARATOR);
 if ('serve' === $cli) {
     $port = 8080;
     if (isset($argv[2]) && '-p' == $argv[2]) {
@@ -24,6 +23,22 @@ if ('serve' === $cli) {
     dump(array_filter(\Yao\Facade\Route::getRoute()));
 } else if ('html' == $cli) {
     passthru("php -S 127.0.0.1:8888 -t html");
+} else if ('route:cache' == $cli) {
+    \Yao\Facade\Route::register();
+    if (!is_dir($path = ROOT . 'bootstrap' . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR . 'app')) {
+        mkdir($path, 0777, true);
+    }
+    $routesFile = $path . DIRECTORY_SEPARATOR . 'routes.php';
+    if (isset($argv[2]) && '-d' == $argv[2]) {
+        if (!file_exists($routesFile)) {
+            exit("没有缓存文件！\n");
+        }
+        unlink($routesFile);
+        exit("缓存生成已经清除\n");
+    } else {
+        file_put_contents($routesFile, serialize(array_filter(\Yao\Facade\Route::getRoute())));
+        echo "缓存生成成功\n";
+    }
 } else {
     helper();
 }
@@ -35,5 +50,7 @@ function helper()
         serve [-p 8080]          -以8080端口(默认)运行程序
         migrate <className>      -执行迁移文件
         route                    -查看定义的路由
+            route:cache              --生成给路由缓存
+            route:cache -d           --删除路由缓存
 EOT;
 }
