@@ -193,7 +193,7 @@ Route::get('/article/index(\d+).html', 'index@article/read');
 ```php
 Route::get('/article/index(\d+)?.html',function($id = 0){
 	echo $id;
-})
+});
 ```
 
 > 给控制器方法传参
@@ -209,12 +209,12 @@ public function read($id = 0){
 ```php
 Route::get('/(\w+)-index(\d+).html',function($a,$b){
 	echo $a,$b;
-})
+});
 ```
 
 访问`blog-index2.html` 时会输出`blog` 和 `2`
 
-> 注意：正则路由中的正则不需要添加定界符，多个参数是按匹配到的顺序传递的。
+> 注意：正则路由中的正则不需要添加定界符，多个参数是按匹配到的顺序传递的。转义符号务必使用反斜线，否则url助手函数可能不能正确获取到正则路由的地址
 
 ## 路由支持注册别名，例如
 ```
