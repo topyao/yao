@@ -1,24 +1,30 @@
-
-
 # 安装
 
 提供两种安装方式：
 
 ## 1.composer安装：
 
-> composer create-project chengyao/yao .
+```shell
+composer create-project chengyao/yao .
+```
 
-注意如果你安装的是开发版本，安装完成后可能需要手动删除`vendor/chengyao`下的包中的`.git`文件夹
+这行命令会在你命令执行目录安装框架，如果你安装的是开发版本，安装完成后可能需要手动删除`vendor/chengyao`下的包中的`.git`文件夹。
 
-## 2.github安装
+## 2.GIT安装
 
-> git clone https://github.com/topyao/yao.git
+```
+git clone https://github.com/topyao/yao.git
+```
 
 会在该目录下创建一个`yao`的文件夹，该文件夹即项目目录，需要在项目目录更新依赖
 
->  composer install
+```
+composer install
+```
 
 安装完成后就可以使用 `php yao serve [-p 8080]` 运行程序。框架强制路由，所以在编写控制器前应该先定义路由规则，如果你的环境是`windows`需要修改`public/.htaccess`中的`RewriteRule`或者`nginx`伪静态规则，在`index.php`后面加上`?`。框架对数据类型比较敏感，例如在该设置为`true`时候不要设置`1`。否则会报错。
+
+> 如果是git安装或者composer安装开发版本则需要app目录下的控制器类，`route`目录下的路由配置等文件,根目录下的html文件夹，以及.sql文件。
 
 ## 3.伪静态
 
@@ -32,7 +38,7 @@
   RewriteEngine On
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteRule ^(.*)$ index.php?/$1 [QSA,PT,L]
+  RewriteRule ^(.*)$ index.php/$1 [QSA,PT,L]
 </IfModule>
 ```
 
@@ -91,7 +97,7 @@ if ($rule_0 = "21"){
 配置文件包含两种，一种是`config`目录下的以小写字母开头的`.php`为后缀的文件，另一种是框架根目录下的`.env`文件，下面简单介绍下如何使用他们。
 
 ## ENV
-在开发环境下大多数配置都可以通过.env文件获取，而且默认为从.env文件获取，线上环境需要删除.env文件或者将配置中的env去掉，例如在`app.php`中有这样`'debug' => env('app.debug', false),`一个配置，我们可以更改为`'debug' => false,`
+在开发环境下大多数配置都可以通过`.env`文件获取，而且默认为从`.env`文件获取，线上环境需要删除`.env`文件或者将配置中的`env`去掉，例如在`app.php`中有这样`'debug' => env('app.debug', false),`一个配置，我们可以更改为`'debug' => false,`
 .env文件可以使用节，例如：
 
 ```
@@ -104,11 +110,11 @@ AUTO_START=true
 ## config
 配置文件是位于`config`目录下，以`.php`结尾的返回一个关联数组的文件。
 
-使用`yao\Config::get()`获取所有配置，可以传入一个参数例如`app`,则会获取`app.php`文件中的配置，传入`app.auto_start` 则获取`app`中的`auto_start`参数的值
+使用`Yao\Facade\Config::get()`获取所有配置，可以传入一个参数例如`app`,则会获取`app.php`文件中的配置，传入`app.auto_start` 则获取`app`中的`auto_start`参数的值
 
 
 
-如果需要自定义一个配置文件，可以在`/config`目录下新建例如`alipay.php`文件并返回一个数组。使用Config::load('alipay')将加载配置，就可以用`Config::get('alipay.param')`获取配置的值
+如果需要自定义一个配置文件，可以在`/config`目录下新建例如`alipay.php`文件并返回一个数组。使用`Config::load('alipay')`加载配置，就可以用`Config::get('alipay.param')`获取配置的值
 
 >可以使用辅助函数config() ，例如config('app.debug')
 
@@ -124,27 +130,34 @@ AUTO_START=true
 
 路由定义需要设置请求方式例如
 
-> Route::get(路由地址,路由表达式)   get方式请求的路由    
+```php
+Route::get('路由地址','路由表达式')   //get方式请求的路由  
+Route::post('路由地址','路由表达式')  //post方式请求的路由
+```
 
-> Route::post(路由地址,路由表达式) post方式请求的路由
-
-请求方式可以是get,post,put,delete,patch等请求类型,以下非特殊都是用`get`做演示，这里的路由地址是不包含queryString的，即使url中有queryString,也会匹配该路由。
+请求方式可以是`get,post,put,delete,patch`等请求类型,以下非特殊都是用`get`做演示，这里的路由地址是不包含`queryString`的，即使`url`中有`queryString`,也会匹配该路由。
 
 ### 字符串
 
 当我们使用单应用模式的时候，按照下面的方法定义路由
 
-> Route::get('路由地址','控制器/方法');
+```php
+Route::get('路由地址','控制器/方法');
+```
 
 如果是多应用
 
-> Route::get('路由地址','应用@控制器/方法');
+```php
+Route::get('路由地址','应用@控制器/方法');
+```
 
 例如
 
-> Route::get('index','index@index/index'); 
+```php
+Route::get('index','index@index/index'); 
+```
 
-该路由会匹配`get`方式请求的`path`为`/index`的url，并路由到`index`应用下的`Index`控制器中的`index`方法
+该路由会匹配`get`方式请求的`path`为`/index`的`url`，并映射到`index`应用下的`Index`控制器中的`index`方法
 
 ### 数组
 
@@ -154,17 +167,17 @@ AUTO_START=true
 Route::get('index',['\App\Index\Controller\Index','index']);
 ```
 
-表示路由到`\App\Index\Controller\Index`控制器的`index`方法
+表示映射到`\App\Index\Controller\Index`控制器的`index`方法
 
 ### 闭包
 
-```
+```php
 Route::get('index',function(){
        return view('模板文件');
 });
 ```
 
-注意：这里使用到了view助手函数，当路由地址中含有参数时可以给闭包函数传递相应参数，在下面会提到。
+> 注意：这里使用到了view助手函数，当路由地址中含有参数时可以给闭包函数传递相应参数，在下面会提到。
 
 ## 路由高级
 
@@ -183,7 +196,7 @@ Route::get('index',function(){
 例如我定义了一个如下的路由
 
 ```php
-Route::get('/article/index(\d+).html', 'index@article/read');
+Route::get('/article/index(\d+)\.html', 'index@article/read');
 ```
 
 该路由的第一个参数是一个不带定界符的正则表达式，该表达式会匹配`/article/任意数字.html`的请求地址，这个正则中使用了一个匹配组`(\d+)`,并且这个组是第一次出现的，那么就可以在控制器方法或者闭包中传入一个参数。
@@ -191,7 +204,7 @@ Route::get('/article/index(\d+).html', 'index@article/read');
 > 给闭包传参
 
 ```php
-Route::get('/article/index(\d+)?.html',function($id = 0){
+Route::get('/article/index(\d*)\.html',function($id = 0){
 	echo $id;
 });
 ```
@@ -204,10 +217,10 @@ public function read($id = 0){
 }
 ```
 
-可以传入多个参数,传入顺序按照preg_match之后的match数组去掉第一个之后的顺序传入,，例如：
+可以传入多个参数,传入顺序按照`preg_match`之后的`match`数组去掉第一个之后的顺序传入,，例如：
 
 ```php
-Route::get('/(\w+)-index(\d+).html',function($a,$b){
+Route::get('/(\w+)-index(\d+)\.html',function($a,$b){
 	echo $a,$b;
 });
 ```
@@ -226,11 +239,13 @@ Route::get('/','index@index/index')->alias('index');
 Route::get('/b(.*)\.html','index@index/index')->alias('blog');
 ```
 
-此时可以使用url('blog',[1]); 生成的url地址为/b1.html ，这里url的第二个参数为一个索引数组
+此时可以使用`url('blog',[1]);` 生成的`url`地址为`/b1.html` ，这里`url`的第二个参数为一个索引数组，参数按照在数组中的顺序传递。
 
 ## 路由可以设置缓存
->php yao route:cache 设置缓存文件
->php yao route:cache -d 删除缓存文件
+```
+php yao route:cache 设置缓存文件
+php yao route:cache -d 删除缓存文件
+```
 
 设置缓存文件后路由不会再通过调用/route下文件中的大量方法来注册，而是直接冲缓存文件中读取，所以在开发环境上建议不要使用路由缓存，否则新增或删除路由不能及时更新
 
@@ -354,7 +369,7 @@ class Index
 > 控制器可以继承\yao\Controller 基础控制器来使用基础控制器中提供的方法，你也可以自定义基础控制器
 
 >可以给控制器方法传入参数，参数个数和位置取决于路由中正则匹配到的参数。
-当路由中的参数为可选，就应该给控制器参数一个初始值
+>当路由中的参数为可选，就应该给控制器参数一个初始值
 
 # 模板引擎
 
@@ -406,7 +421,7 @@ class UserCheck extends Facade
 > db('users')->where(['id' => 1])->delete();
 ## 查询
 > yao\Facade\Db::name('表名')->field('字段')->where([条件])->limit(1,3)->find()/select();
-查询到的是数据集对象，可以使用toArray或者toJson获取
+> 查询到的是数据集对象，可以使用toArray或者toJson获取
 
 可以使用value($fiels); 获取某一个字段的值
 
@@ -432,6 +447,7 @@ class UserCheck extends Facade
 `Db::exec($sql,$data)`，其中sql可以是预处理语句，需要绑定的数据传入`data`，可以使用?占位符和:占位符,返回值为前一条语句影响的条数
 `Db::query($sql,$data，$all)` 前两个参数和`exec`是一致的，第三个参数为true时查询出全部数据，为false时查询出单条数据(默认)。
 例如
+
 > Db::query('SELECT * from users where id > :id',['id' => 1],true);
 
 表示查询出所有id大于1的用户信息
