@@ -10,6 +10,8 @@ composer create-project chengyao/yao .
 
 这行命令会在你命令执行目录安装框架，如果你安装的是开发版本，安装完成后可能需要手动删除`vendor/chengyao`下的包中的`.git`文件夹。
 
+> 强烈不建议使用开发版本
+
 ## 2.GIT安装
 
 ```
@@ -483,5 +485,10 @@ class Serve implements
 }
 ```
 
+# 容器
+可以使用容器创建类并调用类的方法
+```
+Container::instance()->get('类名',array $arguments)->invoke(’调用方法名‘,'给方法传递的参数');
+```
 
 联系邮箱:bigyao@139.com，感谢：https://www.jetbrains.com/?from=topyao
