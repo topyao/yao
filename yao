@@ -3,5 +3,4 @@
 require('./vendor/autoload.php');
 define('ROOT', '.' . DIRECTORY_SEPARATOR);
 $console = new Yao\Console\Console($argv);
-$console->run();
-exit;
+exit($console->run());
