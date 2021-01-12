@@ -375,13 +375,14 @@ class Index
 
 # 模板引擎
 
-模板引擎使用了twig
+模板引擎可以使用twig或者smarty，可以在config/view.php中设置模板引擎。
+> 注意：需要手动改安装对应模板引擎；
 
 模板目录位于`/app/应用/view` 目录，比如我在`/app/index/view/index`目录下有一个`index.html`的模板，我可以在控制器方法中使用`return view('index/index')`渲染模板，该方法可以传入第二个数组参数用来给模板赋值，例如
 
 >view('index',['data'=>$data]);
 
-或者使用facade的`Yao\Facade\View::fetch('template',$params);`
+或者使用facade的`Yao\Facade\View::render('template',$params);`
 
 其中的`index`对应`app/index/view`目录下的`index.html`文件。
 模板后缀可以在`/config/view`中修改`template_suffix`
