@@ -1,7 +1,6 @@
 #!/usr/bin/env php
 <?php
 require('./vendor/autoload.php');
-$cli = $argv[1];
 define('ROOT', '.' . DIRECTORY_SEPARATOR);
 $console = new Yao\Console\Console($argv);
 $console->run();
