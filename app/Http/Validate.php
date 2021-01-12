@@ -2,7 +2,7 @@
 
 namespace App\Http;
 
-class Validate extends \Yao\Validate
+class Validate extends \Yao\Validate\Validate
 {
     protected bool $throwAble = false;
 
