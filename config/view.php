@@ -2,7 +2,7 @@
 
 return [
     //模板引擎类型 twig,smarty
-    'type' => 'smarty',
+    'type' => 'twig',
     //模板调试
     'debug' => false,
     //模板缓存
