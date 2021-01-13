@@ -6,10 +6,10 @@
 
 use \Yao\Facade\Route;
 
-Route::get('/', [\App\Index\Controller\Index::class, 'index'])->alias('index')->cross('*')->middleware([\App\Index\Middleware\Login::class]);
+Route::get('/', [\App\Index\Controller\Index::class, 'index'])->alias('name')->cross('*');
 
-Route::post('/upload', 'index@index/upload')->cross('http://www.chengyao.xyz');
+Route::post('/upload', 'index@index/upload');
 
-Route::get('test(\d*)\.html', 'index@index/test')->cross('*')->alias('name');
+Route::rule('test', 'index@index/test');
 
 Route::get('todo', 'index@index/todo');

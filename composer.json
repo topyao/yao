@@ -23,5 +23,8 @@
     "chengyao/framework": "dev-master",
     "chengyao/migrate": "dev-master",
     "twig/twig": "^3.1"
+  },
+  "require": {
+    "smarty/smarty": "^3.1"
   }
 }

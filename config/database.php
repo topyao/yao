@@ -18,6 +18,8 @@ return [
         'options' => env('database.options', [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION]),
         //编码
         'charset' => env('database . charset', 'utf8mb4'),
+        //数据表前缀
+        'prefix' => ''
     ],
 
     'pgsql' => [
@@ -35,5 +37,7 @@ return [
         'options' => env('database.options', [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION]),
         //编码
         'charset' => env('database . charset', 'utf8mb4'),
+        //数据表前缀
+        'prefix' => ''
     ]
 ];
