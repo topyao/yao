@@ -18,10 +18,10 @@
       "app/common.php"
     ]
   },
-  "require-dev": {
+  "require": {
     "php": ">=7.4",
-    "chengyao/framework": "dev-master",
-    "chengyao/migrate": "dev-master",
+    "chengyao/framework": "^0.0.3",
+    "chengyao/migrate": "^0.0.1",
     "twig/twig": "^3.1"
   }
 }
