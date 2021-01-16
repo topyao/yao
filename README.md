@@ -381,7 +381,7 @@ public function test()
        }
    }
 ```
-验证器操作必须按照如上代码写，可以在`App\Http\Validate`类中添加方法例如`_checkUservali`，验证成功返回true，失败将消息新增到成员属性$message数组后返回false。之后使用rule方法的时候就可以使用rule(['username' => ['uservali' => 1]);验证username字段。当一个字段验证失败后就不会再验证其他字段了！
+验证器操作必须按照如上代码写，可以在`App\Validate`类中添加方法例如`_checkUservali`，验证成功返回true，失败将消息新增到成员属性$message数组后返回false。之后使用rule方法的时候就可以使用rule(['username' => ['uservali' => 1]);验证username字段。当一个字段验证失败后就不会再验证其他字段了！
 验证器支持全部验证，只需要给check方法的第二个参数传入true即可开启全部验证，非批量验证失败返回消息字符串，批量验证失败返回消息索引数组。
 
 > 默认可用的验证器有max,min,length,enum,required,regexp,bool,confirm
@@ -390,7 +390,7 @@ public function test()
 在验证`regexp`的时候需要编写完整验证正则表达式包括定界符，例如：`/\d+@\w+\.\w{3}/i` 注意这里验证使用了`preg_match`，所以在编写正则表达式的时候应该注意，例如不要使用模式修正符g
 
 ## 独立验证
-添加了独立验证，你可以在任何可以`composer`自动加载的位置添加验证器类例如`UserVali`，并继承`app\http\Validate`，在该类中添加验证规则$rule
+添加了独立验证，你可以在任何可以`composer`自动加载的位置添加验证器类例如`UserVali`，并继承`App\Validate`，在该类中添加验证规则$rule
 
 ```
  protected array $rule = [
@@ -429,7 +429,7 @@ $vali = Validate::data($data)->max(['a' => 10])->required(['a' => true,'b' => tr
 (new Validate())->max('a',10)->check($data);
 ```
 
-注意：这的`Validate`可以是任意你新建的继承了`app\http\Validate`或者`yao\Validate`的类，只是前者会包含你自定义的验证规则，后则会不包含，并且如果在你的验证器类中存在rule属性的设置就不再需要传入rule规则了，直接使用check即可。如果验证成功会返回true，否则返回带有错误信息的数组，使用闭包验证时func方法第一个参数传入要验证的字段，第二个参数传入闭包，第三个参数可选传入传递给闭包的参数列表数组。
+注意：这的`Validate`可以是任意你新建的继承了`App\Validate`或者`\Yao\Validate`的类，只是前者会包含你自定义的验证规则，后则会不包含，并且如果在你的验证器类中存在rule属性的设置就不再需要传入rule规则了，直接使用check即可。如果验证成功会返回true，否则返回带有错误信息的数组，使用闭包验证时func方法第一个参数传入要验证的字段，第二个参数传入闭包，第三个参数可选传入传递给闭包的参数列表数组。
 
 ## 验证提示
 可以自定义验证规则的提示，只需要给属性notice设置和验证规则类似的数组，并且将验证的限定值改为提示信息即可。
