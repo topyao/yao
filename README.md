@@ -343,6 +343,9 @@ new Request(?array $filters = null)
 ## 获取$_SETVER 变量
 替代地，可以使用Request::server($name) 获取$_SERVER中的值，如果不存在返回null
 
+## 获取`header`
+可以使用Request::header(); 获取所有header信息，可以传入一个参数，例如Request::header('user_agent');获取UA
+
 ## 判断请求类型
 使用`isMethod`方法判断任何请求类型，例如判断请求类型是否为get
 ```php
