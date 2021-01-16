@@ -4,7 +4,7 @@
 ```
 php >= 7.4
 PDO扩展
-mb扩展
+mbstring扩展
 ```
 
 ## 使用composer安装：
@@ -27,13 +27,11 @@ git clone https://github.com/topyao/yao.git .
 composer install
 ```
 
-安装完成后就可以使用 `php yao serve [-p 8080]` 运行程序。框架强制路由，所以在编写控制器前应该先定义路由规则，如果你的环境是`windows`需要修改`public/.htaccess`中的`RewriteRule`或者`nginx`伪静态规则，在`index.php`后面加上`?`。框架对数据类型比较敏感，例如在该设置为`true`时候不要设置`1`。否则会报错。
+安装完成后就可以使用 `php yao serve` 运行程序。框架强制路由，所以在编写控制器前应该先定义路由规则，如果你的环境是`windows`需要修改`public/.htaccess`中的`RewriteRule`或者`nginx`伪静态规则，在`index.php`后面加上`?`。框架对数据类型比较敏感，例如在该设置为`true`时候不要设置`1`。否则会报错。
 
 > 如果你安装的是开发版本，安装完成后可能需要手动删除`vendor/chengyao`下的包中的`.git`文件夹。强烈不建议使用开发版本
 
-## 2.GIT安装
-
-## 3.伪静态
+## 2.伪静态
 
 下面提供了`apache`和`nginx`的伪静态配置
 
@@ -76,7 +74,6 @@ if ($rule_0 = "21"){
     - Migrate 迁移文件目录
     - Model 模型目录
     - Validate 验证器目录
-    - View 视图目录
 - config 配置文件目录
   - app.php 应用配置文件
   - database.php 数据库配置文件
@@ -87,7 +84,8 @@ if ($rule_0 = "21"){
   - index.php 入口文件
 - route 路由目录
   - route.php	路由文件
-- vendor 固件包
+- vendor 扩展包（包含框架核心）
+- views 视图目录
 - .env 环境变量文件
 - .env.example 环境变量示例文件
 - .htaccess 伪静态文件
@@ -128,7 +126,7 @@ AUTO_START=true
 如果需要自定义一个配置文件，可以在`/config`目录下新建例如`alipay.php`文件并返回一个数组。
 
 ```php
-Config::load('alipay')         //加载配置
+Config::load('alipay')         //加载配置（一次请求只需要加载一次）
 Config::get('alipay.param')	   //获取配置
 ```
 
@@ -260,9 +258,8 @@ Route::get('/b(.*)\.html','index@index/index')->alias('blog');
 此时可以使用`url('blog',[1]);` 生成的`url`地址为`/b1.html` ，这里`url`的第二个参数为一个索引数组，参数按照在数组中的顺序传递。
 
 ## 路由可以设置缓存
-```
-php yao route:cache 设置缓存文件
-php yao route:cache -d 删除缓存文件
+```shell
+php yao route   //根据提示选择选项
 ```
 
 设置缓存文件后路由不会再通过调用/route下文件中的大量方法来注册，而是直接冲缓存文件中读取，所以在开发环境上建议不要使用路由缓存，否则新增或删除路由不能及时更新
@@ -272,10 +269,10 @@ php yao route:cache -d 删除缓存文件
 **可以直接定义视图路由**，
 
 ```php
-Route::view('index','index@index/index',['get']);
+Route::view('index','index@index',['get']);
 ```
 
-该路由表示`get`方式请求的`/index`会被映射到`index`应用下的`index`目录下的`index.html`模板文件。最后一个参数为可选参数，为空默认为`get`方式请求的路由；
+该路由表示`get`方式请求的`/index`会被映射到`views`目录下的`index`目录下的`index.html`模板文件，注意此时这里的@的意义可以理解为一层目录的分隔符，分隔符后最后的部分为模板文件名，前面均为目录名。最后一个参数为可选参数，为空默认为`get`方式请求的路由；
 
 **可以定义重定向路由**
 
@@ -444,11 +441,11 @@ $vali = Validate::data($data)->max(['a' => 10])->required(['a' => true,'b' => tr
 假如我定义了以下路由
 
 ```php
-Route::get('/','index/index/index');
+Route::get('/','index@index/index');
 ```
 
 
-如果需要编写控制器代码，就需要编写`/app/index/controller`目录下的`Index.php`控制器下的`index`方法
+如果需要编写控制器代码，就需要编写`/app/Index/Controller`目录下的`Index.php`控制器里的`index`方法
 
 控制器的基本代码如下：
 ```
@@ -473,8 +470,8 @@ class Index
 模板引擎可以使用twig或者smarty，可以在config/view.php中设置模板引擎。
 > 注意：需要手动改安装对应模板引擎；
 
-多应用时模板目录位于`/app/应用/View` ，比如有一个`/app/Index/View/index.html`的模板,可以使用view('index@index')渲染模板，如果目录有多级，例如`/app/Index/View/index/index.html`,则可以使用view('index@index/index')渲染模板
-但应用时模板目录位于`/app/View` ,我可以在控制器方法中使用`return view('index')`渲染模板，如果目录有多级，例如`/app/Index/View/index.html`,则可以使用view('index/index')渲染模板。
+多应用时模板目录位于`/views/应用名` ，比如有一个`/views/index/index.html`的模板,可以使用view('index@index')渲染模板，如果目录有多级，例如`/views/index/index/index.html`,则可以使用view('index@index/index')渲染模板
+。单应用时view中的第一个参数不必出现@分隔符，例如`views/index/index.html`可以使用view('index/index')渲染。
 
 模板渲染方法可以传入第二个数组参数用来给模板赋值，例如
 ```php
@@ -486,8 +483,6 @@ view('index',['data'=>$data]);
 ```php
 \Yao\Facade\View::render('template',$params);
 ```
-
-其中的`index`对应`app/index/view`目录下的`index.html`文件。
 模板后缀可以在`/config/view`中修改`template_suffix`
 配置文件中还可以修改默认的模板变量左右分隔符和缓存。默认缓存为关闭
 
