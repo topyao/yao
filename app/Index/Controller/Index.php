@@ -3,6 +3,7 @@
 namespace App\Index\Controller;
 
 use Yao\{Http\Request};
+use Yao\Facade\Route;
 
 class Index
 {
