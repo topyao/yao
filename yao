@@ -1,9 +1,13 @@
 #!/usr/bin/env php
 <?php
 if (!file_exists('./vendor/autoload.php')) {
-    echo "没有安装框架核心，即将自动安装！\n";
-    passthru('composer install');
-    echo "框架核心安装成功，即将启动！\n";
+    if (function_exists('passthru')) {
+        echo "没有安装框架核心，即将自动安装！\n";
+        passthru('composer install');
+        echo "框架核心安装成功，即将启动！\n";
+    }else{
+        echo '没有安装框架核心，请使用composer install安装依赖!';
+    }
 }
 require('./vendor/autoload.php');
 $console = new Yao\Console\Console($argv);
