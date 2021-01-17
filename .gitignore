@@ -3,5 +3,5 @@
 .env
 vendor
 composer.lock
-bootstrap
 views/*
+storage
