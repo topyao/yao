@@ -1,5 +1,10 @@
 #!/usr/bin/env php
 <?php
+if (!file_exists('./vendor/autoload.php')) {
+    echo "检测到没有安装框架核心，即将自动安装！";
+    passthru('composer install');
+    echo '框架核心安装成功，即将启动！';
+}
 require('./vendor/autoload.php');
 define('ROOT', '.' . DIRECTORY_SEPARATOR);
 $console = new Yao\Console\Console($argv);
