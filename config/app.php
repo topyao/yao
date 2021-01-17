@@ -2,7 +2,7 @@
 
 return [
     //是否开启调试
-    'debug' => env('app.debug', false),
+    'debug' => env('app.debug', true),
     //是否记录日志
     'log' => env('app.log', false),
     //自动开启session
@@ -12,5 +12,5 @@ return [
     //参数过滤
     'filter' => ['trim', 'htmlspecialchars'],
 
-    'exception_view' => env('yao_path') . '/Tpl/exception.html'
+    'exception_view' => env('yao_path') . 'Tpl' . DIRECTORY_SEPARATOR . 'exception.html'
 ];
