@@ -12,7 +12,7 @@
   "autoload": {
     "psr-4": {
       "App\\": "app/",
-      "Yao\\Database\\": "database",
+      "Database\\": "database/",
       "": "extend/"
     },
     "files": [

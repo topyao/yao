@@ -11,7 +11,7 @@ return [
         //模板缓存
         'cache' => false,
         //模板缓存路径
-        'cache_dir' => ROOT . 'storage' . DIRECTORY_SEPARATOR . 'view',
+        'cache_dir' => env('storage_path') . 'view',
         //模板后缀
         'template_suffix' => 'html',
     ],
@@ -21,7 +21,7 @@ return [
         //模板缓存
         'cache' => false,
         //模板缓存路径
-        'cache_dir' => ROOT . 'storage' . DIRECTORY_SEPARATOR . 'view',
+        'cache_dir' => env('storage_path') . 'view',
         //模板后缀
         'template_suffix' => 'html',
         //左右边界
