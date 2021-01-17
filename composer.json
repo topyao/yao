@@ -2,6 +2,7 @@
   "name": "chengyao/yao",
   "description": "一个简单易用的轻量PHP框架。",
   "type": "project",
+  "version": "0.0.6",
   "authors": [
     {
       "name": "chengyao",
@@ -19,10 +20,10 @@
       "app/common.php"
     ]
   },
-  "require-dev": {
+  "require": {
     "php": ">=7.4",
-    "chengyao/framework": "dev-master",
-    "chengyao/migrate": "dev-master",
+    "chengyao/framework": "^0.0.6",
+    "chengyao/migrate": "^0.0.6",
     "twig/twig": "^3.1"
   }
 }
