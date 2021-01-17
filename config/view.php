@@ -3,7 +3,7 @@
 return [
 
     //模板引擎类型 twig,smarty
-    'type' => 'twig',
+    'type' => 'smarty',
 
     'twig' => [
         //模板调试

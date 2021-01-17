@@ -1,0 +1,51 @@
+{{extends file="layout/main.html"}}
+{{block name="body"}}
+<div class="banner">
+    <div id="banner-title"></div>
+    <div id="banner-content">
+        <div>
+            <p class="big-font">Todo List</p>
+            <p class="small-font">使用轻量的PHP框架Yao开发</p>
+            <a target="_blank" id="download" href="https://github.com/topyao/yao/archive/0.0.1.zip"><i
+                    class="fa fa-download"></i>
+                立即下载</a>
+            <p class="links">V0.0.1<a href="">Gitee</a><a href="https://github.com/topyao/yao">Github</a><a
+                    href="https://packagist.org/packages/chengyao/yao">Packagist</a>作者:chengyao</p>
+        </div>
+        <div class="banner-right">
+            <i class="fa fa-thumbs-o-up"></i>
+        </div>
+    </div>
+</div>
+<main>
+    <div class="main">
+        <section>
+            <h3 style="text-align:center">上传文件</h3>
+            <div id="left" style="margin-top:180px">
+                <form action="" method="post" accept-charset="utf-8" enctype="multipart/form-data"
+                    v-on:submit.prevent="upload">
+                    <input type="file" name="file" id="file" value="选择文件" @change.prevent="file" ref="file" />
+                    <input type="submit" name="" value="上传" class="btn" />
+                </form>
+            </div>
+        </section>
+        <section id="handler">
+            <span v-on:click="resize" v-text="aside"></span>
+        </section>
+        <section id="right" v-bind:style="aside_width" v-cloak>
+            <h3>文件列表</h3>
+            <table align="center" width="100%" style="text-align: center">
+                <tr>
+                    <th>文件</th>
+                    <th>大小</th>
+                </tr>
+                <tr v-for="f in files">
+                    <td><a v-bind:download="`/download?hash=${f.md5}`" v-bind:href="`/download?hash=${f.md5}`">tt</a>
+                    </td>
+                    <td>tt</td>
+                </tr>
+            </table>
+        </section>
+    </div>
+</main>
+{{/block}}

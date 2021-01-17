@@ -3,5 +3,4 @@
 .env
 vendor
 composer.lock
-views/*
 storage
