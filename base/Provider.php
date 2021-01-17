@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App;
+namespace Yao\Base;
 
 class Provider extends \Yao\Provider\Provider
 {
