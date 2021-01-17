@@ -262,7 +262,7 @@ Route::get('/b(.*)\.html','index@index/index')->alias('blog');
 php yao route   //根据提示选择选项
 ```
 
-设置缓存文件后路由不会再通过调用/route下文件中的大量方法来注册，而是直接冲缓存文件中读取，所以在开发环境上建议不要使用路由缓存，否则新增或删除路由不能及时更新
+设置缓存文件后路由不会再通过调用/route下文件中的大量方法来注册，而是直接从缓存文件中读取，所以在开发环境上建议不要使用路由缓存，否则新增或删除路由不能及时更新
 
 ## 其他规则路由
 
@@ -466,7 +466,7 @@ class Index
 >当路由中的参数为可选，就应该给控制器参数一个初始值
 
 # 模板引擎
-
+### 使用内置模板驱动
 模板引擎可以使用twig或者smarty，可以在config/view.php中设置模板引擎。
 > 注意：需要手动改安装对应模板引擎；
 
@@ -488,7 +488,12 @@ view('index',['data'=>$data]);
 
 > 你可以使用composer安装你喜欢的模板引擎
 
-# facade
+### 自定义驱动
+框架允许你自定义任何视图驱动，可以在任何可以composer自动加载的位置定义视图驱动，并且在视图配置view.php中将type和视图配置名改为你的视图驱动完整类名。
+
+视图驱动需要继承\Yao\View\Driver.php 并且实现public function render($params){}方法。继承该类后可以使用$this->templateDir 获取模板路径(例如/views),使用$this->template 获取需要渲染的模板文件名。使用方法可以参考内置的视图驱动。
+
+# Facade(类静态代理)
 
 facade基本代码示例如下：
 ```
@@ -510,9 +515,11 @@ class UserCheck extends Facade
 
 > 你可以在任何可以composer自动加载的位置创建独立验证器类并继承Yao\Facade类，就可以实现静态代理，但是为了方便维护，建议创建在应用对应的facade目录下。
 
->注意: facade默认实例化对象都不是单例的。如果需要使用单例，可以加入`protected static $singleInstance = true;`，当然仅仅是在你的请求的页面中使用该类的方法全部为facade的时候才是单例的。
+>注意: Facade默认实例化对象都不是单例的。如果需要使用单例，可以加入`protected static $singleInstance = true;`，当然仅仅是在你的请求的页面中使用该类的方法全部为facade的时候才是单例的。
 
 # 数据库
+
+支持mysql，pgsql
 
 很遗憾，由于本人技术有限，目前的`Db`类只对`mysql`支持良好，其他数据库暂时没有测试。如果有需求可以使用`composer`安装第三方的数据库操作类，例如：`medoo`，`thinkorm`
 
