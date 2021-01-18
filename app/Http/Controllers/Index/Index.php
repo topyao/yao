@@ -41,6 +41,12 @@ class Index
         return File::download($file['filename'], $file['file']);
     }
 
+    public function document()
+    {
+        return view('index@document');
+    }
+
+
     public function login()
     {
         return view('index@login');

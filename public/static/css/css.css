@@ -8,14 +8,9 @@ html, body {
 
 a {
     text-decoration: none;
-    color: grey
 }
 
-a:hover {
-    color: white;
-}
-
-header, nav {
+header {
     position: fixed;
     top: 0;
     width: 100%;
@@ -26,29 +21,52 @@ header, nav {
     background-color: rgb(79, 112, 246);
 }
 
+nav > ul > li {
+    min-width: 5em;
+    text-align: center;
+    font-size: .8em;
+    display: inline-block;
+}
+
+nav > ul.bg-nav a {
+    color: white;
+}
+
+
+nav {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+nav li {
+    list-style-type: none;
+}
+
 nav > ul {
     padding: 0;
     margin: 0 auto;
     width: 80%;
 }
 
-nav > ul > li, nav > ul > li > a {
+#bg-nav > li {
     font-size: 0.9em;
     cursor: pointer;
     min-width: 5em;
     text-align: center;
     color: white;
     display: inline-block;
-    list-style-type: none;
+
     transition: color .5s;
 }
 
-nav > ul > li:hover {
+nav > ul > li.left-items:hover {
     background-color: rgb(127, 150, 243);
     transition: background-color .5s;
 }
 
-nav > ul > li > a:hover {
+nav > ul > li.left-items > a:hover {
     color: rgb(70, 69, 69);
 }
 
@@ -86,14 +104,6 @@ a.right {
     height: 3.5em;
 }
 
-.right3 > input {
-    height: 2.3em;
-    padding: 0 .5em;
-    width: 18em;
-    outline: none;
-    border: none;
-    border-radius: 5px;
-}
 
 main {
     margin: 1.5em auto;
@@ -179,7 +189,7 @@ section#right {
 }
 
 footer {
-    position:relative;
+    position: relative;
     font-size: .7em;
     text-align: center;
     height: 90px;
@@ -315,6 +325,7 @@ p.links a:hover {
 
 ul.bar {
     width: 90%;
+    overflow: hidden;
     padding: 0;
     background-color: white;
     border-radius: 5px;
@@ -329,7 +340,7 @@ ul.bar > li {
     padding: 0;
     text-align: left;
     border-bottom: 1px solid #f4faff;
-    padding-left:20px;
+    padding-left: 20px;
     display: block;
     color: black;
     height: 2.5em;
@@ -374,6 +385,10 @@ ul.bar > li {
     .banner-right {
         display: none;
     }
+
+    nav {
+        width: 90%;
+    }
 }
 
 @media screen and (max-width: 880px) {
@@ -399,31 +414,32 @@ ul.bar > li {
     }
 }
 
-a.tags{
-    text-align:center;
+a.tags {
+    text-align: center;
     display: inline-block;
-    height:2.3em;
+    height: 2.3em;
     background-color: #4F70F6;
-    font-size:.6em;
-    line-height:2.3em;
+    font-size: .6em;
+    line-height: 2.3em;
     border-radius: 1.3em;
-    padding:.2em 1.5em;
-    color:white;
+    padding: .2em 1.5em;
+    color: white;
     font-weight: bold;
     box-shadow: 0 0 2px 0 #8ba1f8;
-    margin:0 .5em;
+    margin: 0 .5em;
     overflow: hidden;
-    border:1px solid  #4F70F6;
-    transition:all .3s;
-}
-a.tags:hover{
-    color:rgb(78, 75, 75);
-    background-color: white;
-    border: 1px solid#4F70F6;
+    border: 1px solid #4F70F6;
+    transition: all .3s;
 }
 
-.title{
+a.tags:hover {
+    color: rgb(78, 75, 75);
+    background-color: white;
+    border: 1px solid #4F70F6;
+}
+
+.title {
     background-color: red;
-    height:3em;
-    width:100%;
+    height: 3em;
+    width: 100%;
 }

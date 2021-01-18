@@ -15,39 +15,44 @@
 </head>
 
 <body>
-    <div id="app">
-        <header>
-            <nav>
-                <ul>
-                    <a href="/" class="left"><i class="fa fa-gamepad"></i> Todo</a>
-                    <li class="active d-bg"><a href="/">主页</a></li>
-                    <li class="d-bg"><a href="/todo">ToDo</a></li>
-                    <a class="right right2 d-sm" v-on:click.prevent="show_bar"><i class="fa fa-bars"></i>
-                    </a>
-                    <a class="right right2" href="/login"> <i class="fa fa-sign-in"></i></a>
-                    <a class="right" href="https://github.com/topyao/yao/blob/master/README.md"><i
-                            class="fa fa-book"></i>
-                        文档</a>
-                    <a class="right right3 d-bg"><input type="text" name="" id="" value="" /></a>
-                </ul>
-                <ul class="bar" v-if="showBarFlg" v-cloak>
-                    <li>登录</li>
-                    <li>登录</li>
-                    <li>登录</li>
-                </ul>
-
-            </nav>
-        </header>
-        {{block name="body"}}{{/block}}
-        <footer>
-            <div style="margin-top:18px;"></div>
-            <a href="https://www.1kmb.com">一刻模板</a> |
-            <a href="https://www.jetbrains.com/?from=topyao">
-                使用Phpstorm开发</a><br><br><a href="http://beian.miit.gov.cn" target="_blank"
-                class="text">陕ICP备20000693号-1</a> | <a href="https://github.com/topyao/yao"><i class="fa fa-yelp"></i>
-                Yao</a>
-        </footer>
-    </div>
+<div id="app">
+    <header>
+        <nav>
+            <ul class="bg-nav">
+                <li class=""><a href="/"><i class="fa fa-gamepad"></i> Todo</a></li>
+                <li class="left-items active d-bg"><a href="/">主页</a></li>
+                <li class="left-items d-bg"><a href="/todo">ToDo</a></li>
+            </ul>
+            <ul style="display: flex;justify-content: flex-end">
+                <li class="d-bg"><a><input style="height: 2.3em;
+    padding: 0 .5em;
+    width: 18em;
+    outline: none;
+    border: none;
+    border-radius: 5px;" type="text" name="" id="" value=""/></a></li>
+                <li class=""><a href="https://github.com/topyao/yao/blob/master/README.md"><i
+                        class="fa fa-book"></i>文档</a></li>
+                <li class="  d-sm"><a v-on:click.prevent="show_bar"><i class="fa fa-bars"></i></a></li>
+                <li class=" "><a href="/login"> <i class="fa fa-sign-in"></i></a></li>
+            </ul>
+            <ul id="sm-nav" class="bar" v-if="showBarFlg" v-cloak>
+                <li><a href="/login">登录</a></li>
+                <li>登录</li>
+                <li>登录</li>
+            </ul>
+        </nav>
+    </header>
+    {{block name = "body"}}{{/block}}
+    <footer>
+        <div style="margin-top:18px;"></div>
+        <a href="https://www.1kmb.com">一刻模板</a> |
+        <a href="https://www.jetbrains.com/?from=topyao">
+            使用Phpstorm开发</a><br><br><a href="http://beian.miit.gov.cn" target="_blank"
+                                       class="text">陕ICP备20000693号-1</a> | <a href="https://github.com/topyao/yao"><i
+            class="fa fa-yelp"></i>
+        Yao</a>
+    </footer>
+</div>
 </body>
 <script src="./static/js/jquery-3.5.1.js"></script>
 <script src="./static/layer/layer.js"></script>
