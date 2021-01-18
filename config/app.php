@@ -2,7 +2,7 @@
 
 return [
     //是否开启调试
-    'debug' => env('app.debug', true),
+    'debug' => env('app.debug', false),
     //是否记录日志
     'log' => env('app.log', false),
     //自动开启session
