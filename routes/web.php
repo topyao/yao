@@ -10,4 +10,4 @@ Route::get('/', 'index@index/index')->alias('home');
 
 Route::get('todo', 'index@index/todo');
 
-Route::get('login', 'index@user/login');
+Route::get('login', 'index@index/login');

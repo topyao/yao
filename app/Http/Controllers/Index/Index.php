@@ -41,7 +41,8 @@ class Index
         return File::download($file['filename'], $file['file']);
     }
 
-    public function test()
+    public function login()
     {
+        return view('index@login');
     }
 }
