@@ -13,7 +13,7 @@ return [
         //模板缓存路径
         'cache_dir' => env('storage_path') . 'view',
         //模板后缀
-        'template_suffix' => 'html',
+        'suffix' => 'html',
     ],
     'smarty' => [
         //模板调试
@@ -23,7 +23,7 @@ return [
         //模板缓存路径
         'cache_dir' => env('storage_path') . 'view',
         //模板后缀
-        'template_suffix' => 'html',
+        'suffix' => 'html',
         //左右边界
         'left_delimiter' => '{{',
         'right_delimiter' => '}}',
