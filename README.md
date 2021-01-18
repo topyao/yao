@@ -2,9 +2,9 @@
 
 ## 要求
 ```
-php >= 7.4
+PHP >= 7.4
 PDO扩展
-mbstring扩展
+MBString扩展
 ```
 
 ## 使用composer安装：
@@ -63,17 +63,17 @@ if ($rule_0 = "21"){
 
 # 目录结构
 - app  应用目录
-  - Http 基础服务目录
-    - Controller.php
-    - Provider.php
-    - Validate.php
-  - Index 应用目录
-    - Controller 控制器目录
-    - Services 服务目录
-    - Facade 用户自定义门面目录
-    - Migrate 迁移文件目录
-    - Model 模型目录
+  - Http
+    - Controllers  控制器目录
+    - Middleware 中间件目录
     - Validate 验证器目录
+    - Controller.php 基础控制器类
+    - Provider.php 服务注册类
+    - Validate.php 验证器类
+  - Models 模型目录
+  - Services 服务目录
+  - Facade 用户自定义门面目录
+  - common.php 用户自定义函数文件
 - config 配置文件目录
   - app.php 应用配置文件
   - database.php 数据库配置文件
@@ -81,9 +81,10 @@ if ($rule_0 = "21"){
 - extend 扩展类库目录【命名空间为\\】
 - public 应用访问目录
   - .htaccess apache伪静态文件
+  - nginx.conf nginx伪静态文件
   - index.php 入口文件
-- route 路由目录
-  - route.php	路由文件
+- routes 路由目录
+  - web.php	路由文件
 - vendor 扩展包（包含框架核心）
 - views 视图目录
 - .env 环境变量文件
@@ -95,7 +96,7 @@ if ($rule_0 = "21"){
 - README.md 手册
 - yao 命令行文件
 
-> 框架支持单/多应用，单应用时需要将`app/Index`下的目录全部放置在`app`下,在定义路由和渲染模板的时候应该有所注意，这里在下面的章节中会提到。
+> 框架对单/多应用这个概念比较模糊，只是在定义路由和渲染模板的时候应该有所注意，这里在下面的章节中会提到。
 
 # 配置
 
@@ -118,7 +119,7 @@ AUTO_START=true
 获取所有配置使用
 
 ```php
-\Yao\Facade\Config::get()
+\Yao\Facade\Config::get();
 ```
 
 可以传入一个参数例如`app`,则会获取`app.php`文件中的配置，传入`app.auto_start` 则获取`app`中的`auto_start`参数的值
@@ -126,8 +127,8 @@ AUTO_START=true
 如果需要自定义一个配置文件，可以在`/config`目录下新建例如`alipay.php`文件并返回一个数组。
 
 ```php
-Config::load('alipay')         //加载配置（一次请求只需要加载一次）
-Config::get('alipay.param')	   //获取配置
+\Yao\Facade\Config::load('alipay');         //加载配置（一次请求只需要加载一次）
+\Yao\Facade\Config::get('alipay.param');	   //获取配置
 ```
 
 >可以使用辅助函数`config()` ，例如`config('app.debug')`
@@ -145,8 +146,8 @@ Config::get('alipay.param')	   //获取配置
 路由定义需要设置请求方式例如
 
 ```php
-Route::get('路由地址','路由表达式')   //get方式请求的路由  
-Route::post('路由地址','路由表达式')  //post方式请求的路由
+Route::get('路由地址','路由表达式');   //get方式请求的路由  
+Route::post('路由地址','路由表达式');  //post方式请求的路由
 ```
 
 请求方式可以是`get,post,put,delete,patch`等请求类型,以下非特殊都是用`get`做演示，这里的路由地址是不包含`queryString`的，即使`url`中有`queryString`,也会匹配该路由。
@@ -158,30 +159,22 @@ Route::post('路由地址','路由表达式')  //post方式请求的路由
 ```php
 Route::get('路由地址','控制器/方法');
 ```
-
-如果是多应用
-
-```php
-Route::get('路由地址','应用@控制器/方法');
-```
-
 例如
-
 ```php
-Route::get('index','index@index/index'); 
+Route::get('index','index/index/index'); 
 ```
 
-该路由会匹配`get`方式请求的`path`为`/index`的`url`，并映射到`index`应用下的`Index`控制器中的`index`方法
+这里的`index/index/index`中最后一个斜线后的字符串为调用的方法名，前面的组成类似`App\Http\Controllers\Index\Index`的类名,对应到目录中为`/app/Http/Controllers/index/index.php` 这样就很容易理解如何创建单/多应用。只需给路由表达式添加多个斜线分割，对应于类所处的文件夹上下级。
 
 ### 数组
 
 使用数组的方式定义路由，数组的第一个参数必须是一个控制器类的完整类名，第二个参数为方法名字符串，例如
 
 ```php
-Route::get('index',['\App\Index\Controller\Index','index']);
+Route::get('index',['\App\Http\Controllers\Index','index']);
 ```
 
-表示映射到`\App\Index\Controller\Index`控制器的`index`方法
+表示映射到`\App\Http\Controllers\Index`控制器的`index`方法
 
 ### 闭包
 
@@ -200,7 +193,7 @@ Route::get('index',function(){
 当我们一个url需要多种请求方式来访问的时候可以定义`rule`类型的路由，例如：（这里的/非必须，但是建议加上）
 
 ```php
-Route::rule('/', 'index@index/index', ['get', 'post']);
+Route::rule('/', 'index/index/index', ['get', 'post']);
 ```
 
 第三个参数传入请求方式数组，可以为空，为空默认为`get`和`post`
@@ -212,7 +205,7 @@ Route::rule('/', 'index@index/index', ['get', 'post']);
 例如我定义了一个如下的路由
 
 ```php
-Route::get('/article/index(\d+)\.html', 'index@article/read');
+Route::get('/article/index(\d+)\.html', 'index/article/read');
 ```
 
 该路由的第一个参数是一个不带定界符的正则表达式，该表达式会匹配`/article/任意数字.html`的请求地址，这个正则中使用了一个匹配组`(\d+)`,并且这个组是第一次出现的，那么就可以在控制器方法或者闭包中传入一个参数。
@@ -247,12 +240,12 @@ Route::get('/(\w+)-index(\d+)\.html',function($a,$b){
 
 ## 路由支持注册别名，例如
 ```
-Route::get('/','index@index/index')->alias('index');
+Route::get('/','index/index/index')->alias('index');
 ```
 
 之后就可以在任意位置使用url助手函数获取路由地址，例如url('index') 返回'/'，如果url() 函数中传入的参数并没有被注册别名，那么会原样返回。url函数可以添加第二个参数来给正则路由传递参数，例如
 ```
-Route::get('/b(.*)\.html','index@index/index')->alias('blog');
+Route::get('/b(.*)\.html','index/index/index')->alias('blog');
 ```
 
 此时可以使用`url('blog',[1]);` 生成的`url`地址为`/b1.html` ，这里`url`的第二个参数为一个索引数组，参数按照在数组中的顺序传递。
@@ -269,10 +262,10 @@ php yao route   //根据提示选择选项
 **可以直接定义视图路由**，
 
 ```php
-Route::view('index','index@index',['get']);
+Route::view('index','index/index',['get']);
 ```
 
-该路由表示`get`方式请求的`/index`会被映射到`views`目录下的`index`目录下的`index.html`模板文件，注意此时这里的@的意义可以理解为一层目录的分隔符，分隔符后最后的部分为模板文件名，前面均为目录名。最后一个参数为可选参数，为空默认为`get`方式请求的路由；
+该路由表示`get`方式请求的`/index`会被映射到`views`目录下的`index`目录下的`index.html`模板文件,分隔符后最后的部分为模板文件名，前面均为目录名。最后一个参数为可选参数，为空默认为`get`方式请求的路由；
 
 **可以定义重定向路由**
 
@@ -286,7 +279,7 @@ Route::redirect('index','https://www.1kmb.com',['get'],302);
 
 可以在定义路由的时候设置允许跨域
 ```
-Route::get('/','index@index/index')->cross('*'); 
+Route::get('/','index/index/index')->cross('*'); 
 ```
 
 # 请求
@@ -441,17 +434,17 @@ $vali = Validate::data($data)->max(['a' => 10])->required(['a' => true,'b' => tr
 假如我定义了以下路由
 
 ```php
-Route::get('/','index@index/index');
+Route::get('/','index/index/index');
 ```
 
 
-如果需要编写控制器代码，就需要编写`/app/Index/Controller`目录下的`Index.php`控制器里的`index`方法
+如果需要编写控制器代码，就需要编写`/app/Http/Controllers/Index`目录下的`Index.php`控制器里的`index`方法
 
 控制器的基本代码如下：
 ```
 <?php
 
-namespace App\Index\Controller;
+namespace App\Http\Controllers\Index;
 
 class Index
 {
@@ -460,18 +453,21 @@ class Index
     }
 }
 ```
-> 控制器可以继承\yao\Controller 基础控制器来使用基础控制器中提供的方法，你也可以自定义基础控制器
+> 控制器可以继承\App\Http\Controller 基础控制器来使用基础控制器中提供的方法，你也可以自定义基础控制器
 
 >可以给控制器方法传入参数，参数个数和位置取决于路由中正则匹配到的参数。
 >当路由中的参数为可选，就应该给控制器参数一个初始值
 
-# 模板引擎
+# 视图
 ### 使用内置模板驱动
 模板引擎可以使用twig或者smarty，可以在config/view.php中设置模板引擎。
 > 注意：需要手动改安装对应模板引擎；
 
-多应用时模板目录位于`/views/应用名` ，比如有一个`/views/index/index.html`的模板,可以使用view('index@index')渲染模板，如果目录有多级，例如`/views/index/index/index.html`,则可以使用view('index@index/index')渲染模板
-。单应用时view中的第一个参数不必出现@分隔符，例如`views/index/index.html`可以使用view('index/index')渲染。
+视图目录位于根项目目录下views文件夹，可以使用助手函数渲染模板
+```php
+view('index/index');
+```
+这里的第一个参数和控制器解析规则类似，表示/views/index/index.html 模板文件，这里的模板后缀可以在`/config/view`中修改`suffix` 选项
 
 模板渲染方法可以传入第二个数组参数用来给模板赋值，例如
 ```php
@@ -481,10 +477,8 @@ view('index',['data'=>$data]);
 或者使用`Facade`
 
 ```php
-\Yao\Facade\View::render('template',$params);
+\Yao\Facade\View::render('index',$params);
 ```
-模板后缀可以在`/config/view`中修改`template_suffix`
-配置文件中还可以修改默认的模板变量左右分隔符和缓存。默认缓存为关闭
 
 > 你可以使用composer安装你喜欢的模板引擎
 
@@ -629,6 +623,7 @@ Container::instance()->get('类名',array $arguments)->invoke(’调用方法名
 框架提供了不丰富的命令操作，目前支持路由列表，路由缓存，启动内置服务等操作；只需要在项目目录下打开命令窗口输入以下指令就可以方便地进行各种操作。
 
 ```shell
+php yao        //所有命令的帮助
 php yao serve  //会提示输入一个端口来创建服务，默认为8080
 php yao route  //会提示输出列表或者路由缓存操作，根据提示输入数字即可
 ```
