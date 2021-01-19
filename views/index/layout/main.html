@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo</title>
-    <link rel="stylesheet" href="./static/css/css.css">
+    <link rel="stylesheet" href="./static/css/css.css?20210119">
     <link rel="stylesheet" href="./static/font-awesome-4.7.0/css/font-awesome.css">
     <style>
         [v-cloak] {
@@ -22,25 +22,27 @@
                 <li class=""><a href="/"><i class="fa fa-gamepad"></i> Todo</a></li>
                 <li class="left-items active d-bg"><a href="/">主页</a></li>
                 <li class="left-items d-bg"><a href="/todo">ToDo</a></li>
+                <li class="left-items d-bg"><a href="/document">测试</a></li>
             </ul>
             <ul style="display: flex;justify-content: flex-end">
-                <li class="d-bg"><a><input style="height: 2.3em;
+                <li class="d-bg"><input style="height: 2.3em;
     padding: 0 .5em;
+    margin-right:1.3em;
     width: 18em;
     outline: none;
     border: none;
-    border-radius: 5px;" type="text" name="" id="" value=""/></a></li>
+    border-radius: 5px;" type="text" name="" id="" value=""/></li>
                 <li class=""><a href="https://github.com/topyao/yao/blob/master/README.md"><i
-                        class="fa fa-book"></i>文档</a></li>
-                <li class="  d-sm"><a v-on:click.prevent="show_bar"><i class="fa fa-bars"></i></a></li>
-                <li class=" "><a href="/login"> <i class="fa fa-sign-in"></i></a></li>
-            </ul>
-            <ul id="sm-nav" class="bar" v-if="showBarFlg" v-cloak>
-                <li><a href="/login">登录</a></li>
-                <li>登录</li>
-                <li>登录</li>
+                        class="fa fa-book"></i> 文档</a></li>
+                <li class="d-sm dropdown-btn"><a v-on:click.prevent="show_bar"><i class="fa fa-bars"></i></a></li>
+                <li class="d-bg" style="min-width:2.5em"><a href="/login"> <i class="fa fa-sign-in"></i></a></li>
             </ul>
         </nav>
+        <ul id="sm-nav" class="bar" v-if="showBarFlg" v-cloak>
+            <li><a href="/login">登录</a></li>
+            <li><a href="/todo">todo</a></li>
+            <li>登录</li>
+        </ul>
     </header>
     {{block name = "body"}}{{/block}}
     <footer>

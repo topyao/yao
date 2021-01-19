@@ -9,7 +9,7 @@ class Index
 {
     public function index(Request $request)
     {
-        return view('index@index');
+        return view('index/index');
         $file = Db::name('files')
             ->field(['file', 'filename', 'md5'])
             ->order(['id' => 'desc'])
@@ -32,7 +32,7 @@ class Index
 
     public function todo(Request $request)
     {
-        return view('index@todo');
+        return view('index/todo');
     }
 
     public function download(Request $request)
@@ -43,12 +43,12 @@ class Index
 
     public function document()
     {
-        return view('index@document');
+        return view('index/document');
     }
 
 
     public function login()
     {
-        return view('index@login');
+        return view('index/login');
     }
 }

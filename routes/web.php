@@ -6,10 +6,10 @@
 
 use \Yao\Facade\Route;
 
-Route::get('/', 'index@index/index')->alias('home');
+Route::get('/', 'index/index/index')->alias('home');
 
-Route::get('todo', 'index@index/todo');
+Route::get('todo', 'index/index/todo');
 
-Route::get('login', 'index@index/login');
+Route::get('login', 'index/index/login');
 
-Route::get('document', 'index@index/document');
+Route::get('document', 'index/index/document');

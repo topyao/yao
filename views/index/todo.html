@@ -1,25 +1,22 @@
-{{extends file="layout/main.html"}}
+{{extends file="index/layout/main.html"}}
 {{block name="body"}}
 <main id="app">
-    <div style="height: 2.5em"></div>
-    <div style="
-        min-height: 80vh;
-        display: flex;
-        box-sizing: border-box;">
+    <div class="container">
         <div class="left" style="width:72%;">
-            <div
-                style="background-color: white; border-radius: 5px;box-shadow: 0 0 3px 0 rgb(226, 225, 225);height: 40%;position: relative;display:block;padding:2%;">
+            <div id="top">
                 <div style="display:flex;justify-content: flex-end;">
-                    <a href="" class="tags">测试</a>
-                    <a href="" class="tags">测试以下</a>
-                    <a href="" class="tags">测试</a>
+                    <a href="" class="tags">Tag1</a>
+                    <a href="" class="tags">Tag2</a>
+                    <a href="" class="tags">Tag3</a>
                 </div>
-                <div style="font-size:1.5em;margin: .5em 0;font-weight: bold;padding:0 1em;text-align: center;">这是文章的标题
-                </div>
+                <p class="title">这是文章的标题</p>
+                <p style="text-align: center;font-size: .9em;margin-bottom: 0"><i class="fa fa-clock-o"></i> 2020/02/02
+                    <i class="fa fa-user"></i> topyao <i class="fa fa-eye"></i> 385 <i class="fa fa-comment"></i> 100
+                </p>
             </div>
 
             <div
-                style="background-color: white; border-radius: 5px;box-shadow: 0 0 3px 0 rgb(226, 225, 225);height:55%; margin-top: 1%;">
+                    style="background-color: white; border-radius: 5px;box-shadow: 0 0 3px 0 rgb(226, 225, 225);margin-top: 1%;">
                 <br>
                 <br>
                 <br>
@@ -63,10 +60,18 @@
                 <br>
             </div>
         </div>
-        <div class="right"
-            style="width:27%;background-color: white;margin-left:1%; border-radius: 5px;box-shadow: 0 0 2px 0 rgb(226, 225, 225);">
-
-        </div>
+        <aside>
+            <div class="card" style="position: fixed;width: 18.5em">
+                <div class="tips">目录</div>
+                <ul class="card-content">
+                    <li><a href="">这是测试标题一</a></li>
+                    <li><a href="">这是文章标题 </a></li>
+                    <li><a href="">两只老虎跑得快</a></li>
+                    <li><a href="">I am not afraid of tomorrow for I have seen yesterday and I love today. </a></li>
+                    <li><a href="">timei</a></li>
+                </ul>
+            </div>
+        </aside>
         <!-- <section>
             <div class="input-area">
                 <input type="text" name="todo">

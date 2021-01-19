@@ -6,6 +6,61 @@ html, body {
     background-color: aliceblue;
 }
 
+.card-content {
+    padding: .2em .7em;
+    margin: 0
+}
+
+#top {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: rgb(226, 225, 225) 0 0 3px 0;
+    position: relative;
+    display: block;
+    padding: 2%;
+}
+
+.container {
+    min-height: 80vh;
+    display: flex;
+    box-sizing: border-box;
+}
+
+.card {
+    box-shadow: rgb(226, 225, 225) 0 0 2px 0;
+    background-color: white;
+    padding: 0.5em;
+}
+
+#top .title {
+    font-size: 1.5em;
+    margin: 0.5em 0;
+    font-weight: bold;
+    padding: 0 1em;
+    text-align: center;
+}
+
+aside {
+    width: 27%;
+    margin-left: 1%;
+    border-radius: 5px;
+}
+
+.card-content > li {
+    list-style-type: none;
+    min-height: 1.5em;
+}
+
+.card-content > li > a {
+    font-size: .8em;
+    color: dodgerblue;
+    transition: all .3s;
+}
+
+.card-content > li > a:hover {
+    color: grey;
+}
+
 a {
     text-decoration: none;
 }
@@ -28,7 +83,7 @@ nav > ul > li {
     display: inline-block;
 }
 
-nav > ul.bg-nav a {
+nav > ul a {
     color: white;
 }
 
@@ -63,7 +118,7 @@ nav > ul {
 
 nav > ul > li.left-items:hover {
     background-color: rgb(127, 150, 243);
-    transition: background-color .5s;
+    transition: all .5s;
 }
 
 nav > ul > li.left-items > a:hover {
@@ -99,6 +154,17 @@ a.right {
     width: 1em !important;
 }
 
+.tips {
+    height: 1.8em;
+    line-height: 1.8em;
+    font-weight: bold;
+    font-size: .9em;
+    border-left: 3px solid #4F70F6;
+    background-color: white;
+    color: grey;
+    padding-left: .7em;
+}
+
 .right3 {
     margin-right: 17em !important;
     height: 3.5em;
@@ -106,7 +172,7 @@ a.right {
 
 
 main {
-    margin: 1.5em auto;
+    margin: 3.5em auto .7em;
     width: 80%;
 }
 
@@ -265,7 +331,7 @@ div.input-area > input:focus {
     margin: 0;
     font-size: 6em;
     font-weight: bold;
-    text-shadow: 5px 5px 2px #a3a3a3;
+    text-shadow: 3px 3px 2px #a3a3a3;
 }
 
 .small-font {
@@ -393,6 +459,10 @@ ul.bar > li {
 
 @media screen and (max-width: 880px) {
 
+    .dropdown-btn {
+        min-width: 2.5em !important;
+    }
+
     .big-font {
         font-size: 4em;
     }
@@ -438,8 +508,8 @@ a.tags:hover {
     border: 1px solid #4F70F6;
 }
 
-.title {
-    background-color: red;
-    height: 3em;
-    width: 100%;
-}
+/*.title {*/
+/*    background-color: red;*/
+/*    height: 3em;*/
+/*    width: 100%;*/
+/*}*/
