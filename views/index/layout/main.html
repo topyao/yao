@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo</title>
-    <link rel="stylesheet" href="./static/css/css.css?20210119">
-    <link rel="stylesheet" href="./static/font-awesome-4.7.0/css/font-awesome.css">
+    <title>{{block name = "title"}}Todo{{/block}}</title>
+    <link rel="stylesheet" href="/static/css/css.css?20210119">
+    <link rel="stylesheet" href="/static/font-awesome-4.7.0/css/font-awesome.css">
     <style>
         [v-cloak] {
             display: none;
@@ -56,10 +56,10 @@
     </footer>
 </div>
 </body>
-<script src="./static/js/jquery-3.5.1.js"></script>
-<script src="./static/layer/layer.js"></script>
-<script src="./static/js/vue.js"></script>
-<script src="./static/js/axios.js"></script>
+<script src="/static/js/jquery-3.5.1.js"></script>
+<script src="/static/layer/layer.js"></script>
+<script src="/static/js/vue.js"></script>
+<script src="/static/js/axios.js"></script>
 <script>
     (function (Vue) {
         var side = sessionStorage.getItem('side');

@@ -23,6 +23,6 @@
     "php": ">=7.4",
     "chengyao/framework": "dev-master",
     "chengyao/migrate": "dev-master",
-    "twig/twig": "^3.1"
+    "smarty/smarty": "^3.1.38"
   }
 }

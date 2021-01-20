@@ -1,6 +1,6 @@
 {{extends file="index/layout/main.html"}}
 {{block name="body"}}
-<main id="app">
+<main id="app" style="margin-top: 3.5em">
     <div class="container">
         <div class="left" style="width:72%;">
             <div id="top">
@@ -9,8 +9,8 @@
                     <a href="" class="tags">Tag2</a>
                     <a href="" class="tags">Tag3</a>
                 </div>
-                <p class="title">这是文章的标题</p>
-                <p style="text-align: center;font-size: .9em;margin-bottom: 0"><i class="fa fa-clock-o"></i> 2020/02/02
+                <p class="title">{{$title}}</p>
+                <p style="text-align: center;font-size: .9em;margin-bottom: 0"><i class="fa fa-clock-o"></i> {{$create_time}}
                     <i class="fa fa-user"></i> topyao <i class="fa fa-eye"></i> 385 <i class="fa fa-comment"></i> 100
                 </p>
             </div>
@@ -61,7 +61,7 @@
             </div>
         </div>
         <aside>
-            <div class="card" style="position: fixed;width: 18.5em">
+            <div class="card">
                 <div class="tips">目录</div>
                 <ul class="card-content">
                     <li><a href="">这是测试标题一</a></li>

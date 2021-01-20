@@ -20,6 +20,14 @@ html, body {
     padding: 2%;
 }
 
+.bg-nav li {
+    cursor: pointer;
+}
+
+.bg-nav li:hover a {
+    color: black;
+}
+
 .container {
     min-height: 80vh;
     display: flex;
@@ -85,8 +93,12 @@ nav > ul > li {
 
 nav > ul a {
     color: white;
+    transition: all .5s;
 }
 
+/*nav > ul a:hover {*/
+/*    color: black;*/
+/*}*/
 
 nav {
     width: 80%;
@@ -131,7 +143,7 @@ nav > ul > li.active {
     color: rgb(70, 69, 69);
 }
 
-a.left, a.right {
+nav a {
     cursor: pointer;
     color: white;
     text-shadow: 3px 3px 5px grey;
@@ -172,7 +184,7 @@ a.right {
 
 
 main {
-    margin: 3.5em auto .7em;
+    margin: .7em auto;
     width: 80%;
 }
 

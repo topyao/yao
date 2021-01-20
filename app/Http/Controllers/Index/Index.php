@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Index;
 
+use App\Models\Notes;
 use Yao\{Http\Request};
 use Yao\Facade\Db;
 
 class Index
 {
+
     public function index(Request $request)
     {
         return view('index/index');
@@ -26,11 +28,12 @@ class Index
         return $file;
     }
 
+
     public function upload()
     {
     }
 
-    public function todo(Request $request)
+    public function todo()
     {
         return view('index/todo');
     }

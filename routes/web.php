@@ -12,4 +12,12 @@ Route::get('todo', 'index/index/todo');
 
 Route::get('login', 'index/index/login');
 
+
 Route::get('document', 'index/index/document');
+
+Route::get('test', 'index/index/test');
+
+
+Route::rule('notes', 'index/note/create');
+Route::get('list', 'index/note/list');
+Route::get('note/(\d+)','index/note/note');
