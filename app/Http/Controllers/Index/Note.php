@@ -15,13 +15,13 @@ class Note
         $this->notesModel = new Notes();
     }
 
-    public function note($id)
+    public function read($id)
     {
         $note = $this->notesModel->oneNote($id);
         if (false === $note) {
             return redirect('/');
         }
-        return view('index/todo', $note);
+        return view('index/notes/read', $note);
     }
 
     public function list($fields = null)

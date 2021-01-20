@@ -8,16 +8,14 @@ use \Yao\Facade\Route;
 
 Route::get('/', 'index/index/index')->alias('home');
 
-Route::get('todo', 'index/index/todo');
-
 Route::get('login', 'index/index/login');
 
 
 Route::get('document', 'index/index/document');
 
-Route::get('test', 'index/index/test');
 
-
-Route::rule('notes', 'index/note/create');
+//note路由
+Route::rule('notes/add', 'index/note/create');
+Route::rule('notes', 'index/note/list');
 Route::get('list', 'index/note/list');
-Route::get('note/(\d+)','index/note/note');
+Route::get('note/(\d+)\.html', 'index/note/read');

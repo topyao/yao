@@ -1,4 +1,5 @@
 {{extends file="index/layout/main.html"}}
+{{block name="title"}}{{$title}}{{/block}}
 {{block name="body"}}
 <main id="app" style="margin-top: 3.5em">
     <div class="container">
@@ -10,57 +11,22 @@
                     <a href="" class="tags">Tag3</a>
                 </div>
                 <p class="title">{{$title}}</p>
-                <p style="text-align: center;font-size: .9em;margin-bottom: 0"><i class="fa fa-clock-o"></i> {{$create_time}}
+                <p style="text-align: center;font-size: .9em;margin-bottom: 0"><i class="fa fa-clock-o"></i>
+                    {{$create_time}}
                     <i class="fa fa-user"></i> topyao <i class="fa fa-eye"></i> 385 <i class="fa fa-comment"></i> 100
                 </p>
             </div>
 
-            <div
-                    style="background-color: white; border-radius: 5px;box-shadow: 0 0 3px 0 rgb(226, 225, 225);margin-top: 1%;">
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br> <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br> <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br> <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
+            <div class="card2"
+                 style="">
+                <div class="tips" style="border-radius: 0 5px 0 0">正文</div>
+                <div class="content"
+                     style="">
+                    {{$text}}
+                </div>
             </div>
         </div>
-        <aside>
+        <aside class="d-bg">
             <div class="card">
                 <div class="tips">目录</div>
                 <ul class="card-content">

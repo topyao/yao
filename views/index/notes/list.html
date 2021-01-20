@@ -1,12 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{{foreach from=$notes item=note}}
-    {{$note.title}}
-{{/foreach}}
-</body>
-</html>
+{{extends file="index/layout/main.html"}}
+{{block name = "title"}}列表{{/block}}
+{{block name="body"}}
+<main id="app" style="margin-top: 3.5em">
+    <div class="container">
+        <div class="left" style="width:72%;">
+            <div class="card"
+                 style="">
+                <div class="content"
+                     style="padding:0 1em">
+                    {{foreach from=$notes item=note}}
+                    <p>
+                        <a href="/note/{{$note.id}}.html">{{$note.title}}</a>
+                    </p>
+                    {{/foreach}}
+                </div>
+            </div>
+        </div>
+        <aside class="d-bg">
+            <div class="card">
+                <div class="tips">目录</div>
+                <ul class="card-content">
+                    <li><a href="">这是测试标题一</a></li>
+                    <li><a href="">这是文章标题 </a></li>
+                    <li><a href="">两只老虎跑得快</a></li>
+                    <li><a href="">I am not afraid of tomorrow for I have seen yesterday and I love today. </a></li>
+                    <li><a href="">timei</a></li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+</main>
+
+
+{{/block}}

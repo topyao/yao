@@ -12,6 +12,7 @@ html, body {
 }
 
 #top {
+    word-break: break-word;
     background-color: white;
     border-radius: 5px;
     box-shadow: rgb(226, 225, 225) 0 0 3px 0;
@@ -34,9 +35,26 @@ html, body {
     box-sizing: border-box;
 }
 
+.card2 > .content {
+    padding: .5em 2em;
+    word-spacing: 4px;
+    text-indent: 2em;
+    line-height: 1.7em;
+    color: #5a5757;
+    word-break: break-all
+}
+
+.card2 {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 3px 0 rgb(226, 225, 225);
+    margin-top: 1%;
+}
+
 .card {
     box-shadow: rgb(226, 225, 225) 0 0 2px 0;
     background-color: white;
+    border-radius: 5px;
     padding: 0.5em;
 }
 
@@ -470,6 +488,13 @@ ul.bar > li {
 }
 
 @media screen and (max-width: 880px) {
+    .card2 > .content {
+        padding: 1em;
+    }
+
+    .left {
+        width: 100% !important;
+    }
 
     .dropdown-btn {
         min-width: 2.5em !important;
