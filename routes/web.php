@@ -19,3 +19,6 @@ Route::rule('notes/add', 'index/note/create');
 Route::rule('notes', 'index/note/list');
 Route::get('list', 'index/note/list');
 Route::get('note/(\d+)\.html', 'index/note/read');
+
+//检索
+Route::rule('sp', 'index/spider/index');
