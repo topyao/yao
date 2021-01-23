@@ -9,23 +9,30 @@ use Yao\Facade\Db;
 class Index
 {
 
-    public function index(Request $request)
+    public function __construct()
     {
-        return view('index/index');
-        $file = Db::name('files')
-            ->field(['file', 'filename', 'md5'])
-            ->order(['id' => 'desc'])
-            ->select()
-            ->toArray();
-        foreach ($file as $k => $v) {
-            $filesize = file_exists($file[$k]['file'])
-                ? format_size(filesize($file[$k]['file']))
-                : 'Na';
-            $file[$k]['size'] = $filesize;
-            unset($file[$k]['file']);
-        }
+        $this->notesModel = new Notes();
+    }
 
-        return $file;
+    public function index($page = 1)
+    {
+        $notes = $this->notesModel->list(['id', 'title', 'text'], $page, 15);
+        $hots = $this->notesModel->hots();
+        return view('index/index', compact(['notes', 'hots']));
+//        $file = Db::name('files')
+//            ->field(['file', 'filename', 'md5'])
+//            ->order(['id' => 'desc'])
+//            ->select()
+//            ->toArray();
+//        foreach ($file as $k => $v) {
+//            $filesize = file_exists($file[$k]['file'])
+//                ? format_size(filesize($file[$k]['file']))
+//                : 'Na';
+//            $file[$k]['size'] = $filesize;
+//            unset($file[$k]['file']);
+//        }
+
+//        return $file;
     }
 
 

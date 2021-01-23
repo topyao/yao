@@ -41,13 +41,12 @@ html, body {
 }
 
 .card2 > .content {
-    /*padding: .5em 2em;*/
     word-spacing: 4px;
-    text-indent: 2em;
     line-height: 1.7em;
     color: #5a5757;
     word-break: break-all
 }
+
 
 .card2 {
     background-color: white;
@@ -61,8 +60,43 @@ html, body {
     box-shadow: rgb(226, 225, 225) 0 0 2px 0;
     background-color: white;
     border-radius: 5px;
+    word-break: break-all;
     padding: 0.5em;
 }
+
+.paginate {
+    margin: .4em 0 0;
+}
+
+.paginate > li {
+    background-color: #4568F5;
+    list-style-type: none;
+    padding: 2px 5px;
+    line-height: 1em;
+    height: 1em;
+    display: inline-block;
+    min-width: 1.5em;
+    border-radius: .9em;
+    border: 1px solid #4568F5;
+    transition: all .3s;
+    cursor: pointer;
+}
+
+.paginate > li:hover {
+    background-color: white;
+    border: 1px solid #4568F5;
+}
+
+.paginate > li:hover > a {
+    color: black;
+}
+
+.paginate > li > a {
+    color: white;
+    font-size: .4em;
+    transition: all .3s;
+}
+
 
 #top .title {
     font-size: 1.5em;
@@ -107,9 +141,11 @@ header {
     z-index: 9;
     background-color: rgb(79, 112, 246);
 }
-.editormd-fullscreen{
+
+.editormd-fullscreen {
     z-index: 99;
 }
+
 nav > ul > li {
     min-width: 5em;
     text-align: center;
@@ -201,6 +237,14 @@ a.right {
     background-color: white;
     color: grey;
     padding-left: .7em;
+}
+
+.tips > a {
+    color: #1E90FF;
+}
+
+.tips > a:hover {
+    color: grey;
 }
 
 .right3 {
@@ -554,8 +598,9 @@ a.tags:hover {
     border: 1px solid #4F70F6;
 }
 
-/*.title {*/
-/*    background-color: red;*/
-/*    height: 3em;*/
-/*    width: 100%;*/
-/*}*/
+
+.editormd-preview-container blockquote, .editormd-html-preview blockquote {
+    padding-left: .9em !important;
+    border-left: 4px solid #4F70F6 !important;
+    background-color: #fafafa;
+}

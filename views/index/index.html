@@ -17,35 +17,77 @@
         </div>
     </div>
 </div>
-<main>
-    <div class="main">
-        <section>
-            <h3 style="text-align:center">上传文件</h3>
-            <div id="left" style="margin-top:180px">
-                <form action="" method="post" accept-charset="utf-8" enctype="multipart/form-data"
-                    v-on:submit.prevent="upload">
-                    <input type="file" name="file" id="file" value="选择文件" @change.prevent="file" ref="file" />
-                    <input type="submit" name="" value="上传" class="btn" />
-                </form>
+
+
+
+
+
+<main id="app">
+    <div class="container">
+        <div class="left" style="width:72%;">
+            <div class="card">
+                <div class="content" style="padding:1em">
+                    {{foreach from=$notes item=note}}
+                    <div class="tips">
+                        <a href="{{url('read',[$note.id])}}">{{$note.title}}</a>
+                    </div>
+                    <div style="padding:.5em 1em 1em;color:grey;font-size:.95em">
+                        {{$note.text|mb_substr:0:300}}
+                    </div>
+                    {{/foreach}}
+                </div>
             </div>
-        </section>
-        <section id="handler">
-            <span v-on:click="resize" v-text="aside"></span>
-        </section>
-        <section id="right" v-bind:style="aside_width" v-cloak>
-            <h3>文件列表</h3>
-            <table align="center" width="100%" style="text-align: center">
-                <tr>
-                    <th>文件</th>
-                    <th>大小</th>
-                </tr>
-                <tr v-for="f in files">
-                    <td><a v-bind:download="`/download?hash=${f.md5}`" v-bind:href="`/download?hash=${f.md5}`">tt</a>
-                    </td>
-                    <td>tt</td>
-                </tr>
-            </table>
-        </section>
+            <ul class="paginate" style="text-align: center">
+                <li><a href="">分页</a></li>
+                <li><a href="{{url('list',[1])}}">1</a></li>
+                <li><a href="{{url('list',[2])}}">2</a></li>
+                <li><a href="{{url('list',[3])}}">3</a></li>
+                <li><a href="">末尾</a></li>
+            </ul>
+        </div>
+        {{include file="index/layout/aside.html"}}
     </div>
 </main>
+
+
+
+
+
+
+
+
+
+
+
+<!--<main>-->
+<!--    <div class="main">-->
+<!--        <section>-->
+<!--            <h3 style="text-align:center">上传文件</h3>-->
+<!--            <div id="left" style="margin-top:180px">-->
+<!--                <form action="" method="post" accept-charset="utf-8" enctype="multipart/form-data"-->
+<!--                    v-on:submit.prevent="upload">-->
+<!--                    <input type="file" name="file" id="file" value="选择文件" @change.prevent="file" ref="file" />-->
+<!--                    <input type="submit" name="" value="上传" class="btn" />-->
+<!--                </form>-->
+<!--            </div>-->
+<!--        </section>-->
+<!--        <section id="handler">-->
+<!--            <span v-on:click="resize" v-text="aside"></span>-->
+<!--        </section>-->
+<!--        <section id="right" v-bind:style="aside_width" v-cloak>-->
+<!--            <h3>文件列表</h3>-->
+<!--            <table align="center" width="100%" style="text-align: center">-->
+<!--                <tr>-->
+<!--                    <th>文件</th>-->
+<!--                    <th>大小</th>-->
+<!--                </tr>-->
+<!--                <tr v-for="f in files">-->
+<!--                    <td><a v-bind:download="`/download?hash=${f.md5}`" v-bind:href="`/download?hash=${f.md5}`">tt</a>-->
+<!--                    </td>-->
+<!--                    <td>tt</td>-->
+<!--                </tr>-->
+<!--            </table>-->
+<!--        </section>-->
+<!--    </div>-->
+<!--</main>-->
 {{/block}}

@@ -4,32 +4,27 @@
 <main id="app" style="margin-top: 3.5em">
     <div class="container">
         <div class="left" style="width:72%;">
-            <div class="card"
-                 style="">
-                <div class="content"
-                     style="padding:0 1em">
+            <div class="card">
+                <div class="content" style="padding:1em">
                     {{foreach from=$notes item=note}}
-                    <p>
-                        <a href="/note/{{$note.id}}.html">{{$note.title}}</a>
-                    </p>
+                        <div class="tips">
+                            <a href="{{url('read',[$note.id])}}">{{$note.title}}</a>
+                        </div>
+                        <div style="padding:.5em 1em 1em;color:grey;font-size:.95em">
+                            {{$note.text|mb_substr:0:300}}
+                        </div>
                     {{/foreach}}
                 </div>
             </div>
+            <ul class="paginate" style="text-align: center">
+                <li><a href="">分页</a></li>
+                <li><a href="{{url('list',[1])}}">1</a></li>
+                <li><a href="{{url('list',[2])}}">2</a></li>
+                <li><a href="{{url('list',[3])}}">3</a></li>
+                <li><a href="">末尾</a></li>
+            </ul>
         </div>
-        <aside class="d-bg">
-            <div class="card">
-                <div class="tips">目录</div>
-                <ul class="card-content">
-                    <li><a href="">这是测试标题一</a></li>
-                    <li><a href="">这是文章标题 </a></li>
-                    <li><a href="">两只老虎跑得快</a></li>
-                    <li><a href="">I am not afraid of tomorrow for I have seen yesterday and I love today. </a></li>
-                    <li><a href="">timei</a></li>
-                </ul>
-            </div>
-        </aside>
+        {{include file="index/layout/aside.html"}}
     </div>
 </main>
-
-
 {{/block}}

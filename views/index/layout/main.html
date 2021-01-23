@@ -22,8 +22,8 @@
             <ul class="bg-nav">
                 <li class=""><a href="/"><i class="fa fa-gamepad"></i> Todo</a></li>
                 <li class="left-items active d-bg"><a href="/">主页</a></li>
-                <li class="left-items d-bg"><a href="/notes">Notes</a></li>
-                <li class="left-items d-bg"><a href="/document">测试</a></li>
+<!--                <li class="left-items d-bg"><a href="/notes">Notes</a></li>-->
+<!--                <li class="left-items d-bg"><a href="/document">测试</a></li>-->
             </ul>
             <ul style="display: flex;justify-content: flex-end">
                 <li class="d-bg"><input style="height: 2.3em;
@@ -58,70 +58,70 @@
 </div>
 </body>
 <script src="/static/js/jquery-3.5.1.js"></script>
-<script src="/static/layer/layer.js"></script>
-<script src="/static/js/vue.js"></script>
-<script src="/static/js/axios.js"></script>
-<script>
-    (function (Vue) {
-        var side = sessionStorage.getItem('side');
-        var vm = new Vue({
-            el: '#app',
-            data: {
-                aside_width: {
-                    width: side || '0px'
-                },
-                aside: (side == '0px' || !side) ? '《' : '》',
-                files: [],
-                showBarFlg: false
-            },
-            mounted: function () {
-                axios.get('http://api.chengyao.xyz').then(d => {
-                    if (200 == d.status) {
-                        vm.files = d.data;
-                    }
-                })
-            },
-            methods: {
-                resize() {
-                    if (this.aside_width.width == '0px') {
-                        sessionStorage.setItem('side', '100%');
-                        this.aside = '》'
-                    } else {
-                        sessionStorage.setItem('side', '0px');
-                        this.aside = '《'
-                    }
-                    this.aside_width.width = sessionStorage.getItem('side')
-                },
-                file() {
-                    let f = this.$refs.file.files[0];
-                    let deniedType = ['php', 'html'];
-                    if (f.size > 1024 * 1024 * 10) {
-                        this.$refs.file.value = '';
-                        layer.alert('文件大小不能超过10mb!')
-                    }
-                    for (let i in deniedType) {
-                        if (deniedType[i] == f.name.substr(f.name.lastIndexOf('.') + 1)) {
-                            this.$refs.file.value = '';
-                            layer.alert('文件后缀不支持！')
-                        }
-                    }
-                },
-                upload() {
-                    if (!this.$refs.file.value) {
-                        layer.alert('没有选择文件！')
-                    } else {
-                        axios.post('http://api.chengyao.xyz/upload', {}).then(data => {
+<!--<script src="/static/layer/layer.js"></script>-->
+<!--<script src="/static/js/vue.js"></script>-->
+<!--<script src="/static/js/axios.js"></script>-->
+<!--<script>-->
+<!--    (function (Vue) {-->
+<!--        var side = sessionStorage.getItem('side');-->
+<!--        var vm = new Vue({-->
+<!--            el: '#app',-->
+<!--            data: {-->
+<!--                aside_width: {-->
+<!--                    width: side || '0px'-->
+<!--                },-->
+<!--                aside: (side == '0px' || !side) ? '《' : '》',-->
+<!--                files: [],-->
+<!--                showBarFlg: false-->
+<!--            },-->
+<!--            mounted: function () {-->
+<!--                axios.get('http://api.chengyao.xyz').then(d => {-->
+<!--                    if (200 == d.status) {-->
+<!--                        vm.files = d.data;-->
+<!--                    }-->
+<!--                })-->
+<!--            },-->
+<!--            methods: {-->
+<!--                resize() {-->
+<!--                    if (this.aside_width.width == '0px') {-->
+<!--                        sessionStorage.setItem('side', '100%');-->
+<!--                        this.aside = '》'-->
+<!--                    } else {-->
+<!--                        sessionStorage.setItem('side', '0px');-->
+<!--                        this.aside = '《'-->
+<!--                    }-->
+<!--                    this.aside_width.width = sessionStorage.getItem('side')-->
+<!--                },-->
+<!--                file() {-->
+<!--                    let f = this.$refs.file.files[0];-->
+<!--                    let deniedType = ['php', 'html'];-->
+<!--                    if (f.size > 1024 * 1024 * 10) {-->
+<!--                        this.$refs.file.value = '';-->
+<!--                        layer.alert('文件大小不能超过10mb!')-->
+<!--                    }-->
+<!--                    for (let i in deniedType) {-->
+<!--                        if (deniedType[i] == f.name.substr(f.name.lastIndexOf('.') + 1)) {-->
+<!--                            this.$refs.file.value = '';-->
+<!--                            layer.alert('文件后缀不支持！')-->
+<!--                        }-->
+<!--                    }-->
+<!--                },-->
+<!--                upload() {-->
+<!--                    if (!this.$refs.file.value) {-->
+<!--                        layer.alert('没有选择文件！')-->
+<!--                    } else {-->
+<!--                        axios.post('http://api.chengyao.xyz/upload', {}).then(data => {-->
 
-                        })
-                    }
-                },
-                show_bar() {
-                    this.showBarFlg = !this.showBarFlg;
-                }
-            }
-        })
-    })(Vue)
-</script>
+<!--                        })-->
+<!--                    }-->
+<!--                },-->
+<!--                show_bar() {-->
+<!--                    this.showBarFlg = !this.showBarFlg;-->
+<!--                }-->
+<!--            }-->
+<!--        })-->
+<!--    })(Vue)-->
+<!--</script>-->
 {{block name="js"}}{{/block}}
 
 </html>

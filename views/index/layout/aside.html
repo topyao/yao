@@ -1,0 +1,10 @@
+<aside class="d-bg">
+    <div class="card">
+        <div class="tips">目录</div>
+        <ul class="card-content">
+            {{foreach from=$hots item=hot}}
+            <li><a href="{{url('read',[$hot.id])}}">{{$hot.title}}</a></li>
+            {{/foreach}}
+        </ul>
+    </div>
+</aside>

@@ -1,5 +1,5 @@
 {{extends file="index/layout/main.html"}}
-{{block name="title"}}{{$title}}{{/block}}
+{{block name="title"}}{{$note.title}}{{/block}}
 {{block name="css"}}
 <link rel="stylesheet" href="/static/editor/css/editormd.preview.css"/>
 {{/block}}
@@ -8,15 +8,19 @@
     <div class="container">
         <div class="left" style="width:72%;">
             <div id="top">
+                {{if !empty($note.tags)}}
                 <div style="display:flex;justify-content: flex-end;">
-                    <a href="" class="tags">Tag1</a>
-                    <a href="" class="tags">Tag2</a>
-                    <a href="" class="tags">Tag3</a>
+                    {{foreach from=$note.tags item=tag}}
+                    <a href="#" class="tags">{{$tag}}</a>
+                    {{/foreach}}
                 </div>
-                <p class="title">{{$title}}</p>
+                {{/if}}
+                <p class="title">{{$note.title}}</p>
                 <p style="text-align: center;font-size: .9em;margin-bottom: 0"><i class="fa fa-clock-o"></i>
-                    {{$create_time}}
-                    <i class="fa fa-user"></i> topyao <i class="fa fa-eye"></i> 385 <i class="fa fa-comment"></i> 100
+                    {{$note.create_time|time_convert}}
+                    <i class="fa fa-user"></i> topyao <i class="fa fa-eye"></i> {{$note.hits}} <i
+                            class="fa fa-comment"></i>
+                    100
                 </p>
             </div>
 
@@ -25,34 +29,12 @@
                 <div class="tips" style="border-radius: 0 5px 0 0">正文</div>
                 <div class="content">
                     <div id="test-editormd-view2">
-                        <textarea id="append-test" style="display:none;">{{$text}}</textarea>
+                        <textarea id="append-test" style="display:none;">{{$note.text}}</textarea>
                     </div>
                 </div>
             </div>
         </div>
-        <aside class="d-bg">
-            <div class="card">
-                <div class="tips">目录</div>
-                <ul class="card-content">
-                    <li><a href="">这是测试标题一</a></li>
-                    <li><a href="">这是文章标题 </a></li>
-                    <li><a href="">两只老虎跑得快</a></li>
-                    <li><a href="">I am not afraid of tomorrow for I have seen yesterday and I love today. </a></li>
-                    <li><a href="">timei</a></li>
-                </ul>
-            </div>
-        </aside>
-        <!-- <section>
-            <div class="input-area">
-                <input type="text" name="todo">
-            </div>
-        </section>
-        <section id="handler">
-            <span>《</span>
-        </section>
-        <section id="right">
-
-        </section> -->
+        {{include file="index/layout/aside.html"}}
     </div>
 </main>
 {{/block}}

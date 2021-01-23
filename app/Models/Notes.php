@@ -11,7 +11,9 @@ class Notes
     protected $fields = [
         'title',
         'text',
-        'create_time'
+        'tags',
+        'create_time',
+        'hits'
     ];
 
 
@@ -30,8 +32,25 @@ class Notes
 
     public function oneNote($id)
     {
-        return Db::name('notes')->field($this->fields)->where(['id' => $id])->find()->toArray();
+        $note = Db::name('notes')->field($this->fields)->where(['id' => $id])->find()->toArray();
+        Db::name('notes')->where(['id' => $id])->update(['hits' => $note['hits'] + 1]);
+        if (!empty($note['tags'])) {
+            $note['tags'] = explode(',', $note['tags']);
+        }
+        return $note;
     }
+
+
+    public function hots($limit = 8)
+    {
+        return Db::name('notes')
+            ->field(['title', 'id'])
+            ->order(['hits' => 'desc'])
+            ->limit($limit)
+            ->select()
+            ->toArray();
+    }
+
 
     public function delete($id)
     {
@@ -44,10 +63,19 @@ class Notes
         return Db::name('notes')->insert($data);
     }
 
-    public function list($fields = null)
+    public function update($id, $data)
     {
-        $notes = Db::name('notes')->select()->toArray();
-        return view('index/notes/list', ['notes' => $notes]);
+        return Db::name('notes')->where(['id' => $id])->update($data);
+    }
+
+    public function list($fields, $page, $limit)
+    {
+        return Db::name('notes')
+            ->field([...$fields,'EXTRACT(DAY FROM create_time) AS days'])
+            ->order(['update_time' => 'DESC', 'days' => 'DESC'])
+            ->limit(($page - 1) * $limit, $limit)
+            ->select()
+            ->toArray();
     }
 
 }
