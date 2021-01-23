@@ -20,11 +20,8 @@ class Spider
         if (Request::isMethod('get')) {
             return view('index/spider');
         }
-
-        $this->url = urldecode(Request::post('url'));
+        [$this->url, $this->type, $this->rule] = Request::post(['url', 'type', 'rule']);
         $this->keywords = explode(',', Request::post('keywords'));
-        $this->type = Request::post('type');
-        $this->rule = Request::post('rule');
         $this->_spider();
         return !empty($this->notice) ? ['notice' => $this->notice, 'return' => $this->return] : [];
     }
