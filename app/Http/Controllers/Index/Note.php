@@ -19,6 +19,9 @@ class Note
     {
         try {
             $note = $this->notesModel->oneNote($id);
+            if (!empty($note['tags'])) {
+                $note['tags'] = explode(',', $note['tags']);
+            }
             $hots = $this->notesModel->hots();
         } catch (\Exception $e) {
             return view('index/404');
@@ -54,17 +57,20 @@ class Note
 
     public function edit($id = null)
     {
-        if (Request::isMethod('get')) {
-            $note = $this->notesModel->oneNote($id);
-            return view('index/notes/edit', compact(['note']));
-        }
-        $note = Request::post(['title', 'text']);
-        $note['update_time'] = date('Y-m-d h:i:s');
-        if ($this->notesModel->update($id, $note)) {
-            return redirect('/notes');
+        if ('chengyao' == Request::get('pass')) {
+            if (Request::isMethod('get')) {
+                $note = $this->notesModel->oneNote($id);
+                return view('index/notes/edit', compact(['note']));
+            }
+            $note = Request::post(['title', 'text', 'tags']);
+            $note['update_time'] = date('Y-m-d h:i:s');
+            if ($this->notesModel->update($id, $note)) {
+                return redirect('/notes');
+            } else {
+                return view('index/404');
+            }
         } else {
-            return view('index/404');
+            return redirect('/');
         }
     }
-
 }

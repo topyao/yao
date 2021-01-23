@@ -18,7 +18,7 @@ html, body {
     box-shadow: rgb(226, 225, 225) 0 0 3px 0;
     position: relative;
     display: block;
-    padding: 2%;
+    padding: .5em;
 }
 
 .bg-nav li {
@@ -118,7 +118,7 @@ aside {
 }
 
 .card-content > li > a {
-    font-size: .8em;
+    font-size: .85em;
     color: dodgerblue;
     transition: all .3s;
 }
@@ -140,6 +140,12 @@ header {
     text-align: left;
     z-index: 9;
     background-color: rgb(79, 112, 246);
+}
+
+.description {
+    padding: .5em 1em 1em;
+    color: grey;
+    font-size: .85em
 }
 
 .editormd-fullscreen {
@@ -229,10 +235,10 @@ a.right {
 }
 
 .tips {
-    height: 1.8em;
+    min-height: 1.8em;
     line-height: 1.8em;
     font-weight: bold;
-    font-size: .9em;
+    font-size: .95em;
     border-left: 3px solid #4F70F6;
     background-color: white;
     color: grey;
@@ -577,12 +583,12 @@ ul.bar > li {
 a.tags {
     text-align: center;
     display: inline-block;
-    height: 2.3em;
+    height: 1.8em;
     background-color: #4F70F6;
     font-size: .6em;
-    line-height: 2.3em;
+    line-height: 1.8em;
     border-radius: 1.3em;
-    padding: .2em 1.5em;
+    padding: .2em 1em;
     color: white;
     font-weight: bold;
     box-shadow: 0 0 2px 0 #8ba1f8;

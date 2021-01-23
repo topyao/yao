@@ -9,10 +9,13 @@
         <div class="left" style="width:72%;">
             <div id="top">
                 {{if !empty($note.tags)}}
-                <div style="display:flex;justify-content: flex-end;">
-                    {{foreach from=$note.tags item=tag}}
-                    <a href="#" class="tags">{{$tag}}</a>
-                    {{/foreach}}
+                <div style="display:flex;justify-content: space-between;">
+                    <div class="tips">标题</div>
+                    <div>
+                        {{foreach from=$note.tags item=tag}}
+                        <a href="#" class="tags">{{$tag}}</a>
+                        {{/foreach}}
+                    </div>
                 </div>
                 {{/if}}
                 <p class="title">{{$note.title}}</p>

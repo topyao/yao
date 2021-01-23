@@ -5,12 +5,12 @@
     <div class="container">
         <div class="left" style="width:72%;">
             <div class="card">
-                <div class="content" style="padding:1em">
+                <div class="content" style="padding:.5em">
                     {{foreach from=$notes item=note}}
                         <div class="tips">
                             <a href="{{url('read',[$note.id])}}">{{$note.title}}</a>
                         </div>
-                        <div style="padding:.5em 1em 1em;color:grey;font-size:.95em">
+                        <div class="description">
                             {{$note.text|mb_substr:0:300}}
                         </div>
                     {{/foreach}}

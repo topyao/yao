@@ -34,9 +34,6 @@ class Notes
     {
         $note = Db::name('notes')->field($this->fields)->where(['id' => $id])->find()->toArray();
         Db::name('notes')->where(['id' => $id])->update(['hits' => $note['hits'] + 1]);
-        if (!empty($note['tags'])) {
-            $note['tags'] = explode(',', $note['tags']);
-        }
         return $note;
     }
 
