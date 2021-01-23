@@ -32,7 +32,7 @@ class Note
     public function create()
     {
         if (Request::isMethod('get')) {
-            return view('index/notes/create');
+            return view('index/notes/add');
         }
         $data = Request::post();
         try {
@@ -40,6 +40,7 @@ class Note
         } catch (\Exception $e) {
             return '新增失败';
         }
+        return redirect('/notes');
     }
 
 }

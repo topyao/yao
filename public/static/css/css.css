@@ -8,7 +8,7 @@ html, body {
 
 .card-content {
     padding: .2em .7em;
-    margin: 0
+    margin: 0;
 }
 
 #top {
@@ -35,8 +35,13 @@ html, body {
     box-sizing: border-box;
 }
 
+#test-editormd-view2 {
+    box-sizing: border-box;
+    padding: 1em !important;
+}
+
 .card2 > .content {
-    padding: .5em 2em;
+    /*padding: .5em 2em;*/
     word-spacing: 4px;
     text-indent: 2em;
     line-height: 1.7em;
@@ -47,6 +52,7 @@ html, body {
 .card2 {
     background-color: white;
     border-radius: 5px;
+    padding: .5em;
     box-shadow: 0 0 3px 0 rgb(226, 225, 225);
     margin-top: 1%;
 }
@@ -98,10 +104,12 @@ header {
     height: 2.8em;
     line-height: 2.8em;
     text-align: left;
-    z-index: 10;
+    z-index: 9;
     background-color: rgb(79, 112, 246);
 }
-
+.editormd-fullscreen{
+    z-index: 99;
+}
 nav > ul > li {
     min-width: 5em;
     text-align: center;
@@ -488,8 +496,9 @@ ul.bar > li {
 }
 
 @media screen and (max-width: 880px) {
-    .card2 > .content {
-        padding: 1em;
+
+    #test-editormd-view2 {
+        padding: .5em !important;
     }
 
     .left {
@@ -505,7 +514,7 @@ ul.bar > li {
     }
 
     main, #banner-content, nav > ul {
-        width: 90% !important;
+        width: 95% !important;
     }
 
     .d-sm {

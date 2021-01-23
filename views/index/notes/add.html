@@ -1,0 +1,75 @@
+{{extends file="index/layout/main.html"}}
+{{block name = "title"}}添加{{/block}}
+{{block name="css"}}
+<link rel="stylesheet" href="/static/editor/css/editormd.css"/>
+{{/block}}
+{{block name="body"}}
+<main id="app" style="margin-top: 3.5em">
+    <div class="container">
+        <div class="left" style="width:72%;">
+            <div class="card"
+                 style="">
+                <div class="content"
+                     style="padding:0 1em">
+                    <div class="tips">
+                        发布
+                    </div>
+                    <form action="" method="post">
+                        <input type="text" name="title" style="width:100%;height: 2.2em">
+                        <br>
+                        <div id="test-editor">
+                            <textarea name="text" id="" cols="30" rows="10" style="display:none;"></textarea>
+                        </div>
+
+
+                        <input type="submit">
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+        <aside class="d-bg">
+            <div class="card">
+                <div class="tips">目录</div>
+                <ul class="card-content">
+                    <li><a href="">这是测试标题一</a></li>
+                    <li><a href="">这是文章标题 </a></li>
+                    <li><a href="">两只老虎跑得快</a></li>
+                    <li><a href="">I am not afraid of tomorrow for I have seen yesterday and I love today. </a></li>
+                    <li><a href="">timei</a></li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+</main>
+
+
+{{/block}}
+
+{{block name="js"}}
+<script src="/static/editor/editormd.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var editor = editormd("test-editor", {
+            // width  : "100%",
+            height: "632px",
+            path: "/static/editor/lib/",
+            imageUpload: true,
+            imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+            imageUploadURL: "/index/template/uploadImage",
+            toolbarIcons: function () {
+                // Or return editormd.toolbarModes[name]; // full, simple, mini
+                // Using "||" set icons align right.
+                return ["undo", "redo",
+                    "bold", "del", "italic", "quote", "ucwords", "uppercase", "lowercase",
+                    "h1", "h2", "h3", "h4", "h5", "h6",
+                    "list-ul", "list-ol", "hr",
+                    "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "datetime", "html-entities",
+                    "goto-line", "watch", "preview", "fullscreen", "clear", "search"]
+            },
+            placeholder: "请图文并茂地介绍下你的项目！",
+        });
+    });
+</script>
+{{/block}}
