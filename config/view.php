@@ -10,8 +10,6 @@ return [
         'debug' => false,
         //模板缓存
         'cache' => false,
-        //模板缓存路径
-        'cache_dir' => env('storage_path') . 'view',
         //模板后缀
         'suffix' => 'html',
     ],
@@ -20,8 +18,6 @@ return [
         'debug' => false,
         //模板缓存
         'cache' => false,
-        //模板缓存路径
-        'cache_dir' => env('storage_path') . 'view',
         //模板后缀
         'suffix' => 'html',
         //左右边界

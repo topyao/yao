@@ -485,7 +485,7 @@ view('index',['data'=>$data]);
 ### 自定义驱动
 框架允许你自定义任何视图驱动，可以在任何可以composer自动加载的位置定义视图驱动，并且在视图配置view.php中将type和视图配置名改为你的视图驱动完整类名。
 
-视图驱动需要继承\Yao\View\Driver.php 并且实现public function render($params){}方法。继承该类后可以使用$this->templateDir 获取模板路径(例如/views),使用$this->template 获取需要渲染的模板文件名。使用方法可以参考内置的视图驱动。
+视图驱动需要继承\Yao\View\Driver.php 并且实现public function render($params){}方法。继承该类后可以使用$this->template 获取需要渲染的模板文件名。使用方法可以参考内置的视图驱动。
 
 # Facade(类静态代理)
 
