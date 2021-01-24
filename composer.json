@@ -25,12 +25,5 @@
     "chengyao/framework": "dev-master",
     "chengyao/migrate": "dev-master",
     "smarty/smarty": "^3.1.38"
-  },
-  "require": {
-    "php": ">=7.4",
-    "ext-pdo": "*",
-    "chengyao/framework": "^0.0.7",
-    "chengyao/migrate": "0.0.1",
-    "twig/twig": "3.1.1"
   }
 }
