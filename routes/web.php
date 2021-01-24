@@ -8,7 +8,7 @@ use \Yao\Facade\Route;
 
 Route::get('/', 'index/index/index')->alias('home');
 
-Route::get('login', 'index/index/login');
+Route::rule('login', 'index/user/login');
 
 
 Route::get('document', 'index/index/document');

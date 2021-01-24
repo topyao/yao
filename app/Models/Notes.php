@@ -11,7 +11,7 @@ class Notes
     public function oneNote($id)
     {
         $note = Db::name('notes')
-            ->field(['title', 'id','text', 'hits', 'tags', 'create_time'])
+            ->field(['title', 'id', 'text', 'hits', 'tags', 'create_time'])
             ->where(['id' => $id])
             ->find()
             ->toArray();

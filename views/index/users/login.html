@@ -1,0 +1,26 @@
+{{extends file="index/layout/main.html"}}
+{{block name="body"}}
+<div class="banner" style="height: 6em;">
+    <div id="banner-title"></div>
+    <div id="banner-content">
+        <div>
+
+        </div>
+        <div class="banner-right">
+
+        </div>
+    </div>
+</div>
+<main>
+    <div class="main" style="margin: 0 auto;width:35%;height: 65vh">
+        <section style=" padding:1em;">
+            <h1 style="text-align:center;"><i class="fa fa-sign-in"></i> 登录</h1>
+            <form action="" method="post">
+                <input type="text" class="login-input" name="username" required>
+                <input type="text" class="login-input" name="password" required>
+                <input type="submit" id="login" value="登录">
+            </form>
+        </section>
+    </div>
+</main>
+{{/block}}

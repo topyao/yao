@@ -2,19 +2,12 @@
 
 namespace App\Http\Controllers\Index;
 
-use App\Models\Notes;
-
 class Index
 {
-    public function __construct()
+    public function index(\App\Models\Notes $note)
     {
-        $this->notesModel = new Notes();
-    }
-
-    public function index($page = 1)
-    {
-        $notes = $this->notesModel->list(['id', 'title', 'text'], $page, 15);
-        $hots = $this->notesModel->hots();
+        $notes = $note->list(['id', 'title', 'text'], 1, 15);
+        $hots = $note->hots();
         return view('index/index', compact(['notes', 'hots']));
     }
 }

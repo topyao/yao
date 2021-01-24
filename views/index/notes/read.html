@@ -12,7 +12,7 @@
                 {{if !empty($note.tags)}}
                 <div style="display:flex;justify-content: space-between;">
                     <div class="tips">标题</div>
-                    <div>
+                    <div style="height: 40px;">
                         {{foreach from=$note.tags item=tag}}
                         <a href="#" class="tags">{{$tag}}</a>
                         {{/foreach}}
@@ -29,7 +29,7 @@
             </div>
 
             <div class="card2">
-                <div class="tips" style="border-radius: 0 5px 0 0">正文</div>
+                <div class="tips"><a href="/">首页</a> / <a href="/notes">笔记</a> / {{$note.title}}</div>
                 <div id="test-editormd-view2">
                     <textarea id="append-test" style="display:none;">{{$note.text}}</textarea>
                 </div>
@@ -133,17 +133,14 @@
             height: "400px",
             path: "/static/editor/lib/",
             imageUpload: true,
+            watch:false,
+            autoFocus:false,
             imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
             imageUploadURL: "/index/template/uploadImage",
             toolbarIcons: function () {
-                // Or return editormd.toolbarModes[name]; // full, simple, mini
-                // Using "||" set icons align right.
-                return ["undo", "redo",
-                    "bold", "del", "italic", "quote", "ucwords", "uppercase", "lowercase",
-                    "h1", "h2", "h3", "h4", "h5", "h6",
+                return ["bold", "del", "italic", "quote", "ucwords", "uppercase", "lowercase",
                     "list-ul", "list-ol", "hr",
-                    "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "datetime", "html-entities",
-                    "goto-line", "watch", "preview", "fullscreen", "clear", "search"]
+                    "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "datetime", "html-entities", "watch"]
             },
             placeholder: "请图文并茂地介绍下你的项目！",
         });
