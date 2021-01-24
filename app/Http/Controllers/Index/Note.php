@@ -45,7 +45,7 @@ class Note
         if (Request::isMethod('get')) {
             return view('index/notes/add');
         }
-        $data = Request::post();
+        $data = Request::post(['title','text','tags']);
         try {
             $this->notesModel->insert($data);
         } catch (\Exception $e) {

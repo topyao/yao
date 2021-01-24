@@ -40,12 +40,12 @@ html, body {
     padding: 1em !important;
 }
 
-.card2 > .content {
-    word-spacing: 4px;
-    line-height: 1.7em;
-    color: #5a5757;
-    word-break: break-all
-}
+/*.card2 > .content {*/
+/*    !*word-spacing: 4px;*!*/
+/*    !*line-height: 1.7em;*!*/
+/*    !*color: #5a5757;*!*/
+/*    !*word-break: break-all*!*/
+/*}*/
 
 
 .card2 {
