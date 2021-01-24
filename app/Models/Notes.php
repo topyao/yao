@@ -52,8 +52,16 @@ class Notes
     {
         return Db::name('notes')
             ->field($fields)
-            ->order(['`create_time`' => 'DESC', 'hits' => 'DESC'])
+            ->order(['update_time' => 'DESC','`create_time`' => 'DESC', 'hits' => 'DESC'])
             ->limit(($page - 1) * $limit, $limit)
+            ->select()
+            ->toArray();
+    }
+
+    public function search($kw)
+    {
+        return Db::name('notes')
+            ->whereLike(['title' => "%{$kw}%"])
             ->select()
             ->toArray();
     }

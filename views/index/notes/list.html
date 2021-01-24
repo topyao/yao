@@ -7,21 +7,18 @@
             <div class="card">
                 <div class="content" style="padding:.5em">
                     {{foreach from=$notes item=note}}
-                        <div class="tips">
-                            <a href="{{url('read',[$note.id])}}">{{$note.title}}</a>
-                        </div>
-                        <div class="description">
-                            {{$note.text|mb_substr:0:300}}
-                        </div>
+                    <div class="tips">
+                        <a href="{{url('read',[$note.id])}}">{{$note.title}}</a>
+                    </div>
+                    <div class="description">
+                        {{$note.text|mb_substr:0:300}}
+                    </div>
                     {{/foreach}}
                 </div>
             </div>
             <ul class="paginate" style="text-align: center">
-                <li><a href="">分页</a></li>
-                <li><a href="{{url('list',[1])}}">1</a></li>
-                <li><a href="{{url('list',[2])}}">2</a></li>
-                <li><a href="{{url('list',[3])}}">3</a></li>
-                <li><a href="">末尾</a></li>
+                {{$paginate}}
+                共{{$totalPage}}页
             </ul>
         </div>
         {{include file="index/layout/aside.html"}}

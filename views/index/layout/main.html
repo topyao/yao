@@ -22,27 +22,24 @@
             <ul class="bg-nav">
                 <li class=""><a href="/"><i class="fa fa-gamepad"></i> Todo</a></li>
                 <li class="left-items d-bg"><a href="/">主页</a></li>
-<!--                <li class="left-items d-bg"><a href="/notes">Notes</a></li>-->
-<!--                <li class="left-items d-bg"><a href="/document">测试</a></li>-->
             </ul>
             <ul style="display: flex;justify-content: flex-end">
-                <li class="d-bg"><input style="height: 2.3em;
+                <li class="d-bg"><input required style="height: 2.3em;
     padding: 0 .5em;
     margin-right:1.3em;
     width: 18em;
     outline: none;
     border: none;
-    border-radius: 5px;" type="text" name="" id="" value=""/></li>
+    border-radius: 5px;" type="text" name="" id="top-search" value="{{if isset($keyword)}}{{$keyword}}{{/if}}"/></li>
                 <li class=""><a href="/note/96.html"><i
                         class="fa fa-book"></i> 文档</a></li>
-                <li class="d-sm dropdown-btn"><a v-on:click.prevent="show_bar"><i class="fa fa-bars"></i></a></li>
-                <li class="d-bg" style="min-width:2.5em"><a href="/login"> <i class="fa fa-sign-in"></i></a></li>
+                <li class="d-sm dropdown-btn"><a href="#" id="dropdown"><i class="fa fa-bars"></i></a></li>
+                <li class="d-bg" style="min-width:2.5em"><a href="/login"><i class="fa fa-sign-in"></i></a></li>
             </ul>
         </nav>
-        <ul id="sm-nav" class="bar" v-if="showBarFlg" v-cloak>
+        <ul id="sm-nav" class="bar">
             <li><a href="/login">登录</a></li>
-            <li><a href="/notes">Notes</a></li>
-            <li>登录</li>
+            <li><a href="/notes/1.html">Notes</a></li>
         </ul>
     </header>
     {{block name = "body"}}{{/block}}
@@ -58,70 +55,26 @@
 </div>
 </body>
 <script src="/static/js/jquery-3.5.1.js"></script>
-<!--<script src="/static/layer/layer.js"></script>-->
-<!--<script src="/static/js/vue.js"></script>-->
-<!--<script src="/static/js/axios.js"></script>-->
-<!--<script>-->
-<!--    (function (Vue) {-->
-<!--        var side = sessionStorage.getItem('side');-->
-<!--        var vm = new Vue({-->
-<!--            el: '#app',-->
-<!--            data: {-->
-<!--                aside_width: {-->
-<!--                    width: side || '0px'-->
-<!--                },-->
-<!--                aside: (side == '0px' || !side) ? '《' : '》',-->
-<!--                files: [],-->
-<!--                showBarFlg: false-->
-<!--            },-->
-<!--            mounted: function () {-->
-<!--                axios.get('http://api.chengyao.xyz').then(d => {-->
-<!--                    if (200 == d.status) {-->
-<!--                        vm.files = d.data;-->
-<!--                    }-->
-<!--                })-->
-<!--            },-->
-<!--            methods: {-->
-<!--                resize() {-->
-<!--                    if (this.aside_width.width == '0px') {-->
-<!--                        sessionStorage.setItem('side', '100%');-->
-<!--                        this.aside = '》'-->
-<!--                    } else {-->
-<!--                        sessionStorage.setItem('side', '0px');-->
-<!--                        this.aside = '《'-->
-<!--                    }-->
-<!--                    this.aside_width.width = sessionStorage.getItem('side')-->
-<!--                },-->
-<!--                file() {-->
-<!--                    let f = this.$refs.file.files[0];-->
-<!--                    let deniedType = ['php', 'html'];-->
-<!--                    if (f.size > 1024 * 1024 * 10) {-->
-<!--                        this.$refs.file.value = '';-->
-<!--                        layer.alert('文件大小不能超过10mb!')-->
-<!--                    }-->
-<!--                    for (let i in deniedType) {-->
-<!--                        if (deniedType[i] == f.name.substr(f.name.lastIndexOf('.') + 1)) {-->
-<!--                            this.$refs.file.value = '';-->
-<!--                            layer.alert('文件后缀不支持！')-->
-<!--                        }-->
-<!--                    }-->
-<!--                },-->
-<!--                upload() {-->
-<!--                    if (!this.$refs.file.value) {-->
-<!--                        layer.alert('没有选择文件！')-->
-<!--                    } else {-->
-<!--                        axios.post('http://api.chengyao.xyz/upload', {}).then(data => {-->
+<script>
+    $(function () {
+        $('.dropdown-btn').on('click', function () {
+            if ($('#sm-nav').css('display') === 'none') {
+                $('#sm-nav').css('display', 'block')
+                $('#dropdown').html('<i class="fa fa-close"></i>')
+            } else {
+                $('#sm-nav').css('display', 'none')
+                $('#dropdown').html('<i class="fa fa-bars"></i>')
+            }
+        });
+    });
 
-<!--                        })-->
-<!--                    }-->
-<!--                },-->
-<!--                show_bar() {-->
-<!--                    this.showBarFlg = !this.showBarFlg;-->
-<!--                }-->
-<!--            }-->
-<!--        })-->
-<!--    })(Vue)-->
-<!--</script>-->
+    $(window).on('keyup', function (e) {
+        if ($('#top-search').is(':focus') && 13 === e.keyCode) {
+            window.location.href = '/search?kw=' + $('#top-search').val();
+        }
+    });
+
+</script>
 {{block name="js"}}{{/block}}
 
 </html>

@@ -14,18 +14,18 @@
                     <div class="tips">
                         修改
                     </div>
-                    <form action="" method="post">
+                    <form action="{{url('edit',[$note.id])}}" method="post">
                         <div style="display: flex;justify-content: space-around;margin: .5em 0">
                             <input type="text" name="title" value="{{$note.title}}" placeholder="标题"
                                    style="width:49%;height: 2.2em">
                             <input type="text" name="tags" value="{{$note.tags}}" placeholder="标签[使用英文逗号分割]"
                                    style="width:49%;height: 2.2em">
-                            </div>
-                            <div id="test-editor">
+                        </div>
+                        <div id="test-editor">
                             <textarea name="text" id="" cols="30" rows="10"
                                       style="display:none;">{{$note.text}}</textarea>
-                            </div>
-                            <input type="submit">
+                        </div>
+                        <input type="submit">
                     </form>
                 </div>
             </div>

@@ -489,6 +489,7 @@ p.links a:hover {
 }
 
 ul.bar {
+    display: none;
     width: 90%;
     overflow: hidden;
     padding: 0;
