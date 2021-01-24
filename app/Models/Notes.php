@@ -11,7 +11,7 @@ class Notes
     public function oneNote($id)
     {
         $note = Db::name('notes')
-            ->field(['title', 'text', 'hits', 'create_time'])
+            ->field(['title', 'id','text', 'hits', 'tags', 'create_time'])
             ->where(['id' => $id])
             ->find()
             ->toArray();
@@ -51,8 +51,8 @@ class Notes
     public function list($fields, $page, $limit)
     {
         return Db::name('notes')
-            ->field([...$fields, 'EXTRACT(DAY FROM create_time) AS days', 'EXTRACT(HOUR FROM update_time) AS `update`'])
-            ->order(['`update`' => 'DESC','hits' => 'DESC', 'days' => 'DESC'])
+            ->field($fields)
+            ->order(['`create_time`' => 'DESC', 'hits' => 'DESC'])
             ->limit(($page - 1) * $limit, $limit)
             ->select()
             ->toArray();

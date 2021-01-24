@@ -2,8 +2,8 @@
     <div class="card">
         <div class="tips">推荐</div>
         <ul class="card-content">
-            {{foreach from=$hots item=hot}}
-            <li><a href="{{url('read',[$hot.id])}}">{{$hot.title}}</a></li>
+            {{foreach from=$hots item=hot name=hot}}
+            <li><!--<span style="background-color: red">{{$smarty.foreach.hot.index + 1}}</span>--><a href="{{url('read',[$hot.id])}}">{{$hot.title}}</a></li>
             {{/foreach}}
         </ul>
     </div>
