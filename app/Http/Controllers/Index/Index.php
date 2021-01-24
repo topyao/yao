@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers\Index;
 
-use Yao\Http\Request;
-
 class Index
 {
-    public function index(Request $request)
+    public function index()
     {
         abort('可以开始了！', 200);
     }

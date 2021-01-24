@@ -279,7 +279,7 @@ Route::redirect('index','https://www.1kmb.com',['get'],302);
 
 可以在定义路由的时候设置允许跨域
 ```
-Route::get('/','index/index/index')->cross('*'); 
+Route::get('/','index/index/index')->cors('*'); 
 ```
 
 # 请求
@@ -355,7 +355,7 @@ new Request(?array $filters = null)
 
 # 响应
 
-在控制器中可以直接return 一个数组，框架会自动转为json输出，也可以使用json() 助手函数，或者response()函数,可以使用连贯操作，例如json(array $data)->code(202)->header(['Content-Type:application/json']);
+在控制器中可以直接return 一个数组，框架会自动转为json输出，也可以使用json() 助手函数，或者response()函数,可以使用连贯操作，例如json(array $data,202,['Content-Type:application/json']); 第一个参数为数据，第二个为状态码，第三个为头信息。
 
 # 验证器
 
