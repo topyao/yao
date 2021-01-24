@@ -4,4 +4,4 @@
 vendor
 composer.lock
 storage
-composer.json.dev
+composer.json.production
