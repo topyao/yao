@@ -17,23 +17,21 @@ class UpdateDocument extends Command
     {
         $lock = __DIR__ . DIRECTORY_SEPARATOR . 'lock';
 
-        if (!file_exists($lock)) {
-            touch($lock);
-        } else {
-            exit('脚本正在执行!');
-        }
+//        if (!file_exists($lock)) {
+//            touch($lock);
+//        } else {
+//            exit('脚本正在执行!');
+//        }
 
-        passthru('git pull https://github.com/topyao/yao.git /home');
+//        $data = file_get_contents('https://github.com/topyao/yao/blob/master/README.md');
 
-        $data = file_get_contents('https://github.com/topyao/yao/blob/master/README.md');
-
-        if (false == $data) {
-            exit('文档获取失败！');
-        } else {
-            \Yao\Facade\Db::name('notes')
-                ->where(['id' => 125])
-                ->update(['text' => $data]);
-        }
+//        if (false == $data) {
+//            exit('文档获取失败！');
+//        } else {
+//            \Yao\Facade\Db::name('notes')
+//                ->where(['id' => 125])
+//                ->update(['text' => $data]);
+//        }
 
     }
 
