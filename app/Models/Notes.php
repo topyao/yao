@@ -52,7 +52,7 @@ class Notes
     {
         return Db::name('notes')
             ->field($fields)
-            ->order(['update_time' => 'DESC','`create_time`' => 'DESC', 'hits' => 'DESC'])
+            ->order(['update_time' => 'DESC', '`create_time`' => 'DESC', 'hits' => 'DESC'])
             ->limit(($page - 1) * $limit, $limit)
             ->select()
             ->toArray();
