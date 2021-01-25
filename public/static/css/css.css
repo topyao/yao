@@ -429,6 +429,7 @@ div.input-area > input:focus {
     color: white;
     margin: 0;
     font-size: 6em;
+    animation: bigtext 1.5s;
     font-weight: bold;
     text-shadow: 3px 3px 2px #a3a3a3;
 }
@@ -468,7 +469,6 @@ p.links {
 p.links a {
     border-bottom: 1px dotted #D2EBE3;
     color: #D2EBE3;
-    /*font-weight: lighter;*/
 }
 
 p.links a:hover {
@@ -600,14 +600,15 @@ a.tags {
     font-size: .6em;
     line-height: 1.8em;
     border-radius: 1.3em;
-    padding: .2em 1em;
+    padding: .4em 1em;
     color: white;
     font-weight: bold;
     box-shadow: 0 0 2px 0 #8ba1f8;
-    margin: 0 .5em;
+    margin: 0 .4em;
     overflow: hidden;
     border: 1px solid #4F70F6;
     transition: all .3s;
+    animation: tags 1s;
 }
 
 a.tags:hover {
@@ -621,4 +622,48 @@ a.tags:hover {
     padding-left: .9em !important;
     border-left: 4px solid #4F70F6 !important;
     background-color: #fafafa;
+}
+
+
+@keyframes tags {
+    0% {
+        margin: 0 2em;
+    }
+    25% {
+        margin: 0 0.1em;
+    }
+    50% {
+        margin: 0 0.8em;
+    }
+    100% {
+        margin: 0 .4em;
+    }
+}
+
+@keyframes bigtext {
+    0% {
+        transform: rotateX(0deg);
+    }
+    10% {
+        transform: rotateX(30deg);
+    }
+    25% {
+        transform: rotateX(90deg);
+    }
+    50% {
+        transform: rotateX(150deg);
+    }
+    60% {
+        transform: rotateX(180deg);
+    }
+    75% {
+        transform: rotateX(60deg);
+    }
+    85% {
+        transform: rotateX(30deg);
+
+    }
+    100% {
+        transform: rotateX(0deg);
+    }
 }

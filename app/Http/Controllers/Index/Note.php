@@ -47,6 +47,16 @@ class Note
         $numberOfPages = 15;
         $total = Db::name('notes')->count('*');
         $totalPage = ceil($total / $numberOfPages);
+        $paginate = $this->_paginate($page, $totalPage, $numberOfPages);
+
+        $notes = $note->list(['id', 'title', 'text'], $page, $numberOfPages);
+        $hots = $note->hots();
+        return view('index/notes/list', compact(['notes', 'hots', 'totalPage', 'paginate']));
+    }
+
+    private function _paginate($page, $totalPage, $numberOfPages)
+    {
+
         if ($page < 1 || $page > $totalPage) {
             return view('index/404');
         }
@@ -70,11 +80,9 @@ class Note
         foreach ($pages as $page => $name) {
             $paginate .= '<li><a href="/notes/' . $page . '.html">' . $name . '</a></li>';
         }
-
-        $notes = $note->list(['id', 'title', 'text'], $page, $numberOfPages);
-        $hots = $note->hots();
-        return view('index/notes/list', compact(['notes', 'hots', 'totalPage', 'paginate']));
+        return $paginate;
     }
+
 
     public function create(Notes $notes)
     {
@@ -111,6 +119,12 @@ class Note
         $keyword = Request::get('kw');
         $hots = $notes->hots();
         $notes = $notes->search($keyword);
-        return view('index/notes/list', compact(['notes', 'hots', 'keyword']));
+
+        $page = Request::get('p', 1);
+        $numberOfPages = 15;
+        $total = Db::name('notes')->whereLike(['title' => '%' . $keyword . '%'])->count('*');
+        $totalPage = ceil($total / $numberOfPages);
+        $paginate = $this->_paginate($page, $totalPage, $numberOfPages);
+        return view('index/notes/list', compact(['notes', 'hots', 'keyword', 'paginate','totalPage']));
     }
 }
