@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Index;
 
 class Index
 {
+
     public function index(\App\Models\Notes $note)
     {
         $notes = $note->list(['id', 'title', 'text'], 1, 15);

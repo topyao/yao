@@ -4,14 +4,19 @@
 namespace App\Http\Controllers\Index;
 
 
+use App\Http\Middleware\Login;
 use App\Models\Comments;
 use App\Models\Notes;
-use Yao\Container;
 use Yao\Facade\Db;
 use Yao\Facade\Request;
 
 class Note
 {
+
+    public $middleware = [
+        'edit' => Login::class,
+    ];
+
     public function read($id, Notes $notes, Comments $comments)
     {
         if (Request::isMethod('get')) {
@@ -125,6 +130,6 @@ class Note
         $total = Db::name('notes')->whereLike(['title' => '%' . $keyword . '%'])->count('*');
         $totalPage = ceil($total / $numberOfPages);
         $paginate = $this->_paginate($page, $totalPage, $numberOfPages);
-        return view('index/notes/list', compact(['notes', 'hots', 'keyword', 'paginate','totalPage']));
+        return view('index/notes/list', compact(['notes', 'hots', 'keyword', 'paginate', 'totalPage']));
     }
 }

@@ -357,6 +357,43 @@ new Request(?array $filters = null)
 
 在控制器中可以直接return 一个数组，框架会自动转为json输出，也可以使用json() 助手函数，或者response()函数,可以使用连贯操作，例如json(array $data)->code(202)->header(['Content-Type:application/json']);
 
+# 中间件
+支持控制器前置后置中间件
+
+首先需要创建一个中间件，例如
+
+```php
+<?php
+
+namespace App\Http\Middleware;
+
+use Yao\Facade\Session;
+
+class Login
+{
+    public function handle($request, \Closure $next)
+    {
+        if(!Session::get('user')){
+            return view('index/404');
+        }
+        $response = $next($request);
+        echo '执行完了';
+        return $response;
+    }
+}
+```
+
+在控制器中添加属性
+
+```php
+    public $middleware = [
+        'edit' => \App\Http\Middleware\Login::class,
+    ];
+```
+表示控制器中的方法edit会使用Login中间件
+
+在这个请求中如果获取不到session中的user，就会渲染视图404，不会向下执行，如果可以获取user，那么向下执行，执行控制器方法，执行完毕后再输出'执行完了'
+
 # 验证器
 
 >需要验证的数据必须是数组，比如通过Request类方法传入数组获取的数组。
