@@ -521,6 +521,7 @@ ul.bar > li {
     color: white;
     border: 1px solid white;
     outline: none;
+    margin:1em 0;
     cursor: pointer;
     border-radius: 5px;
     transition: background-color .3s;
@@ -534,7 +535,7 @@ ul.bar > li {
     width: calc(100% - 2px);
     height: 3em;
     padding: .5em;
-    margin: .5em 0;
+    margin: 1em 0;
     background-color: #f1f1f1;
     box-sizing: border-box;
     border: 1px solid #d8d8d8d1;
@@ -590,6 +591,9 @@ ul.bar > li {
     .d-sm + .right2 {
         margin-right: 2em;
     }
+    .login-area {
+        width:100% !important;
+    }
 }
 
 a.tags {
@@ -624,16 +628,30 @@ a.tags:hover {
     background-color: #fafafa;
 }
 
+.login-area {
+    margin: 0 auto;
+    width: 35%;
+    height: 65vh;
+}
 
 @keyframes tags {
     0% {
+        margin: 0 .4em;
+    }
+    5% {
+        margin: 0 1em;
+    }
+    10% {
         margin: 0 2em;
     }
     25% {
         margin: 0 0.1em;
     }
     50% {
-        margin: 0 0.8em;
+        margin: 0 .8em;
+    }
+    75% {
+        margin: 0 .1em;
     }
     100% {
         margin: 0 .4em;
