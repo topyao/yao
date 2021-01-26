@@ -361,6 +361,43 @@ new Request(?array $filters = null)
 
 注意：如果需要获取的参数不存在，该参数的值将会是null，例如`Request::get(['a','b'])`当b不存在的时候会是`null`，此时需要用`is_null`判断。
 
+# 中间件
+支持控制器前置后置中间件
+
+首先需要创建一个中间件，例如
+
+```php
+<?php
+
+namespace App\Http\Middleware;
+
+use Yao\Facade\Session;
+
+class Login
+{
+    public function handle($request, \Closure $next)
+    {
+        if(!Session::get('user')){
+            return view('index/404');
+        }
+        $response = $next($request);
+        echo '执行完了';
+        return $response;
+    }
+}
+```
+
+在控制器中添加属性
+
+```php
+    public $middleware = [
+        'edit' => \App\Http\Middleware\Login::class,
+    ];
+```
+表示控制器中的方法edit会使用Login中间件
+
+在这个请求中如果获取不到session中的user，就会渲染视图404，不会向下执行，如果可以获取user，那么向下执行，执行控制器方法，执行完毕后再输出'执行完了'
+
 
 # 响应
 
