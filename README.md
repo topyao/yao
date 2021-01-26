@@ -282,7 +282,7 @@ Route::view('index','index/index',['get']);
 Route::redirect('index','https://www.1kmb.com',['get'],302);
 ```
 
-该路由表示`get`方式请求的`/index`会被重定向到`https://www.1kmb.com`。后两个参数为可选参数，第一个为路由请求方式，默认为`get`；第二个为响应状态码，默认为200；
+该路由表示`get`方式请求的`/index`会被重定向到`https://www.1kmb.com`。后两个参数为可选参数，第一个为路由请求方式，默认为`get`；第二个为响应状态码，默认为302；
 
 ## 跨域支持【开发中】
 
