@@ -362,7 +362,7 @@ new Request(?array $filters = null)
 注意：如果需要获取的参数不存在，该参数的值将会是null，例如`Request::get(['a','b'])`当b不存在的时候会是`null`，此时需要用`is_null`判断。
 
 # 中间件
-支持控制器前置后置中间件
+支持控制器和路由前置后置中间件
 
 首先需要创建一个中间件，例如
 
@@ -386,7 +386,7 @@ class Login
     }
 }
 ```
-
+# 控制器中间件
 在控制器中添加属性
 
 ```php
@@ -398,6 +398,12 @@ class Login
 
 在这个请求中如果获取不到session中的user，就会渲染视图404，不会向下执行，如果可以获取user，那么向下执行，执行控制器方法，执行完毕后再输出'执行完了'
 
+## 路由中间件
+可以使用middleware方法注册一个路由中间件，例如
+
+Route::get('index','index/idnex')->middleware('\App\Http\Middleware\Login::class);
+
+不管路由中注册的是闭包还是类名，都会经过中间件。
 
 # 响应
 
@@ -439,13 +445,13 @@ public function test()
 如果你继承了基础控制器，就可以使用下面的方法进行数据验证
 
 ```php
-$res = $this->validate($data,UserVali::class)->check();
+$res = $this->validate(UserVali::class,$data);
 ```
 
 第一个参数为需要验证的数据，第二个参数为验证器类名完整字符串，注意这里追加的规则时使用`+`语法将两个数组合并，可能导致覆盖，独立验证可以设置属性$checkAll用来设置是否是全部验证,当`$checkAll`为true时开启批量验证，否则一旦有验证失败的条目都会结束验证。独立验证可以使用连贯操作和追加删除操作，例如
 
 ```php
-$vali = $this->validate($data, UserVali::class)->min(['a' => 1])->remove(['password' => ['required']])->append(['password' => ['min' => 1]])->check();
+$vali = $this->validate(UserVali::class,$data)->min(['a' => 1])->remove(['password' => ['required']])->append(['password' => ['min' => 1]])->check();
 ```
 
 验证器随意增加或者删除验证规则,例如：
