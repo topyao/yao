@@ -62,6 +62,7 @@ html, body {
     border-radius: 5px;
     word-break: break-all;
     padding: 0.5em;
+    margin-bottom: .5em;
 }
 
 .paginate {
@@ -521,7 +522,7 @@ ul.bar > li {
     color: white;
     border: 1px solid white;
     outline: none;
-    margin:1em 0;
+    margin: 1em 0;
     cursor: pointer;
     border-radius: 5px;
     transition: background-color .3s;
@@ -591,8 +592,9 @@ ul.bar > li {
     .d-sm + .right2 {
         margin-right: 2em;
     }
+
     .login-area {
-        width:100% !important;
+        width: 100% !important;
     }
 }
 
@@ -600,26 +602,56 @@ a.tags {
     text-align: center;
     display: inline-block;
     height: 1.8em;
-    background-color: #4F70F6;
+    background-color: white;
+    border: 1px solid #4F70F6;
+
     font-size: .6em;
     line-height: 1.8em;
     border-radius: 1.3em;
     padding: .4em 1em;
-    color: white;
+
+    color: rgb(78, 75, 75);
     font-weight: bold;
     box-shadow: 0 0 2px 0 #8ba1f8;
     margin: 0 .4em;
     overflow: hidden;
-    border: 1px solid #4F70F6;
     transition: all .3s;
     animation: tags 1s;
 }
 
 a.tags:hover {
-    color: rgb(78, 75, 75);
-    background-color: white;
+    color: white;
+    background-color: #4F70F6;
     border: 1px solid #4F70F6;
+
 }
+
+.card-sm {
+    box-shadow: rgb(226, 225, 225) 0 0 2px 0;
+    background-color: white;
+    border-radius: 5px;
+    word-break: break-all;
+    /*padding: 0.5em;*/
+    width: 33.33%;
+    margin: 0 .25em .5em;
+    transition: all .3s;
+}
+
+.card-sm:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 10px 0 #e5e5e5;
+}
+
+.card-sm:first-child {
+    margin-left: 0;
+}
+
+.card-sm:last-child {
+    margin-right: 0;
+}
+
+
+
 
 
 .editormd-preview-container blockquote, .editormd-html-preview blockquote {

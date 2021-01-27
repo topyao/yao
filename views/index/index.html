@@ -4,7 +4,7 @@
     <div id="banner-title"></div>
     <div id="banner-content">
         <div>
-            <p class="big-font">Todo List</p>
+            <p class="big-font">YAO</p>
             <p class="small-font">使用轻量的PHP框架开发</p>
             <a target="_blank" id="download" href="#">Loading...</a>
             <p class="links">
@@ -22,25 +22,77 @@
 <main id="app">
     <div class="container">
         <div class="left" style="width:72%;">
-            <div class="card">
-                <div class="content" style="padding:.5em">
-                    {{foreach from=$notes item=note}}
-                    <div class="tips">
-                        <a href="{{url('read',[$note.id])}}">{{$note.title}}</a>
+            <div style="display: flex">
+                <div class="card-sm">
+                    <div style="height: 10em;background: white url('/static/img/2.jpg') no-repeat ;background-size:cover;border-radius: 5px 5px 0 0">
+
                     </div>
-                    <div class="description">
-                        {{$note.text|mb_substr:0:300}}
+                    <div style="height: 8em;padding:.5em;position: relative">
+                        <p style="margin: .5em;font-size: .95em;font-weight:bold;"><a style="color:#1E90FF" href="/note/96.html">PHP框架YAO-0.0.8完全开发手册</a></p>
+                        <p style="margin: .5em;font-size: .85em;color:#808080">
+                            一款简单易用的轻量PHP框架！
+                        </p>
+                        <div style="position:absolute;bottom:1em;margin:0 .5em;">
+                            <i class="fa fa-bars"> 这是分类</i>
+                        </div>
                     </div>
-                    {{/foreach}}
                 </div>
+                <div class="card-sm">
+                    <div style="height: 10em;background: white url('/static/img/3.jpg') no-repeat ;background-size:cover;border-radius: 5px 5px 0 0">
+
+                    </div>
+                    <div style="height: 8em;padding:.5em;position: relative">
+                        <p style="margin: .5em;height:1.2em;font-size: .95em;font-weight:bold;color:#1E90FF;overflow: hidden">
+                            这是标题这是标题这是标题这是标题这是标题这是标题这是标题</p>
+                        <p style="margin: .5em;height:4em;font-size: .85em;color:#808080;overflow: hidden">
+                            标题标题标题标题标题标题
+                            标题标题标题标题标题标题
+                            标题标题标题标题标题标题
+                            标题标题标题标题标题标题
+                            标题标题标题标题标题标题
+                        </p>
+                        <div style="position:absolute;bottom:1em;margin:0 .5em;">
+                            <i class="fa fa-bars"> 这是分类</i>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-sm">
+                    <div style="height: 10em;background: white url('/static/img/4.jpg') no-repeat ;background-size:cover;border-radius: 5px 5px 0 0">
+
+                    </div>
+                    <div style="height: 8em;padding:.5em;position: relative">
+                        <p style="margin: .5em;font-size: .95em;font-weight:bold;color:#1E90FF">这是标题</p>
+                        <p style="margin: .5em;font-size: .85em;color:#808080">
+                            标题标题标题标题标题标题
+                        </p>
+                        <div style="position:absolute;bottom:1em;margin:0 .5em;">
+                            <i class="fa fa-bars"> 这是分类</i>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-            <ul class="paginate" style="text-align: center">
-                <li><a href="">分页</a></li>
-                <li><a href="{{url('list',[1])}}">1</a></li>
-                <li><a href="{{url('list',[2])}}">2</a></li>
-                <li><a href="{{url('list',[3])}}">3</a></li>
-                <li><a href="">末尾</a></li>
-            </ul>
+            <div>
+                <div class="card">
+                    <div class="content" style="padding:.5em">
+                        {{foreach from=$notes item=note}}
+                        <div class="tips">
+                            <a href="{{url('read',[$note.id])}}">{{$note.title}}</a>
+                        </div>
+                        <div class="description">
+                            {{$note.text|mb_substr:0:300}}
+                        </div>
+                        {{/foreach}}
+                    </div>
+                </div>
+                <ul class="paginate" style="text-align: center">
+                    <li><a href="">分页</a></li>
+                    <li><a href="{{url('list',[1])}}">1</a></li>
+                    <li><a href="{{url('list',[2])}}">2</a></li>
+                    <li><a href="{{url('list',[3])}}">3</a></li>
+                    <li><a href="">末尾</a></li>
+                </ul>
+            </div>
         </div>
         {{include file="index/layout/aside.html"}}
     </div>

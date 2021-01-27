@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Index;
 
-class Index
+use App\Http\Controller;
+
+class Index extends Controller
 {
 
     public function index(\App\Models\Notes $note)
