@@ -9,10 +9,9 @@ class Login
     public function handle($request, \Closure $next)
     {
         if(!Session::get('user')){
-            return view('index/404');
+            return view('index/error');
         }
         $response = $next($request);
-        echo 'yyy';
         return $response;
     }
 }

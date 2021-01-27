@@ -28,10 +28,10 @@ class Note
                 }
                 $hots = $notes->hots();
             } catch (\Exception $e) {
-                return view('index/404');
+                return view('index/error');
             }
             if (false === $note) {
-                return view('index/404');
+                return view('index/error');
             }
             return view('index/notes/read', compact(['note', 'hots', 'comments']));
         }
@@ -63,7 +63,7 @@ class Note
     {
 
         if ($page < 1 || $page > $totalPage) {
-            return view('index/404');
+            return view('index/error');
         }
 
         $pages = [];
@@ -115,7 +115,7 @@ class Note
         if ($notes->update($id, $note)) {
             return redirect(url('read', [$id]));
         } else {
-            return view('index/404');
+            return view('index/error');
         }
     }
 

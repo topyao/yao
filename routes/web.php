@@ -11,6 +11,10 @@ Route::get('/', 'index/index/index')->alias('home');
 Route::rule('login', 'index/user/login');
 
 
+Route::get('test', function () {
+    return ['ddd'];
+})->middleware(\App\Http\Middleware\Login::class);
+
 Route::redirect('document', 'http://www.chengyao.xyz/note/125.html');
 
 
