@@ -60,10 +60,7 @@ class Notes
 
     public function search($kw)
     {
-        return Db::name('notes')
-            ->whereLike(['title' => "%{$kw}%"])
-            ->select()
-            ->toArray();
+        return Db::query("select * from notes where match(`title`,`text`) against('{$kw}' in boolean mode)");
     }
 
 }

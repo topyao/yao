@@ -47,15 +47,15 @@ class Note
         }
     }
 
-    public function list($page, Notes $note)
+    public function list($page, Notes $notes)
     {
         $numberOfPages = 15;
         $total = Db::name('notes')->count('*');
         $totalPage = ceil($total / $numberOfPages);
         $paginate = $this->_paginate($page, $totalPage, $numberOfPages);
+        $hots = $notes->hots();
+        $notes = $notes->list(['id', 'title', 'text'], $page, $numberOfPages);
 
-        $notes = $note->list(['id', 'title', 'text'], $page, $numberOfPages);
-        $hots = $note->hots();
         return view('index/notes/list', compact(['notes', 'hots', 'totalPage', 'paginate']));
     }
 
@@ -124,10 +124,9 @@ class Note
         $keyword = Request::get('kw');
         $hots = $notes->hots();
         $notes = $notes->search($keyword);
-
         $page = Request::get('p', 1);
         $numberOfPages = 15;
-        $total = Db::name('notes')->whereLike(['title' => '%' . $keyword . '%'])->count('*');
+        $total = count($notes);
         $totalPage = ceil($total / $numberOfPages);
         $paginate = $this->_paginate($page, $totalPage, $numberOfPages);
         return view('index/notes/list', compact(['notes', 'hots', 'keyword', 'paginate', 'totalPage']));
