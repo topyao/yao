@@ -623,7 +623,6 @@ a.tags:hover {
     color: white;
     background-color: #4F70F6;
     border: 1px solid #4F70F6;
-
 }
 
 .card-sm {
@@ -649,9 +648,6 @@ a.tags:hover {
 .card-sm:last-child {
     margin-right: 0;
 }
-
-
-
 
 
 .editormd-preview-container blockquote, .editormd-html-preview blockquote {

@@ -60,7 +60,7 @@ class Notes
 
     public function search($kw)
     {
-        return Db::query("select * from notes where match(`title`,`text`) against('{$kw}' in boolean mode)");
+        return Db::query("SELECT * FROM notes WHERE `title` LIKE ? OR MATCH(`title`,`text`) AGAINST(? IN BOOLEAN MODE)",["%{$kw}%","{$kw}"]);
     }
 
 }
