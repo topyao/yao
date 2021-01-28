@@ -5,8 +5,9 @@ namespace App\Models;
 
 
 use Yao\Facade\Db;
+use Yao\Model;
 
-class Notes
+class Notes extends Model
 {
     public function oneNote($id)
     {
@@ -60,7 +61,7 @@ class Notes
 
     public function search($kw)
     {
-        return Db::query("SELECT * FROM notes WHERE `title` LIKE ? OR MATCH(`title`,`text`) AGAINST(? IN BOOLEAN MODE)",["%{$kw}%","{$kw}"]);
+        return Db::query("SELECT * FROM notes WHERE `title` LIKE ? OR MATCH(`title`,`text`) AGAINST(? IN BOOLEAN MODE)", ["%{$kw}%", "{$kw}"]);
     }
 
 }
