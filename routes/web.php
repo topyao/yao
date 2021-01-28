@@ -23,3 +23,6 @@ Route::get('list', 'index/note/list');
 Route::rule('note/(\d+)\.html', 'index/note/read')->alias('read');
 Route::rule('notes/edit/(\d+)', 'index/note/edit')->alias('edit');
 Route::get('search', 'index/note/search');
+
+//用户路由
+Route::rule('users/add', 'index/user/create');

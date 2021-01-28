@@ -5,8 +5,9 @@ namespace App\Models;
 
 
 use Yao\Facade\Db;
+use Yao\Model;
 
-class Users
+class Users extends Model
 {
     public function login($user)
     {

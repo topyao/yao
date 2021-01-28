@@ -19,6 +19,7 @@ class User extends Controller
             return view('index/users/login');
         }
         $user = Request::post(['username', 'password']);
+        $user['password'] = md5($user['password']);
         $result = $this->validate(LoginCheck::class, $user);
         if ($result) {
             if ($users->login($user)) {
@@ -31,4 +32,16 @@ class User extends Controller
             return view('index/error', ['message' => $result]);
         }
     }
+
+
+    public function create(Users $users)
+    {
+        if (Request::isMethod('get')) {
+            return '';
+        }
+        $user = Request::post(['username', 'password']);
+        $user['password'] = md5($user['password']);
+        return $users->insert($user);
+    }
+
 }

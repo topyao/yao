@@ -11,13 +11,11 @@ class Notes extends Model
 {
     public function oneNote($id)
     {
-        $note = Db::name('notes')
-            ->field(['title', 'id', 'text', 'hits', 'tags', 'create_time'])
+        $note = $this->field(['title', 'id', 'text', 'hits', 'tags', 'create_time'])
             ->where(['id' => $id])
             ->find()
             ->toArray();
-        Db::name('notes')
-            ->where(['id' => $id])
+        $this->where(['id' => $id])
             ->update(['hits' => $note['hits'] + 1]);
         return $note;
     }
@@ -25,8 +23,7 @@ class Notes extends Model
 
     public function hots($limit = 8)
     {
-        return Db::name('notes')
-            ->field(['title', 'id'])
+        return $this->field(['title', 'id'])
             ->order(['hits' => 'DESC', 'update_time' => 'DESC', 'create_time' => 'DESC'])
             ->limit($limit)
             ->select()
@@ -36,23 +33,22 @@ class Notes extends Model
 
     public function delete($id)
     {
-        return Db::name('notes')->whereIn(['id' => $id])->delete();
+        return $this->whereIn(['id' => $id])->delete();
     }
 
     public function insert($data)
     {
-        return Db::name('notes')->insert($data);
+        return $this->insert($data);
     }
 
     public function update($id, $data)
     {
-        return Db::name('notes')->where(['id' => $id])->update($data);
+        return $this->where(['id' => $id])->update($data);
     }
 
     public function list($fields, $page, $limit)
     {
-        return Db::name('notes')
-            ->field($fields)
+        return $this->field($fields)
             ->order(['update_time' => 'DESC', '`create_time`' => 'DESC', 'hits' => 'DESC'])
             ->limit(($page - 1) * $limit, $limit)
             ->select()
