@@ -15,13 +15,17 @@ class Notes extends Model
             ->where(['id' => $id])
             ->find()
             ->toArray();
-            if(!empty($note)){
-                $this->where(['id' => $id])
+        if (!empty($note)) {
+            $this->where(['id' => $id])
                 ->update(['hits' => $note['hits'] + 1]);
-            }
+        }
         return $note;
     }
 
+    public function total()
+    {
+        return $this->count('*');
+    }
 
     public function hots($limit = 8)
     {

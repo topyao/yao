@@ -1,7 +1,4 @@
 html, body {
-    user-select: none;
-    -moz-user-select: none;
-    -webkit-user-select: none;
     margin: 0;
     background-color: aliceblue;
 }
@@ -66,6 +63,7 @@ html, body {
 }
 
 .paginate {
+    padding: 0;
     margin: .4em 0 0;
 }
 
@@ -73,6 +71,7 @@ html, body {
     background-color: #4568F5;
     list-style-type: none;
     padding: 2px 5px;
+    margin: 0 .3em;
     line-height: 1em;
     height: 1em;
     display: inline-block;
@@ -94,7 +93,7 @@ html, body {
 
 .paginate > li > a {
     color: white;
-    font-size: .4em;
+    font-size: .8em;
     transition: all .3s;
 }
 
@@ -413,9 +412,7 @@ div.input-area > input:focus {
 }
 
 #banner-title {
-    /*border: 1px solid red;*/
-    height: 50px;
-    /*width:100%;*/
+    height: 2.8em;
 }
 
 #banner-content {

@@ -6,7 +6,7 @@
 
 use \Yao\Facade\Route;
 
-Route::get('/', 'index/index/index')->alias('home');
+Route::get('/', 'index/index/index')->alias('home')->middleware(\App\Http\Middleware\Login::class);
 
 Route::rule('login', 'index/user/login');
 

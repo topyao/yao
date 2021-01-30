@@ -1,5 +1,6 @@
 {{extends file="index/layout/main.html"}}
 {{block name="body"}}
+{{if empty(\Yao\Facade\Request::get('p'))}}
 <div class="banner">
     <div id="banner-title"></div>
     <div id="banner-content">
@@ -17,8 +18,10 @@
         </div>
     </div>
 </div>
-
-
+{{/if}}
+{{if !empty(\Yao\Facade\Request::get('p'))}}
+<div id="banner-title"></div>
+{{/if}}
 <main id="app">
     <div class="container">
         <div class="left" style="width:72%;">
@@ -28,7 +31,9 @@
 
                     </div>
                     <div style="height: 8em;padding:.5em;position: relative">
-                        <p style="margin: .5em;font-size: .95em;font-weight:bold;"><a style="color:#1E90FF" href="/note/96.html">PHP框架YAO完全开发手册</a></p>
+                        <p style="margin: .5em;font-size: .95em;font-weight:bold;"><a style="color:#1E90FF"
+                                                                                      href="/note/96.html">PHP框架YAO完全开发手册</a>
+                        </p>
                         <p style="margin: .5em;font-size: .85em;color:#808080">
                             一款简单易用的轻量PHP框架！
                         </p>
@@ -86,11 +91,7 @@
                     </div>
                 </div>
                 <ul class="paginate" style="text-align: center">
-                    <li><a href="">分页</a></li>
-                    <li><a href="{{url('list',[1])}}">1</a></li>
-                    <li><a href="{{url('list',[2])}}">2</a></li>
-                    <li><a href="{{url('list',[3])}}">3</a></li>
-                    <li><a href="">末尾</a></li>
+                    {{$paginate}}
                 </ul>
             </div>
         </div>

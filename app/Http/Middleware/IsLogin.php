@@ -5,9 +5,8 @@ namespace App\Http\Middleware;
 
 
 use Yao\Facade\Session;
-use Yao\Http\Middleware;
 
-class IsLogin extends Middleware
+class IsLogin
 {
     public function handle($request, $next)
     {
