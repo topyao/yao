@@ -23,15 +23,15 @@ class Note
             try {
                 $note = $notes->oneNote($id);
                 $comments = $comments->read($id, 1, 10);
-                if (!empty($note['tags'])) {
-                    $note['tags'] = explode(',', $note['tags']);
-                }
                 $hots = $notes->hots();
             } catch (\Exception $e) {
-                return view('index/error');
+                return view('index/error', ['message' => '查询失败！']);
             }
             if (false === $note) {
-                return view('index/error');
+                return view('index/error', ['message' => '结果为空！']);
+            }
+            if (!empty($note['tags'])) {
+                $note['tags'] = explode(',', $note['tags']);
             }
             return view('index/notes/read', compact(['note', 'hots', 'comments']));
         }
@@ -122,6 +122,9 @@ class Note
     public function search(Notes $notes)
     {
         $keyword = Request::get('kw');
+        if(empty($keyword)){
+            return view('index/error',['message' => '关键词不存在！']);
+        }
         $hots = $notes->hots();
         $notes = $notes->search($keyword);
         $page = Request::get('p', 1);

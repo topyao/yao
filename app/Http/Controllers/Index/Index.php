@@ -8,7 +8,7 @@ use App\Models\Notes;
 class Index extends Controller
 {
 
-    public function index(\App\Models\Notes $notes)
+    public function index(Notes $notes)
     {
         $hots = $notes->hots();
         $notes = $notes->list(['id', 'title', 'text'], 1, 15);

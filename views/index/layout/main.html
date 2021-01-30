@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{block name = "title"}}YAO - 一款简单易用的轻量PHP框架!{{/block}}</title>
-    <link rel="stylesheet" href="/static/css/css.css?202101257">
+    <link rel="stylesheet" href="/static/css/css.css?202101213">
     <link rel="stylesheet" href="/static/font-awesome-4.7.0/css/font-awesome.css">
     {{block name="css"}}{{/block}}
 </head>
@@ -65,6 +65,9 @@
 
     $(window).on('keyup', function (e) {
         if ($('#top-search').is(':focus') && 13 === e.keyCode) {
+            if($('#top-search').val() === ''){
+                return false;
+            }
             window.location.href = '/search?kw=' + $('#top-search').val();
         }
     });

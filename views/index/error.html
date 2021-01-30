@@ -3,7 +3,14 @@
 <main style="margin-top: 3.5em">
     <div class="card">
         <div class="tips">
-            提示 404
+            提示 
+        </div>
+        <div style="margin: 0 auto;">
+            {{if isset($message)}} 
+            {{$message}}
+            {{else}}
+            404
+            {{/if}}
         </div>
     </div>
 

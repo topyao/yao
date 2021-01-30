@@ -549,6 +549,10 @@ ul.bar > li {
     box-shadow: 0 0 0 1px #6c8aff;
 }
 
+.par-card {
+    display: flex;
+}
+
 @media screen and (max-width: 500px) {
     .banner-right {
         display: none;
@@ -595,6 +599,16 @@ ul.bar > li {
 
     .login-area {
         width: 100% !important;
+    }
+
+    .par-card {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .card-sm {
+        width: 100% !important;
+        margin: 0 0 .5em !important;
     }
 }
 

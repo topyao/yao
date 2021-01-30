@@ -15,8 +15,10 @@ class Notes extends Model
             ->where(['id' => $id])
             ->find()
             ->toArray();
-        $this->where(['id' => $id])
-            ->update(['hits' => $note['hits'] + 1]);
+            if(!empty($note)){
+                $this->where(['id' => $id])
+                ->update(['hits' => $note['hits'] + 1]);
+            }
         return $note;
     }
 
