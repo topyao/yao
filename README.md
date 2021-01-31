@@ -88,7 +88,7 @@ if ($rule_0 = "21"){
 - vendor 扩展包（包含框架核心）
 - views 视图目录
 - .env 环境变量文件
-- .env.example 环境变量示例文件
+- .example.env 环境变量示例文件
 - .htaccess 伪静态文件
 - composer.json composer配置文件
 - composer.lock composer锁定文件
@@ -668,10 +668,21 @@ class Serve implements
 ```
 
 # 容器
-可以使用容器创建类并调用类的方法【方法废弃】
+可以使用容器创建类并调用类的方法
+## 使用容器实例化类，并实现依赖注入
 ```php
-//Container::instance()->get('类名',array $arguments)->invoke(’调用方法名‘,'给方法传递的参数');
+$obj = \Yao\App::make(ClassName::class,array $arguments = [],$singleInstance = false);
 ```
+第一个参数传入一个完整类名，第二个参数是传递给类构造方法的参数列表数组，第三个参数为true时候表示获取一个单例，在后面请求中获取类实例的$singleInstance 为true的时候始终不会创建新对象，而是从容器中获取已经实例化并且依赖注入的对象。
+> 此时$obj是一个给构造方法实现依赖注入的实例，在后面的调用实例的方法时候并不会给方法实现依赖注入
+
+
+## 使用容器调用实例的方法并实现依赖注入
+```php
+\Yao\App::invokeMethod(['className','method'],$arguments = [],$singleInstance = false,$constructorArguments = []);
+```
+第一个参数为一个数组，数组的第一个元素为需要实例化的类名，第二个元素为要调用的方法名。第二个参数为给方法传递的参数列表，第三个方法表示实例化的类是不是单例的，第四个参数为实例化类过程中给构造方法传递的参数列表
+
 
 # 命令操作
 
