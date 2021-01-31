@@ -7,6 +7,7 @@ use App\Http\Middleware\IsLogin;
 use App\Http\Traits\Paginate;
 use App\Http\Validate;
 use App\Models\Notes;
+use Yao\App;
 use Yao\Container;
 use Yao\Http\Request;
 
@@ -28,7 +29,8 @@ class Index extends Controller
         return view('index/index', compact(['notes', 'hots', 'paginate']));
     }
 
-    public function test(Request $request)
+    public function test()
     {
+        App::invokeMethod([\Test::class, 'do']);
     }
 }
