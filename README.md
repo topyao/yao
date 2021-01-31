@@ -683,6 +683,12 @@ $obj = \Yao\App::make(ClassName::class,array $arguments = [],$singleInstance = f
 ```
 第一个参数为一个数组，数组的第一个元素为需要实例化的类名，第二个元素为要调用的方法名。第二个参数为给方法传递的参数列表，第三个方法表示实例化的类是不是单例的，第四个参数为实例化类过程中给构造方法传递的参数列表
 
+## 容器实例直接调用
+```php
+\Yao\Container::get($abstract,$arguments,$singleInstance)->method($arguments);
+```
+上面的代码可以直接实例化一个类并且实现对构造方法的依赖注入，同时还可以调用实例化的类的方法并对其中的方法实现依赖注入
+
 
 # 命令操作
 
