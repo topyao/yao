@@ -566,6 +566,10 @@ ul.bar > li {
         padding: .5em !important;
     }
 
+    #test-editormd-view {
+        width: 90% !important;
+    }
+
     .left {
         width: 100% !important;
     }

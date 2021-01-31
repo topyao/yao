@@ -28,6 +28,6 @@ class Index extends Controller
 
     public function test(Notes $notes)
     {
-        dump(\Yao\Facade\Request::get(['a','f'],['a' => 'ff','f' => 'time']));
+        dump(\Yao\Facade\Request::get(['a','f'],['aa','time']));
     }
 }

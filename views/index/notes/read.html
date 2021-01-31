@@ -12,7 +12,7 @@
                 {{if !empty($note.tags)}}
                 <div style="display:flex;justify-content: space-between;">
                     <div class="tips">标题</div>
-                    <div style="height: 1.8em;">
+                    <div style="height: 1.7em;">
                         {{foreach from=$note.tags item=tag}}
                         <a href="#" class="tags">{{$tag}}</a>
                         {{/foreach}}
@@ -36,7 +36,7 @@
             </div>
             <div class="card2">
                 <div class="tips">评论</div>
-                <div style="padding:1em">
+                <div >
                     {{foreach from=$comments item=comment}}
                     {{$comment.name}}
                     <div id="test-editormd-view">
