@@ -19,11 +19,11 @@
       "app/common.php"
     ]
   },
-  "require-dev": {
+  "require": {
     "php": ">=7.4",
     "ext-pdo": "*",
-    "chengyao/framework": "dev-master",
-    "chengyao/migrate": "dev-master",
-    "smarty/smarty": "^3.1.38"
+    "chengyao/framework": "^0.1.1",
+    "chengyao/migrate": "0.0.1",
+    "twig/twig": "3.1.1"
   }
 }
