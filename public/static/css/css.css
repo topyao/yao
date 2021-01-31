@@ -72,7 +72,7 @@ html, body {
     list-style-type: none;
     padding: 2px 5px;
     margin: 0 .3em;
-    line-height: 1em;
+    line-height: .9em;
     height: 1em;
     display: inline-block;
     min-width: 1.5em;
@@ -619,12 +619,10 @@ a.tags {
     height: 1.8em;
     background-color: white;
     border: 1px solid #4F70F6;
-
     font-size: .6em;
     line-height: 1.8em;
     border-radius: 1.3em;
     padding: .4em 1em;
-
     color: rgb(78, 75, 75);
     font-weight: bold;
     box-shadow: 0 0 2px 0 #8ba1f8;
@@ -691,10 +689,10 @@ a.tags:hover {
         margin: 0 0.1em;
     }
     50% {
-        margin: 0 .8em;
+        margin: 0 .6em;
     }
     75% {
-        margin: 0 .1em;
+        margin: 0 .2em;
     }
     100% {
         margin: 0 .4em;
