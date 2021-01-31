@@ -17,6 +17,16 @@ class Note
         'edit' => Login::class,
     ];
 
+    public function __construct(\Yao\Http\Request $request)
+    {
+    }
+
+    public function test($ttt, \Yao\Http\Request $request)
+    {
+        echo $ttt;
+        var_dump($request);
+    }
+
     public function read($id, Notes $notes, Comments $comments)
     {
         if (Request::isMethod('get')) {
@@ -122,8 +132,8 @@ class Note
     public function search(Notes $notes)
     {
         $keyword = Request::get('kw');
-        if(empty($keyword)){
-            return view('index/error',['message' => '关键词不存在！']);
+        if (empty($keyword)) {
+            return view('index/error', ['message' => '关键词不存在！']);
         }
         $hots = $notes->hots();
         $notes = $notes->search($keyword);

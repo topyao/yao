@@ -11,7 +11,7 @@ Route::get('/', 'index/index/index')->alias('home')->middleware(\App\Http\Middle
 Route::rule('login', 'index/user/login');
 
 
-Route::get('test', 'index/index/test');
+Route::get('test', 'index/index/test')->cors('*');
 
 Route::redirect('document', 'http://www.chengyao.xyz/note/125.html');
 
