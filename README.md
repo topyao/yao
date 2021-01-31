@@ -135,7 +135,7 @@ AUTO_START=true
 
 
 # 路由
-路由可以添加在`route/route.php`文件中，如果需要分文件存放，可以将其他文件引入该文件或者在route目录下新建文件
+路由可以添加在`route/route.php`文件中，如果需要分文件存放，只需要在route目录下新建文件
 
 > 注意：需要引入`Yao\Facade\Route`类
 
@@ -161,10 +161,10 @@ Route::get('路由地址','控制器/方法');
 ```
 例如
 ```php
-Route::get('index','index/index/index'); 
+Route::get('index','index/index'); 
 ```
 
-这里的`index/index/index`中最后一个斜线后的字符串为调用的方法名，前面的组成类似`App\Http\Controllers\Index\Index`的类名,对应到目录中为`/app/Http/Controllers/index/index.php` 这样就很容易理解如何创建单/多应用。只需给路由表达式添加多个斜线分割，对应于类所处的文件夹上下级。
+这里的`index/index`中最后一个斜线后的字符串为调用的方法名，前面的组成类似`App\Http\Controllers\Index`的类名,对应到目录中为`/app/Http/Controllers/index.php` 这样就很容易理解如何创建单/多应用。只需给路由表达式添加多个斜线分割，对应于类所处的文件夹上下级。
 
 ### 数组
 
@@ -299,24 +299,15 @@ Route::get('/','index/index/index')->cors('*');
 \Yao\Facade\Request::get()
 ```
 
-或者使用
-
-```php
-new Request(?array $filters = null) 
-```
-
-可以不传参数，传入的参数必须是包含可以使用的过滤函数的数组，当独立使用时建议加上参数可以实现获取数据的过滤。
-
-获取所有`get`的参数列表
-
-```php
-\Yao\Facade\Request::get()
-```
-
 如果需要获取某一个参数，可以使用
 
 ```php
 \Yao\Facade\Request::get('a');
+```
+可以给第二个参数传入一个默认值，例如
+
+```php
+\Yao\Facade\Request::get('a','default');
 ```
 
 获取多个参数可以使用
@@ -324,8 +315,13 @@ new Request(?array $filters = null)
 ```php
 \Yao\Facade\Request::get(['a','b']);
 ```
+可以给第二个参数传入一个索引数组的默认值，例如
+```php
+\Yao\Facade\Request::get(['a','b'],[1,'time']);
+```
+此时如果b不存在，则b的值为time
 
-还可以获取`post`请求的内容
+获取`post`请求的内容
 
 ```php
 \Yao\Facade\Request::post();
@@ -401,13 +397,13 @@ class Login
 ## 路由中间件
 可以使用middleware方法注册一个路由中间件，例如
 
-Route::get('index','index/idnex')->middleware('\App\Http\Middleware\Login::class);
+Route::get('index','index/index')->middleware('\App\Http\Middleware\Login::class);
 
 不管路由中注册的是闭包还是类名，都会经过中间件，目前路由中间件优先于控制器中间件，且只可以添加一个😂😂😂😂😂😂😂。
 
 # 响应
 
-在控制器中可以直接return 一个数组，框架会自动转为json输出，也可以使用json() 助手函数，或者response()函数,可以使用连贯操作，例如json(array $data,202,['Content-Type:application/json']); 第一个参数为数据，第二个为状态码，第三个为头信息。
+在控制器中可以直接return 一个数组，框架会自动转为json输出，也可以使用json() 助手函数，或者response()函数,，例如json(array $data,202,['Content-Type:application/json']); 第一个参数为数据，第二个为状态码，第三个为头信息。
 
 # 验证器
 
@@ -672,9 +668,9 @@ class Serve implements
 ```
 
 # 容器
-可以使用容器创建类并调用类的方法
+可以使用容器创建类并调用类的方法【方法废弃】
 ```php
-Container::instance()->get('类名',array $arguments)->invoke(’调用方法名‘,'给方法传递的参数');
+//Container::instance()->get('类名',array $arguments)->invoke(’调用方法名‘,'给方法传递的参数');
 ```
 
 # 命令操作
