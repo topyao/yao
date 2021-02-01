@@ -2,6 +2,6 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$app = \Yao\App::make('app');
+$app = \Yao\Container::instance()->make('app');
 
 $app->run();
