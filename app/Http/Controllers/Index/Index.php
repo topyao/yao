@@ -31,6 +31,6 @@ class Index extends Controller
 
     public function test()
     {
-        App::invokeMethod([\Test::class, 'do']);
+        var_dump(\Container::instance()->make(\Test::class)->res());
     }
 }

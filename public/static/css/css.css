@@ -478,7 +478,7 @@ p.links a:hover {
 }
 
 .banner-right {
-    margin-top: 40px;
+    /*margin-top: 40px;*/
     font-size: 9em;
     vertical-align: middle;
     color: white;
