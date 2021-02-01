@@ -20,10 +20,12 @@
     ]
   },
   "require-dev": {
-    "php": ">=7.4",
-    "ext-pdo": "*",
     "chengyao/framework": "dev-master",
     "chengyao/migrate": "dev-master",
     "smarty/smarty": "^3.1.38"
+  },
+  "require": {
+    "php": ">=7.4",
+    "ext-pdo": "*"
   }
 }
