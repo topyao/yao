@@ -671,23 +671,22 @@ class Serve implements
 可以使用容器创建类并调用类的方法
 ## 使用容器实例化类，并实现依赖注入
 ```php
-$obj = \Yao\App::make(ClassName::class,array $arguments = [],$singleInstance = false);
+$obj = \Yao\Container::instance()->make(ClassName::class,array $arguments = [],$singleInstance = false);
 ```
 第一个参数传入一个完整类名，第二个参数是传递给类构造方法的参数列表数组，第三个参数为true时候表示获取一个单例，在后面请求中获取类实例的$singleInstance 为true的时候始终不会创建新对象，而是从容器中获取已经实例化并且依赖注入的对象。
 > 此时$obj是一个给构造方法实现依赖注入的实例，在后面的调用实例的方法时候并不会给方法实现依赖注入
 
-
 ## 使用容器调用实例的方法并实现依赖注入
 ```php
-\Yao\App::invokeMethod(['className','method'],$arguments = [],$singleInstance = false,$constructorArguments = []);
+\Yao\Container::instance()->invokeMethod(['className','method'],$arguments = [],$singleInstance = false,$constructorArguments = []);
 ```
 第一个参数为一个数组，数组的第一个元素为需要实例化的类名，第二个元素为要调用的方法名。第二个参数为给方法传递的参数列表，第三个方法表示实例化的类是不是单例的，第四个参数为实例化类过程中给构造方法传递的参数列表
 
-## 容器实例直接调用
-```php
-\Yao\Container::get($abstract,$arguments,$singleInstance)->method($arguments);
-```
-上面的代码可以直接实例化一个类并且实现对构造方法的依赖注入，同时还可以调用实例化的类的方法并对其中的方法实现依赖注入
+## 获取容器内的实例
+\Yao\Container::instance()->get($abstract);
+
+## 判断容器中的实例是否存在
+\Yao\Container::instance()->has($abstract);
 
 > 注意：依赖注入的实例总是放在方法参数列表的末尾，否则可能出现不可预见的错误。因为本人技术有限，依赖注入方法的参数列表中的参数的默认值是会丢失的，使用了依赖注入就应该注意这一点。另外，控制器方法是始终实现依赖注入的。
 
