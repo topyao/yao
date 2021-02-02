@@ -5,10 +5,7 @@ namespace App\Http\Controllers\Index;
 use App\Http\Controller;
 use App\Http\Middleware\IsLogin;
 use App\Http\Traits\Paginate;
-use App\Http\Validate;
 use App\Models\Notes;
-use Yao\App;
-use Yao\Container;
 use Yao\Http\Request;
 
 class Index extends Controller
@@ -29,8 +26,8 @@ class Index extends Controller
         return view('index/index', compact(['notes', 'hots', 'paginate']));
     }
 
-    public function test()
+    public function test(Request $request)
     {
-        var_dump(\Container::instance()->make(\Test::class)->res());
+        dump($request);
     }
 }

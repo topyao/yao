@@ -15,7 +15,7 @@
         </div>
         <div class="banner-right">
             <img src="/static/img/logo1.png" style="vertical-align:middle;width: 2.5em;height: 2.5em" alt="">
-<!--            <i class="fa fa-thumbs-o-up"></i>-->
+            <!--            <i class="fa fa-thumbs-o-up"></i>-->
         </div>
     </div>
 </div>
@@ -76,25 +76,22 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-            <div>
-                <div class="card">
-                    <div class="content" style="padding:.5em">
-                        {{foreach from=$notes item=note}}
+            <div class="card">
+                <div class="content" style="padding:.5em">
+                    {{foreach from=$notes item=note}}
                         <div class="tips">
                             <a href="{{url('read',[$note.id])}}">{{$note.title}}</a>
                         </div>
                         <div class="description">
                             {{$note.text|mb_substr:0:300}}
                         </div>
-                        {{/foreach}}
-                    </div>
+                    {{/foreach}}
                 </div>
-                <ul class="paginate" style="text-align: center">
-                    {{$paginate}}
-                </ul>
             </div>
+            <ul class="paginate" style="text-align: center">
+                {{$paginate}}
+            </ul>
         </div>
         {{include file="index/layout/aside.html"}}
     </div>
