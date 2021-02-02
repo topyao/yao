@@ -3,8 +3,10 @@
         <div class="tips">推荐</div>
         <ul class="card-content">
             {{foreach from=$hots item=hot name=hot}}
-            <li><!--<span style="background-color: red">{{$smarty.foreach.hot.index + 1}}</span>--><a
-                    href="{{url('read',[$hot.id])}}">{{$hot.title}}</a></li>
+            <li>
+                <!--<span style="background-color: red">{{$smarty.foreach.hot.index + 1}}</span>-->
+                <a href="{{url('read',[$hot.id])}}">{{$hot.title}}</a>
+            </li>
             {{/foreach}}
         </ul>
     </div>
@@ -14,6 +16,5 @@
             <a class="tags" target=" _blank
         " title="世界皆黑，唯我独白" href="http://imjunjun.cn">军军</a>
         </div>
-
     </div>
 </aside>
