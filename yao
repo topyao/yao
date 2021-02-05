@@ -1,5 +1,8 @@
 #!/usr/bin/env php
 <?php
+
+use Yao\Container;
+
 if (!file_exists('./vendor/autoload.php')) {
     if (function_exists('passthru')) {
         echo "没有安装框架核心，即将自动安装！\n";
@@ -11,5 +14,6 @@ if (!file_exists('./vendor/autoload.php')) {
 }
 define('ROOT_PATH', getcwd() . DIRECTORY_SEPARATOR);
 require('./vendor/autoload.php');
-$console = new Yao\Console\Console($argv);
+
+$console = Container::instance()->make(\Yao\Console\Console::class, [$argv]);
 $console->run();
