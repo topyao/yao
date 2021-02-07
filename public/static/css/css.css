@@ -1,6 +1,5 @@
 html, body {
     margin: 0;
-    background-color: aliceblue;
 }
 
 .card-content {
@@ -49,12 +48,12 @@ html, body {
     background-color: white;
     border-radius: 5px;
     padding: .5em;
-    box-shadow: 0 0 3px 0 rgb(226, 225, 225);
+    box-shadow: rgb(236 236 236) 0 0 12px 0;
     margin-top: .5em;
 }
 
 .card {
-    box-shadow: rgb(226, 225, 225) 0 0 2px 0;
+    box-shadow: rgb(236 236 236) 0 0 12px 0;
     background-color: white;
     border-radius: 5px;
     word-break: break-all;
@@ -642,7 +641,7 @@ a.tags:hover {
 }
 
 .card-sm {
-    box-shadow: rgb(226, 225, 225) 0 0 2px 0;
+    box-shadow: rgb(236 236 236) 0 0 12px 0;
     background-color: white;
     border-radius: 5px;
     word-break: break-all;
