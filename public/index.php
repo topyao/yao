@@ -4,6 +4,5 @@ namespace Yao;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$app = Container::instance()->make(App::class);
+App::instance()->run();
 
-$app->run();
