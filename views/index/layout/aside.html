@@ -1,6 +1,6 @@
 <aside class="d-bg">
     <div class="card">
-        <div class="tips">推荐</div>
+        <div class="tips"><i class="fa fa-fire"></i></div>
         <ul class="card-content">
             {{foreach from=$hots item=hot name=hot}}
             <li>
@@ -10,8 +10,16 @@
             {{/foreach}}
         </ul>
     </div>
+    {{if isset($comments)}}
+    <div class="card d-bg">
+        <div class="tips"><i class="fa fa-qrcode"></i></div>
+        <div>
+            <img style="width:100%" src="data:image/png;base64,{{$note.qrcode}}" alt="">
+        </div>
+    </div>
+    {{/if}}
     <div class="card">
-        <div class="tips">好友</div>
+        <div class="tips"><i class="fa fa-link"></i></div>
         <div style="margin:.5em 1em;height: 1.7em">
             <a class="tags" target=" _blank
         " title="世界皆黑，唯我独白" href="http://imjunjun.cn">军军</a>

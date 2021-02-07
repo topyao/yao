@@ -4,32 +4,23 @@
 namespace App\Http\Controllers\Index;
 
 
+use App\Http\Controller;
 use App\Http\Middleware\Login;
 use App\Models\Comments;
 use App\Models\Notes;
 use Yao\Facade\Db;
 use Yao\Facade\Request;
 
-class Note
+class Note extends Controller
 {
 
     public $middleware = [
         'edit' => Login::class,
     ];
 
-    public function __construct(\Yao\Http\Request $request)
-    {
-    }
-
-    public function test($ttt, \Yao\Http\Request $request)
-    {
-        echo $ttt;
-        var_dump($request);
-    }
-
     public function read($id, Notes $notes, Comments $comments)
     {
-        if (Request::isMethod('get')) {
+        if ($this->request->isMethod('get')) {
             try {
                 $note = $notes->oneNote($id);
                 $comments = $comments->read($id, 1, 10);
@@ -51,7 +42,7 @@ class Note
 
     private function _comment($id, Comments $comments)
     {
-        $comment = Request::post(['name', 'email', 'site', 'comment', 'note_id']);
+        $comment = $this->request->post(['name', 'email', 'site', 'comment', 'note_id']);
         if ($comments->add($comment)) {
             return redirect(url('list', [$id]), 302);
         }
@@ -101,10 +92,10 @@ class Note
 
     public function create(Notes $notes)
     {
-        if (Request::isMethod('get')) {
+        if ($this->request->isMethod('get')) {
             return view('index/notes/add');
         }
-        $data = Request::post(['title', 'text', 'tags']);
+        $data = $this->request->post(['title', 'text', 'tags']);
         try {
             $notes->insert($data);
         } catch (\Exception $e) {
@@ -116,11 +107,11 @@ class Note
 
     public function edit($id, Notes $notes)
     {
-        if (Request::isMethod('get')) {
+        if ($this->request->isMethod('get')) {
             $note = $notes->oneNote($id);
             return view('index/notes/edit', compact(['note']));
         }
-        $note = Request::post(['title', 'text', 'tags']);
+        $note = $this->request->post(['title', 'text', 'tags']);
         $note['update_time'] = date('Y-m-d h:i:s');
         if ($notes->update($id, $note)) {
             return redirect(url('read', [$id]));
@@ -131,13 +122,13 @@ class Note
 
     public function search(Notes $notes)
     {
-        $keyword = Request::get('kw');
+        $keyword = $this->request->get('kw');
         if (empty($keyword)) {
             return view('index/error', ['message' => '关键词不存在！']);
         }
         $hots = $notes->hots();
         $notes = $notes->search($keyword);
-        $page = Request::get('p', 1);
+        $page = $this->request->get('p', 1);
         $numberOfPages = 15;
         $total = count($notes);
         $totalPage = ceil($total / $numberOfPages);

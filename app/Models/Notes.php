@@ -3,9 +3,9 @@
 
 namespace App\Models;
 
-
 use Yao\Facade\Db;
 use Yao\Model;
+use Endroid\QrCode\QrCode;
 
 class Notes extends Model
 {
@@ -13,8 +13,9 @@ class Notes extends Model
     {
         $note = $this->field(['title', 'id', 'text', 'hits', 'tags', 'create_time'])
             ->where(['id' => $id])
-            ->find()
-            ->toArray();
+            ->find();
+        $note['qrcode'] = base64_encode((new QrCode('https://www.chengyao.xyz' . url('read', [$note['id']])))->writeString());
+        $note = $note->toArray();
         if (!empty($note)) {
             $this->where(['id' => $id])
                 ->update(['hits' => $note['hits'] + 1]);
