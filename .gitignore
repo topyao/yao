@@ -3,5 +3,5 @@
 .env
 vendor
 composer.lock
-storage
+storage/*
 composer.json.production
