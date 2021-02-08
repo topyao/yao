@@ -315,11 +315,11 @@ Route::get('/','index/index/index')->cors('*');
 ```php
 \Yao\Facade\Request::get(['a','b']);
 ```
-可以给第二个参数传入一个索引数组的默认值，例如
+可以给第二个参数传入一个关联数组的默认值，例如
 ```php
-\Yao\Facade\Request::get(['a','b'],[1,'time']);
+\Yao\Facade\Request::get(['a','b'],['a' => 1]);
 ```
-此时如果b不存在，则b的值为time
+此时如果a不存在，则a的值为1
 
 获取`post`请求的内容
 
@@ -351,6 +351,14 @@ Route::get('/','index/index/index')->cors('*');
 ```php
 \Yao\Facade\Request::isAjax() 
 ```
+
+## 可以使用基础控制器
+
+当控制器继承了基础控制器App\Http\Controller或者\Yao\Controller 后就可以直接使用
+```php
+$this->request->get();
+```
+的方式获取参数，其他用法和Facade类似
 
 ## 参数过滤
 请求是可以设置函数进行过滤的，可以在`app.php`中的`filter`数组中添加过滤函数，注意函数必须只能传入一个参数，并且返回过滤后的字符串。如果使用`Request`类获取参数默认是被过滤的。不需要过滤可以使用`$_GET`数组。
@@ -505,6 +513,11 @@ class Index
 
 >可以给控制器方法传入参数，参数个数和位置取决于路由中正则匹配到的参数。
 >当路由中的参数为可选，就应该给控制器参数一个初始值
+
+### 当继承了基础控制器后不再建议使用构造函数初始化，而是使用init() 方法进行初始化。
+```php
+public function init(){}
+```
 
 # 模型
 
