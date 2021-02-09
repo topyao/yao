@@ -6,7 +6,6 @@ use App\Http\Controller;
 use App\Http\Middleware\IsLogin;
 use App\Http\Traits\Paginate;
 use App\Models\Notes;
-use Yao\Http\Request;
 
 class Index extends Controller
 {
@@ -15,10 +14,10 @@ class Index extends Controller
 
     public $middleware = IsLogin::class;
 
-    public function index(Notes $notes, Request $request)
+    public function index(Notes $notes)
     {
         $numberOfPages = 15;
-        $page = $request->get('p', 1);
+        $page = $this->request->get('p', 1);
         $totalPage = ceil($notes->total() / $numberOfPages);
         $paginate = $this->_paginate($page, $totalPage, $numberOfPages);
         $hots = $notes->hots();
@@ -26,8 +25,7 @@ class Index extends Controller
         return view('index/index', compact(['notes', 'hots', 'paginate']));
     }
 
-    public function test(Request $request)
+    public function test()
     {
-        dump($request);
     }
 }
