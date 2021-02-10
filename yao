@@ -1,8 +1,6 @@
 #!/usr/bin/env php
 <?php
 
-use Yao\Container;
-
 if (!file_exists('./vendor/autoload.php')) {
     if (function_exists('passthru')) {
         echo "没有安装框架核心，即将自动安装！\n";
