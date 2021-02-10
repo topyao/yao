@@ -15,5 +15,5 @@ if (!file_exists('./vendor/autoload.php')) {
 define('ROOT_PATH', getcwd() . DIRECTORY_SEPARATOR);
 require('./vendor/autoload.php');
 
-$console = Container::instance()->make(\Yao\Console\Console::class, [$argv]);
+$console = new \Yao\Console\Console($argv);
 $console->run();
