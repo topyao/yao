@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Index;
 
-use App\Http\Controller;
-use App\Http\Middleware\IsLogin;
-use App\Http\Traits\Paginate;
+use App\Http\{
+    Controller,
+    Middleware\IsLogin,
+    Traits\Paginate
+};
 use App\Models\Notes;
-use Yao\App;
-use Yao\Database\Driver;
 
 class Index extends Controller
 {

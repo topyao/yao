@@ -9,7 +9,6 @@ use App\Http\Middleware\Login;
 use App\Models\Comments;
 use App\Models\Notes;
 use Yao\Facade\Db;
-use Yao\Facade\Request;
 
 class Note extends Controller
 {

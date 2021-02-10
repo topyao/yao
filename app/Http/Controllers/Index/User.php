@@ -7,7 +7,6 @@ namespace App\Http\Controllers\Index;
 use App\Http\Controller;
 use App\Http\Validate\LoginCheck;
 use App\Models\Users;
-use Yao\Facade\Request;
 use Yao\Facade\Session;
 
 class User extends Controller
@@ -15,10 +14,10 @@ class User extends Controller
 
     public function login(Users $users)
     {
-        if (Request::isMethod('get')) {
+        if ($this->request->isMethod('get')) {
             return view('index/users/login');
         }
-        $user = Request::post(['username', 'password']);
+        $user = $this->request->post(['username', 'password']);
         $user['password'] = md5($user['password']);
         $result = $this->validate(LoginCheck::class, $user);
         if ($result) {
@@ -36,10 +35,10 @@ class User extends Controller
 
     public function create(Users $users)
     {
-        if (Request::isMethod('get')) {
+        if ($this->request->isMethod('get')) {
             return '';
         }
-        $user = Request::post(['username', 'password']);
+        $user = $this->request->post(['username', 'password']);
         $user['password'] = md5($user['password']);
         return $users->insert($user);
     }
