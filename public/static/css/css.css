@@ -32,18 +32,10 @@ html, body {
 }
 
 #test-editormd-view2 {
-    color:#808080;
+    color: #626262;
     box-sizing: border-box;
     padding: 1em !important;
 }
-
-/*.card2 > .content {*/
-/*    !*word-spacing: 4px;*!*/
-/*    !*line-height: 1.7em;*!*/
-/*    !*color: #5a5757;*!*/
-/*    !*word-break: break-all*!*/
-/*}*/
-
 
 .card2 {
     background-color: white;
@@ -64,7 +56,7 @@ html, body {
 
 .paginate {
     padding: 0;
-    margin: .4em 0 0;
+    margin: .8em 0 0;
 }
 
 .paginate > li {

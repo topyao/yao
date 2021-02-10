@@ -15,7 +15,6 @@ Route::get('test', 'index/index/test');
 
 Route::redirect('document', 'http://www.chengyao.xyz/note/125.html');
 
-
 //note路由
 Route::rule('notes/add', 'index/note/create');
 Route::get('notes/(\d+)\.html', 'index/note/list')->alias('list');

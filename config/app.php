@@ -11,6 +11,6 @@ return [
     'default_timezone' => env('app.default_timezone', 'PRC'),
     //参数过滤
     'filter' => ['trim', 'htmlspecialchars'],
-
-    'exception_view' => env('yao_path') . 'Tpl' . DIRECTORY_SEPARATOR . 'exception.html'
+    //异常模板
+    'exception_view' => env('yao_path') . 'Tpl' . DIRECTORY_SEPARATOR . 'exception.html',
 ];
