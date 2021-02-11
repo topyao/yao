@@ -2,7 +2,7 @@
 
 namespace App\Http;
 
-class Controller extends \Yao\Controller
+class Controller extends \Yao\Http\Controller
 {
 
     public function init()
