@@ -11,7 +11,7 @@
             <div id="top">
                 {{if !empty($note.tags)}}
                 <div style="display:flex;justify-content: space-between;">
-                    <div class="tips"><i class="fa fa-font"></i></div>
+                    <div class="tips"><i class="fa fa-font"></i>&nbsp;&nbsp;标题</div>
                     <div style="height: 1.7em;">
                         {{foreach from=$note.tags item=tag}}
                         <a href="#" class="tags">{{$tag}}</a>
