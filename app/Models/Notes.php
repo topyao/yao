@@ -4,7 +4,7 @@
 namespace App\Models;
 
 use Yao\Facade\Db;
-use Yao\Model;
+use Yao\Database\Model;
 use Endroid\QrCode\QrCode;
 
 class Notes extends Model

@@ -1,11 +1,9 @@
 <?php
 
-
 namespace App\Models;
 
-
+use Yao\Database\Model;
 use Yao\Facade\Db;
-use Yao\Model;
 
 class Users extends Model
 {
