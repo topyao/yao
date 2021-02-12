@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers\Index;
 
-use App\Http\{
-    Controller,
-    Middleware\IsLogin,
-    Traits\Paginate
-};
+use App\Http\{Controller, Middleware\IsLogin, Traits\Paginate};
 use App\Models\Notes;
 
 class Index extends Controller
