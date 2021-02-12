@@ -1,15 +1,16 @@
 <?php
 
-
 namespace App\Models;
-
 
 use Yao\Database\Model;
 
 class Users extends Model
 {
-
-    public $name = 'users';
+    /**
+     * 表名
+     * @var string|null
+     */
+    public ?string $name = 'users';
 
     public function insert(array $data)
     {
