@@ -4,12 +4,31 @@ namespace App\Http;
 
 class Validate extends \Yao\Http\Validate
 {
+
+    /**
+     * 批量验证
+     * @var bool
+     */
+    protected bool $checkAll = false;
+
+    /**
+     * 验证失败抛出异常
+     * @var bool
+     */
     protected bool $throwAble = false;
 
+    /**
+     * 验证规则
+     * @var array|\int[][]
+     */
     protected array $rule = [
         'field' => ['max' => 10],
     ];
 
+    /**
+     * 验证提示
+     * @var array|\string[][]
+     */
     protected array $notice = [
         'field' => ['max' => '最长是十哦！']
     ];
@@ -26,13 +45,6 @@ class Validate extends \Yao\Http\Validate
     */
     protected function _checkUser($field, $limit, $data, $regulation)
     {
-
-        //        if (true) {
-        //            return true;
-        //        } else {
-        //            $this->message[] = $this->notice[$field][$regulation] ?? 'false';
-        //            return false;
-        //        }
         /**
          * 获取用户传递的数据使用$this->data[$field],或者使用$data
          * User可以自定义名称，前缀必须是_check
@@ -40,5 +52,11 @@ class Validate extends \Yao\Http\Validate
          * 失败将错误信息添加到message属性返回false
          * $this->message[] = '';
          */
+        if ('is_true') {
+            return true;
+        } else {
+            $this->message[] = $this->notice[$field][$regulation] ?? 'false';
+            return false;
+        }
     }
 }
