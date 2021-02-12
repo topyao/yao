@@ -29,5 +29,6 @@ class Index extends Controller
 
     public function test()
     {
+        dump($this->request->server('path_info'));
     }
 }

@@ -60,7 +60,7 @@
                                         style="position:absolute;font-size:14px;height: 2em;margin-left:.5em">
                                     {{$comment.name}}</b>
                                 </div>
-                                <span style="color:grey">{{date('H:i:s')}}</span>
+                                <span style="color:grey;font-size: 13px">{{date('H:i:s')}}</span>
                             </div>
                             <div style="padding:.5em 0 0 2.5em;word-break: break-all;word-wrap: break-word">
                                 <div style="border-bottom: 1px solid #dbdbdb;">
@@ -69,23 +69,23 @@
                                     </div>
                                 </div>
 
-                                <div style="margin: 1em 0 0;font-size: 14px;">
-                                    <div style="display: flex;justify-content: space-between;line-height: 2em;height: 2em">
-                                        <div><img src="/static/img/logo.png" alt=""
-                                                  style="width: 2em;height: 2em;border-radius: 50%"><b
-                                                style="position:absolute;height: 2em;margin-left:.5em;font-size:14px;">
-                                            {{$comment.name}}</b>
-                                        </div>
-                                        <span style="color:grey">{{date('H:i:s')}}</span>
-                                    </div>
-                                    <div style="padding:.5em 0 0 2.5em;word-break: break-all;word-wrap: break-word">
-                                        <div style="border-bottom: 1px solid #dbdbdb">
-                                            <div style="margin-bottom: 1em">
-                                                {{$comment.comment}}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <!--                                <div style="margin: 1em 0 0;font-size: 14px;">-->
+                                <!--                                    <div style="display: flex;justify-content: space-between;line-height: 2em;height: 2em">-->
+                                <!--                                        <div><img src="/static/img/logo.png" alt=""-->
+                                <!--                                                  style="width: 2em;height: 2em;border-radius: 50%"><b-->
+                                <!--                                                style="position:absolute;height: 2em;margin-left:.5em;font-size:14px;">-->
+                                <!--                                            {{$comment.name}}</b>-->
+                                <!--                                        </div>-->
+                                <!--                                        <span style="color:grey;font-size: 13px">{{date('H:i:s')}}</span>-->
+                                <!--                                    </div>-->
+                                <!--                                    <div style="padding:.5em 0 0 2.5em;word-break: break-all;word-wrap: break-word">-->
+                                <!--                                        <div style="border-bottom: 1px solid #dbdbdb">-->
+                                <!--                                            <div style="margin-bottom: 1em">-->
+                                <!--                                                {{$comment.comment}}-->
+                                <!--                                            </div>-->
+                                <!--                                        </div>-->
+                                <!--                                    </div>-->
+                                <!--                                </div>-->
                             </div>
                         </div>
                         {{/foreach}}
