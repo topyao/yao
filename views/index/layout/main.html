@@ -53,22 +53,25 @@
 <script>
     $(function () {
         $('.dropdown-btn').on('click', function () {
-            if ($('#sm-nav').css('display') === 'none') {
-                $('#sm-nav').css('display', 'block')
-                $('#dropdown').html('<i class="fa fa-close"></i>')
+            var smNav = $('#sm-nav');
+            var dropdown = $('#dropdown');
+            if (smNav.css('display') === 'none') {
+                smNav.css('display', 'block')
+                dropdown.html('<i class="fa fa-close"></i>')
             } else {
-                $('#sm-nav').css('display', 'none')
-                $('#dropdown').html('<i class="fa fa-bars"></i>')
+                smNav.css('display', 'none')
+                dropdown.html('<i class="fa fa-bars"></i>')
             }
         });
     });
 
     $(window).on('keyup', function (e) {
-        if ($('#top-search').is(':focus') && 13 === e.keyCode) {
-            if($('#top-search').val() === ''){
+        var topSearch = $('#top-search');
+        if (topSearch.is(':focus') && 13 === e.keyCode) {
+            if (topSearch.val() === '') {
                 return false;
             }
-            window.location.href = '/search?kw=' + $('#top-search').val();
+            window.location.href = '/search?kw=' + topSearch.val();
         }
     });
 
