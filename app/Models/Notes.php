@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Models;
 
 use Yao\Facade\Db;
@@ -43,7 +42,7 @@ class Notes extends Model
         return $this->whereIn(['id' => $id])->delete();
     }
 
-    public function insert($data)
+    public function create($data)
     {
         return $this->insert($data);
     }

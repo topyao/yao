@@ -96,11 +96,11 @@ class Note extends Controller
         }
         $data = $this->request->post(['title', 'text', 'tags']);
         try {
-            $notes->insert($data);
+            $notes->create($data);
         } catch (\Exception $e) {
             return '新增失败';
         }
-        return redirect('/notes');
+        return redirect('/');
     }
 
 
