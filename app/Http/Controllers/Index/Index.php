@@ -14,12 +14,12 @@ class Index extends Controller
 
     public function test()
     {
-        dump($this->request->get());
+        dump($this->request);
     }
 
     public function check()
     {
         $this->validate();
-        dump($this->app->get());
+        dump($this->app->get('request'));
     }
 }
