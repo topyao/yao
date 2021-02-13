@@ -287,12 +287,14 @@ Route::redirect('index','https://www.1kmb.com',['get'],302);
 
 该路由表示`get`方式请求的`/index`会被重定向到`https://www.1kmb.com`。后两个参数为可选参数，第一个为路由请求方式，默认为`get`；第二个为响应状态码，默认为302；
 
-## 跨域支持【开发中】
+## 跨域支持
 
-可以在定义路由的时候设置允许跨域【0.0.7版本的跨域功能勉强可以用，现在估计用不成了，没测试】
+可以在定义路由的时候设置允许跨域
 ```
 Route::get('/','index/index/index')->cors('*'); 
 ```
+
+> 注意：这里cors() 方法的参数可选，默认为cors.php配置文件中的值，如果需要修改可以给该方法传递参数，参数一：$AllowOrigin 允许跨域域名，参数二：$AllowCredentials 是否可以将对请求的响应暴露给页面，参数三：$AllowHeaders 允许的头信息
 
 # 请求
 ## 获取请求参数
@@ -687,22 +689,22 @@ class Serve implements
 可以使用容器创建类并调用类的方法
 ## 使用容器实例化类，并实现依赖注入
 ```php
-$obj = \Yao\App::instance()->make(ClassName::class,array $arguments = [],$singleInstance = false);
+$obj = \Yao\Facade\App::make('class_name',$arguments = [],$singleInstance = false);
 ```
 第一个参数传入一个完整类名，第二个参数是传递给类构造方法的参数列表数组，第三个参数为true时候表示获取一个单例，在后面请求中获取类实例的$singleInstance 为true的时候始终不会创建新对象，而是从容器中获取已经实例化并且依赖注入的对象。
 > 此时$obj是一个给构造方法实现依赖注入的实例，在后面的调用实例的方法时候并不会给方法实现依赖注入
 
 ## 使用容器调用实例的方法并实现依赖注入
 ```php
-\Yao\App::instance()->invokeMethod(['className','method'],$arguments = [],$singleInstance = false,$constructorArguments = []);
+\Yao\Facade\App::invokeMethod(['className','method'],$arguments = [],$singleInstance = false,$constructorArguments = []);
 ```
 第一个参数为一个数组，数组的第一个元素为需要实例化的类名，第二个元素为要调用的方法名。第二个参数为给方法传递的参数列表，第三个方法表示实例化的类是不是单例的，第四个参数为实例化类过程中给构造方法传递的参数列表
 
 ## 获取容器内的实例
-\Yao\App::instance()->get($abstract);
+\Yao\Facade\App::get($abstract);
 
 ## 判断容器中的实例是否存在
-\Yao\App::instance()->has($abstract);
+\Yao\Facade\App::has($abstract);
 
 > 注意：依赖注入的实例总是放在方法参数列表的末尾，否则可能出现不可预见的错误。因为本人技术有限，依赖注入方法的参数列表中的参数的默认值是会丢失的，使用了依赖注入就应该注意这一点。另外，控制器方法是始终实现依赖注入的。
 
