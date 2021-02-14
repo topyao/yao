@@ -13,4 +13,10 @@ return [
     'filter' => ['trim', 'htmlspecialchars'],
     //异常模板
     'exception_view' => env('yao_path') . 'Tpl' . DIRECTORY_SEPARATOR . 'exception.html',
+
+    'alias' => [
+        'db' => \Yao\Database\Query::class,
+        'view' => \Yao\View\Render::class,
+        'alias' => \Yao\Http\Route\Alias::class
+    ]
 ];
