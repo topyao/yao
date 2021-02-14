@@ -12,5 +12,17 @@ return [
     //参数过滤
     'filter' => ['trim', 'htmlspecialchars'],
 
-    'exception_view' => env('yao_path') . 'Tpl' . DIRECTORY_SEPARATOR . 'exception.html'
+    'exception_view' => env('yao_path') . 'Tpl' . DIRECTORY_SEPARATOR . 'exception.html',
+
+    //类别名
+    'alias' => [
+        'alias' => \Yao\Http\Route\Alias::class,
+        'db' => \Yao\Database\Query::class,
+        'view' => \Yao\View\Render::class
+    ],
+
+    //服务注册
+    'services' => [
+        \Yao\Database\DatabaseService::class
+    ]
 ];
