@@ -36,7 +36,7 @@ return [
         //额外设置
         'options' => env('database.options', [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION]),
         //编码
-        'charset' => env('database . charset', 'utf8mb4'),
+        'charset' => env('database . charset', 'utf8'),
         //数据表前缀
         'prefix' => ''
     ]

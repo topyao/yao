@@ -6,4 +6,4 @@
 
 use \Yao\Facade\Route;
 
-Route::get('/', 'index/index/index')->alias('home');
+Route::get('/', 'index/index/index')->alias('home')->cors('*');

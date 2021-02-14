@@ -15,6 +15,7 @@ return [
     ],
     //memcached缓存
     'memcached' => [
-
+        'host' => 'localhost',
+        'port' => 11211
     ]
 ];
