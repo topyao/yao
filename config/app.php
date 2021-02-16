@@ -20,9 +20,12 @@ return [
         'db' => \Yao\Database\Query::class,
         'view' => \Yao\View\Render::class
     ],
-
-    //服务注册
-    'services' => [
-        \Yao\Database\DatabaseService::class
+    'events' => [
+        'app_start' => [
+            \App\Events\Start::class
+        ],
+        'response_sent' => [
+            \App\Events\End::class
+        ]
     ]
 ];
