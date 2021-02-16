@@ -701,7 +701,7 @@ Db::exec('UPDATE users SET name=? where id = ?',['zhangsan',1]);
 > 注意：你可以自行安装`medoo`，`think-orm`等数据库操作类库或者使用自带的Db类,该Db类的操作方法大部分需要的是数组类型的参数。
 
 
-# 服务
+# 服务 [暂时不可用]
 
 服务实现基本代码如下
 ```
@@ -718,6 +718,10 @@ class Serve implements
     }
 }
 ```
+
+# 事件[开发中]
+
+目前拥有的事件有app_start,response_send
 
 # 命令操作
 
