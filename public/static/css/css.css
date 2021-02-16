@@ -545,6 +545,64 @@ ul.bar > li {
     display: flex;
 }
 
+.team {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1em;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+
+.users {
+    width: 10em;
+}
+
+.users:nth-child(2) {
+    width: 15em;
+}
+
+.users img {
+    width: 10em;
+    height: 10em;
+    border-radius: 5em;
+    box-shadow: #eeeeee 0 0 10px 0;
+    transition: all .3s;
+}
+
+.users:hover img {
+    transform: rotateZ(360deg) scale(1.1);
+}
+
+
+.users > p {
+    text-align: center;
+    margin-top: .5em;
+    font-weight: bold;
+}
+
+.users:hover p {
+    animation: rotate .3s infinite linear;
+}
+
+.team > .users:nth-child(2) img {
+    width: 15em;
+    height: 15em;
+    border-radius: 7.5em;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotateZ(-10deg);
+    }
+    50% {
+        transform: rotateZ(0);
+    }
+    100% {
+        transform: rotateZ(10deg);
+
+    }
+}
+
 @media screen and (max-width: 500px) {
     .banner-right {
         display: none;
@@ -605,6 +663,39 @@ ul.bar > li {
     .card-sm {
         width: 100% !important;
         margin: 0 0 .5em !important;
+    }
+
+    .team {
+        width: 95%;
+        margin: 1em auto;
+    }
+
+    .team > .users:nth-child(2) img {
+        width: 10em;
+        height: 10em;
+        border-radius: 5em;
+    }
+
+    .users {
+        width: 5em;
+    }
+
+    .users:nth-child(2) {
+        width: 10em;
+    }
+
+    .users img {
+        width: 5em;
+        height: 5em;
+        border-radius: 2.5em;
+    }
+
+    .advantages {
+        margin-right: 0 !important;
+    }
+
+    #step1 {
+        flex-wrap: wrap-reverse;
     }
 }
 
@@ -721,3 +812,5 @@ a.tags:hover {
         transform: rotateX(0deg);
     }
 }
+
+

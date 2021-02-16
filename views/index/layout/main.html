@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{block name = "title"}}YAO - 一款简单易用的轻量PHP框架!{{/block}}</title>
-    <link rel="stylesheet" href="/static/css/css.css?20210139">
+    <link rel="stylesheet" href="/static/css/css.css?202102166">
     <link rel="stylesheet" href="/static/font-awesome-4.7.0/css/font-awesome.css">
     {{block name="css"}}{{/block}}
 </head>
@@ -16,6 +16,7 @@
             <ul class="bg-nav">
                 <li class=""><a href="/"><img src="/static/img/logo1.png" style="vertical-align:middle;width: 2.5em;height: 2.5em" alt=""></a></li>
                 <li class="left-items d-bg"><a href="/">主页</a></li>
+                <li class="left-items d-bg"><a href="/?p=1">笔记</a></li>
             </ul>
             <ul style="display: flex;justify-content: flex-end">
                 <li class="d-bg"><input required style="height: 2.3em;
@@ -33,18 +34,17 @@
         </nav>
         <ul id="sm-nav" class="bar">
             <li><a href="/login">登录</a></li>
-            <li><a href="/notes/1.html">Notes</a></li>
+            <li><a href="/?p=1">笔记</a></li>
         </ul>
     </header>
     {{block name = "body"}}{{/block}}
     <footer>
         <div style="margin-top:18px;"></div>
-        <a href="https://www.1kmb.com">一刻模板</a> |
-        <a href="https://www.jetbrains.com/?from=topyao">
-            使用Phpstorm开发</a><br><br><a href="http://beian.miit.gov.cn" target="_blank"
-                                       class="text">陕ICP备20000693号-1</a> | <a href="https://github.com/topyao/yao"><i
-            class="fa fa-yelp"></i>
-        Yao</a>
+        <a href="https://github.com/topyao/yao">
+            本网站使用<i
+                class="fa fa-yelp"></i>该框架开发</a><br><br><a href="http://beian.miit.gov.cn" target="_blank"
+                                       class="text">陕ICP备20000693号-1</a> | <a href="https://www.jetbrains.com/?from=topyao">
+        Phpstorm</a>
     </footer>
 </div>
 {{include file="index/layout/lantern.html"}}

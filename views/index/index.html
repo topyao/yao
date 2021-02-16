@@ -24,6 +24,75 @@
 <div id="banner-title"></div>
 {{/if}}
 <main id="app">
+    {{if empty(\Yao\Facade\Request::get('p'))}}
+    <div style="display: flex;justify-content: space-around">
+        <p style="width: 30%;text-align: center;font-weight: bolder;color: grey;font-size:1.5em">访问量：<span
+                style="color: #4F70F6">{{$stat|number_format}}</span></p>
+        <p id="down" style="width: 30%;text-align: center;font-weight: bolder;color: grey;font-size:1.5em">
+            Loading... </p>
+    </div>
+    <p style="text-align: center;font-weight: bold;color:grey;margin: 0 0 1.5em"><i class="fa fa-link"></i> &nbsp;&nbsp;起步
+    </p>
+    <div id="step1" style="display: flex;justify-content: space-between;">
+        <div class="card advantages" style="width:100%;margin-right: .5em">
+            <div class="tips">优势</div>
+            <div style="text-align: center;color: grey;">
+                <img src="/static/img/tell.jpg" alt="" style="width:100%;height: 23em">
+                <b>404 Not Found.</b></div>
+        </div>
+        <div style="width:100%" class="card">
+            <div class="tips">安装要求</div>
+            <div style="margin:.5em;background-color: #d5dfff;color:#2d2626;line-height: 1.1em;text-align: center;font-size: 1.1em;padding:.5em;font-weight: bold">
+                <code>PHP >= 7.4 √<br>PDO扩展 √<br>MBString扩展 √</code>
+            </div>
+            <div class="tips">使用composer安装</div>
+            <div style="margin:.5em;background-color: #d5dfff;color:#2d2626;line-height: 1.1em;text-align: center;font-size: 1.1em;padding:.5em;font-weight: bold">
+                <code>composer create-project chengyao/yao .</code>
+            </div>
+            <div class="tips">
+                使用Git下载框架
+            </div>
+            <div style="margin:.5em;background-color: #d5dfff;color:#2d2626;line-height: 1.1em;text-align: center;font-size: 1.1em;padding:.5em;font-weight: bold">
+                <code>git clone https://github.com/topyao/yao.git .<br>composer install</code>
+            </div>
+            <div class="tips">
+                运行框架
+            </div>
+            <div style="margin:.5em;background-color: #d5dfff;color:#2d2626;line-height: 1.1em;text-align: center;font-size: 1.1em;padding:.5em;font-weight: bold">
+                <code>php yao serve</code><br>
+            </div>
+            <p style="text-align: center;font-size:.9em;color:grey">---更多用法请见文档---</p>
+
+        </div>
+    </div>
+    <p style="text-align: center;font-weight: bold;color:grey;margin: 1.5em 0;"><i
+            class="fa fa-link"></i> &nbsp;&nbsp;开发团队</p>
+    <div class="team">
+        <div class="users">
+            <a href="https://github.com/Death-Satan"><img class="users" alt="Death-Satan"
+                                                          src="https://avatars.githubusercontent.com/u/49744633?s=400&u=8a062491b7f2faa943a21d8a878dadab3392e328&v=4"></a>
+            <p>Satan</p>
+        </div>
+        <div class="users">
+            <a href="https://github.com/topyao"><img class="users" alt="chengyao"
+                                                     src="https://avatars.githubusercontent.com/u/64066545?s=400&u=319aa25dbecffeba5b52fdb8449cf411f75ce3f2&v=4"></a>
+            <p>chengyao</p>
+        </div>
+        <div class="users">
+            <a href=""><img class="users" alt="chengyao" src="/static/img/logo1.png"></a>
+            <p>chengyao</p>
+        </div>
+    </div>
+    <div class="card" style="margin-top:1em">
+        <div class="tips" style="margin-bottom: .5em"><i class="fa fa-link"></i>&nbsp;&nbsp;好友</div>
+        <div class="card-content">
+            <a class="tags" target=" _blank
+        " title="世界皆黑，唯我独白" href="https://imjunjun.cn">军军</a>
+            <a class="tags" target=" _blank
+        " title="一刻模板" href="https://www.1kmb.com">一刻模板</a>
+        </div>
+    </div>
+    {{else}}
     <div class="container">
         <div class="left" style="width:72%;">
             <div class="par-card">
@@ -80,12 +149,12 @@
             <div class="card">
                 <div class="content" style="padding:.5em">
                     {{foreach from=$notes item=note}}
-                        <div class="tips">
-                            <a href="{{url('read',[$note.id])}}">{{$note.title}}</a>
-                        </div>
-                        <div class="description">
-                            {{$note.text|mb_substr:0:300}}
-                        </div>
+                    <div class="tips">
+                        <a href="{{url('read',[$note.id])}}">{{$note.title}}</a>
+                    </div>
+                    <div class="description">
+                        {{$note.text|mb_substr:0:300}}
+                    </div>
                     {{/foreach}}
                 </div>
             </div>
@@ -95,6 +164,7 @@
         </div>
         {{include file="index/layout/aside.html"}}
     </div>
+    {{/if}}
 </main>
 {{/block}}
 {{block name="js"}}
@@ -106,6 +176,11 @@
                 $('span#version').text('v' + data[0].name);
             }
         })
+        $.get('https://packagist.org/packages/chengyao/yao.json', function (data, status) {
+            if ('success' === status) {
+                $('#down').html('下载次数：<span style="color: #4F70F6">' + data.package.downloads.total + '</span>');
+            }
+        });
     })
 
 </script>
