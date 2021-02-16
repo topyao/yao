@@ -12,7 +12,7 @@ return [
     //参数过滤
     'filter' => ['trim', 'htmlspecialchars'],
 
-    'exception_view' => env('yao_path') . 'Tpl' . DIRECTORY_SEPARATOR . 'exception.html',
+    'exception_view' => env('yao_path') . 'tpl' . DIRECTORY_SEPARATOR . 'exception.html',
 
     //类别名
     'alias' => [
