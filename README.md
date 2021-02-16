@@ -137,6 +137,29 @@ AUTO_START=true
 >可以使用辅助函数`config()` ，例如`config('app.debug')`
 
 
+# 容器
+可以使用容器创建类并调用类的方法
+## 使用容器实例化类，并实现依赖注入
+```php
+$obj = \Yao\Facade\App::make('class_name',$arguments = [],$singleInstance = false);
+```
+第一个参数传入一个完整类名，第二个参数是传递给类构造方法的参数列表数组，第三个参数为true时候表示获取一个单例，在后面请求中获取类实例的$singleInstance 为true的时候始终不会创建新对象，而是从容器中获取已经实例化并且依赖注入的对象。
+> 此时$obj是一个给构造方法实现依赖注入的实例，在后面的调用实例的方法时候并不会给方法实现依赖注入
+
+## 使用容器调用实例的方法并实现依赖注入
+```php
+\Yao\Facade\App::invokeMethod(['className','method'],$arguments = [],$singleInstance = false,$constructorArguments = []);
+```
+第一个参数为一个数组，数组的第一个元素为需要实例化的类名，第二个元素为要调用的方法名。第二个参数为给方法传递的参数列表，第三个方法表示实例化的类是不是单例的，第四个参数为实例化类过程中给构造方法传递的参数列表
+
+## 获取容器内的实例
+\Yao\Facade\App::get($abstract);
+
+## 判断容器中的实例是否存在
+\Yao\Facade\App::has($abstract);
+
+> 注意：控制器方法是始终实现依赖注入的。
+
 # 路由
 路由可以添加在`route/route.php`文件中，如果需要分文件存放，只需要在route目录下新建文件
 
@@ -519,6 +542,17 @@ class Index
 >可以给控制器方法传入参数，参数个数和位置取决于路由中正则匹配到的参数。
 >当路由中的参数为可选，就应该给控制器参数一个初始值
 
+### 如果你继承了基础控制器，那么会有两个属性可以提供使用，$this->request,$this->app ，分别时请求对象和app对象，app对象是来管理容器中实例的，使用方法如下：
+```php
+$this->app['完整类名'];
+```
+这是会直接返回该类的实例，并且其构造方法是实现依赖注入的，如果该类是单例的，并且使用
+```php
+$this->app->has('完整类名');
+```
+返回true，那么,例如该类绑定的标识为request，可以直接使用$this->app->request获取容器中的实例。
+
+
 ### 当继承了基础控制器后不再建议使用构造函数初始化，而是使用init() 方法进行初始化。
 ```php
 public function init(){}
@@ -684,29 +718,6 @@ class Serve implements
     }
 }
 ```
-
-# 容器
-可以使用容器创建类并调用类的方法
-## 使用容器实例化类，并实现依赖注入
-```php
-$obj = \Yao\Facade\App::make('class_name',$arguments = [],$singleInstance = false);
-```
-第一个参数传入一个完整类名，第二个参数是传递给类构造方法的参数列表数组，第三个参数为true时候表示获取一个单例，在后面请求中获取类实例的$singleInstance 为true的时候始终不会创建新对象，而是从容器中获取已经实例化并且依赖注入的对象。
-> 此时$obj是一个给构造方法实现依赖注入的实例，在后面的调用实例的方法时候并不会给方法实现依赖注入
-
-## 使用容器调用实例的方法并实现依赖注入
-```php
-\Yao\Facade\App::invokeMethod(['className','method'],$arguments = [],$singleInstance = false,$constructorArguments = []);
-```
-第一个参数为一个数组，数组的第一个元素为需要实例化的类名，第二个元素为要调用的方法名。第二个参数为给方法传递的参数列表，第三个方法表示实例化的类是不是单例的，第四个参数为实例化类过程中给构造方法传递的参数列表
-
-## 获取容器内的实例
-\Yao\Facade\App::get($abstract);
-
-## 判断容器中的实例是否存在
-\Yao\Facade\App::has($abstract);
-
-> 注意：依赖注入的实例总是放在方法参数列表的末尾，否则可能出现不可预见的错误。因为本人技术有限，依赖注入方法的参数列表中的参数的默认值是会丢失的，使用了依赖注入就应该注意这一点。另外，控制器方法是始终实现依赖注入的。
 
 # 命令操作
 
