@@ -12,11 +12,20 @@ return [
     //参数过滤
     'filter' => ['trim', 'htmlspecialchars'],
     //异常模板
-    'exception_view' => env('yao_path') . 'Tpl' . DIRECTORY_SEPARATOR . 'exception.html',
+    'exception_view' => env('yao_path') . 'tpl' . DIRECTORY_SEPARATOR . 'exception.html',
 
     'alias' => [
         'db' => \Yao\Database\Query::class,
         'view' => \Yao\View\Render::class,
         'alias' => \Yao\Http\Route\Alias::class
+    ],
+
+    'events' => [
+        'app_start' => [
+            \App\Events\Start::class
+        ],
+        'response_sent' => [
+            \App\Events\End::class
+        ]
     ]
 ];
