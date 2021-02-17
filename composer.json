@@ -2,7 +2,6 @@
   "name": "chengyao/yao",
   "description": "一个简单易用的轻量PHP框架。",
   "type": "project",
-  "version": "0.1.8",
   "authors": [
     {
       "name": "chengyao",
@@ -13,16 +12,20 @@
   "autoload": {
     "psr-4": {
       "App\\": "app/",
-      "\\": "extend/"
+      "Database\\": "database/",
+      "": "extend/"
     },
     "files": [
       "app/common.php"
     ]
   },
+  "require-dev": {
+    "chengyao/framework": "dev-master",
+    "chengyao/migrate": "dev-master",
+    "smarty/smarty": "^3.1.38"
+  },
   "require": {
     "php": ">=7.4",
-    "ext-pdo": "*",
-    "chengyao/framework": "^0.1.8",
-    "smarty/smarty": "^3.1.38"
+    "ext-pdo": "*"
   }
 }
