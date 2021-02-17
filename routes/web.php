@@ -6,12 +6,11 @@
 
 use \Yao\Facade\Route;
 
-Route::get('/', 'index/index/index')->alias('home')->middleware(\App\Http\Middleware\Login::class);
+Route::get('/', 'index/index/index')->alias('home');
 
 Route::rule('login', 'index/user/login');
 
-
-Route::get('test', 'index/index/test');
+Route::view('test', 'test/dd');
 
 Route::redirect('document', 'http://www.chengyao.xyz/note/125.html');
 
