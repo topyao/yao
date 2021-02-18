@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'type' => env('database.type', 'mysql'),
+    'default' => env('database.default', 'mysql'),
 
     'mysql' => [
         //主机地址
