@@ -20,16 +20,12 @@
                 </div>
                 {{/if}}
                 <p class="title">{{$note.title}}</p>
-                <p style="text-align: center;font-size: .9em;margin: 0"><i class="fa fa-clock-o"></i>
-                    {{$note.create_time|time_convert}}
-                    <i class="fa fa-user"></i> Yao <i class="fa fa-eye"></i> {{$note.hits}} <i
-                            class="fa fa-comment"></i>
-                    100
-                </p>
+                <p style="text-align: center;font-size: .9em;margin: 0"><i class="fa fa-clock-o"></i>&nbsp;{{$note.create_time|time_convert}}&nbsp;&nbsp;
+                    <i class="fa fa-user"></i>&nbsp;Yao&nbsp;&nbsp;<i class="fa fa-eye"></i>&nbsp;{{$note.hits}}&nbsp;&nbsp;<i class="fa fa-comment"></i>&nbsp;{{count($comments)}}</p>
             </div>
 
             <div class="card2">
-                <div class="tips"><a href="/">首页</a> / {{$note.title}}</div>
+                <div class="tips"><i class="fa fa-bars"></i>&nbsp;&nbsp;<a href="/">首页</a> / {{$note.title}}</div>
                 <div id="test-editormd-view2">
                     <textarea id="append-test" style="display: none">{{$note.text}}</textarea>
                 </div>
@@ -68,52 +64,12 @@
                                         {{$comment.comment}}
                                     </div>
                                 </div>
-
-                                <!--                                <div style="margin: 1em 0 0;font-size: 14px;">-->
-                                <!--                                    <div style="display: flex;justify-content: space-between;line-height: 2em;height: 2em">-->
-                                <!--                                        <div><img src="/static/img/logo.png" alt=""-->
-                                <!--                                                  style="width: 2em;height: 2em;border-radius: 50%"><b-->
-                                <!--                                                style="position:absolute;height: 2em;margin-left:.5em;font-size:14px;">-->
-                                <!--                                            {{$comment.name}}</b>-->
-                                <!--                                        </div>-->
-                                <!--                                        <span style="color:grey;font-size: 13px">{{date('H:i:s')}}</span>-->
-                                <!--                                    </div>-->
-                                <!--                                    <div style="padding:.5em 0 0 2.5em;word-break: break-all;word-wrap: break-word">-->
-                                <!--                                        <div style="border-bottom: 1px solid #dbdbdb">-->
-                                <!--                                            <div style="margin-bottom: 1em">-->
-                                <!--                                                {{$comment.comment}}-->
-                                <!--                                            </div>-->
-                                <!--                                        </div>-->
-                                <!--                                    </div>-->
-                                <!--                                </div>-->
                             </div>
                         </div>
                         {{/foreach}}
                     </div>
 
                 </div>
-
-
-                <!--                <div class="comment" style="padding:.5em">-->
-                <!--                    <form action="" method="post">-->
-                <!--                        <div class="form-group" style="display: flex;justify-content:space-between">-->
-                <!--                            <input type="hidden" name="note_id" value="{{$note.id}}">-->
-                <!--                            <input class="form-control" name="name" type="text">-->
-                <!--                            <input class="form-control" name="email" type="text">-->
-                <!--                            <input class="form-control" name="site" type="text">-->
-                <!--                        </div>-->
-                <!--                        <div style="margin:.5em">-->
-                <!--                            <div id="test-editor">-->
-                <!--                                <textarea name="comment"></textarea>-->
-                <!--                            </div>-->
-                <!--                            <input type="submit" value="评论">-->
-                <!--                        </div>-->
-
-                <!--                    </form>-->
-                <!--                </div>-->
-                <!--                <div class="tips">评论</div>-->
-
-
             </div>
         </div>
         {{include file="index/layout/aside.html"}}

@@ -245,10 +245,10 @@ a.right {
     line-height: 1.8em;
     font-weight: bold;
     font-size: .95em;
-    border-left: 3px solid #4F70F6;
+    /*border-left: 3px solid #4F70F6;*/
     background-color: white;
     color: grey;
-    padding-left: .7em;
+    padding-left: .5em;
 }
 
 .tips > a {

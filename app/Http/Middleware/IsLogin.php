@@ -11,7 +11,7 @@ class IsLogin
     public function handle($request, $next)
     {
         if (Session::get('user')) {
-            return redirect('/');
+            return redirect('/test');
         }
         return $next($request);
     }
