@@ -2,7 +2,7 @@
 
 return [
     //缓存类型
-    'type' => 'redis',
+    'default' => 'redis',
     // redis缓存
     'redis' => [
         'host' => 'localhost',

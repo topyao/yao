@@ -18,7 +18,7 @@ class Index extends Controller
         if (!file_exists($file)) {
             file_put_contents($file, 1);
         }
-        $stat = file_get_contents($file);
+        $stat = file_get_contents($file) ?: 1;
         file_put_contents($file, ++$stat);
         $numberOfPages = 15;
         $page = $this->request->get('p', 1);
