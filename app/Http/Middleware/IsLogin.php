@@ -10,7 +10,7 @@ class IsLogin
 {
     public function handle($request, $next)
     {
-        if (Session::get('user')) {
+        if (!Session::get('user')) {
             return redirect('/test');
         }
         return $next($request);

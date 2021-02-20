@@ -10,10 +10,10 @@ class Index extends Controller
 
     use Paginate;
 
-//    public $middleware = [
-////        Login::class => ['index'],
-////        IsLogin::class => ['index']
-//    ];
+    public $middleware = [
+        Login::class => ['index'],
+        IsLogin::class => ['index']
+    ];
 
     public function index(Notes $notes)
     {

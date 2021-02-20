@@ -3,5 +3,6 @@
 return [
     'origin' => '*',
     'credentials' => true,
-    'headers' => 'Origin,Content-Type,Accept,token,X-Requested-With'
+    'headers' => 'Origin,Content-Type,Accept,token,X-Requested-With',
+    'max_age' => 600
 ];
