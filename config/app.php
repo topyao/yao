@@ -20,6 +20,16 @@ return [
         'alias' => \Yao\Http\Route\Alias::class
     ],
 
+    /**
+     * 全局中间件
+     */
+    'middleware' => [
+        \App\Http\Middleware\Statistic::class
+    ],
+
+    /**
+     * 事件
+     */
     'events' => [
         'app_start' => [
             \App\Events\Start::class

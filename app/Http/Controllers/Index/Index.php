@@ -10,12 +10,7 @@ class Index extends Controller
 {
     public function index(Notes $notes)
     {
-        try {
-            $stat = (int)Cache::get('stat');
-            Cache::set('stat', ++$stat);
-        } catch (\Exception $e) {
-            $stat = 0;
-        }
+        $stat = Cache::get('stat');
         return view('index/index', compact(['stat']));
     }
 }
