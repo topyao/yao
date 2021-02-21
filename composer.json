@@ -28,6 +28,7 @@
     "ext-curl": "*",
     "psr/event-dispatcher": "^1.0",
     "endroid/qr-code": "^3.9",
-    "psr/container": "^1.0"
+    "psr/container": "^1.0",
+    "psr/cache": "^1.0"
   }
 }
