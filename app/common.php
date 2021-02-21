@@ -6,10 +6,9 @@
 
 if (!function_exists('time_convert')) {
     /**
-     * 时间个性化函数
-     * @param string $value
-     * 时间
-     * @return false|string
+     * 个性化时间转换
+     * @param string|int $time
+     * @return string
      */
     function time_convert($time): string
     {
