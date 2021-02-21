@@ -1,7 +1,7 @@
 {{extends file="index/layout/main.html"}}
 {{block name="title"}}{{$note.title}}{{/block}}
 {{block name="css"}}
-<link rel="stylesheet" href="/static/editor/css/editormd.preview.css"/>
+<link rel="stylesheet" href="/static/editor/css/editormd.preview.css" />
 <!--<link rel="stylesheet" href="/static/editor/css/editormd.css"/>-->
 {{/block}}
 {{block name="body"}}
@@ -20,27 +20,35 @@
                 </div>
                 {{/if}}
                 <p class="title">{{$note.title}}</p>
-                <p style="text-align: center;font-size: .9em;margin: 0"><i class="fa fa-clock-o"></i>&nbsp;{{$note.create_time|time_convert}}&nbsp;&nbsp;
-                    <i class="fa fa-user"></i>&nbsp;Yao&nbsp;&nbsp;<i class="fa fa-eye"></i>&nbsp;{{$note.hits}}&nbsp;&nbsp;<i class="fa fa-comment"></i>&nbsp;{{count($comments)}}</p>
+                <p style="text-align: center;font-size: .9em;margin: 0"><i
+                        class="fa fa-clock-o"></i>&nbsp;{{$note.create_time|time_convert}}&nbsp;&nbsp;
+                    <i class="fa fa-user"></i>&nbsp;Yao&nbsp;&nbsp;<i
+                        class="fa fa-eye"></i>&nbsp;{{$note.hits}}&nbsp;&nbsp;<i
+                        class="fa fa-comment"></i>&nbsp;{{count($comments)}}
+                </p>
             </div>
 
             <div class="card2">
-                <div class="tips"><i class="fa fa-bars"></i>&nbsp;&nbsp;<a href="/">首页</a> / {{$note.title}}</div>
+                <div class="tips"><i class="fa fa-bars"></i>&nbsp;&nbsp;<a href="/">首页</a> / <a href="/notes">笔记</a> /
+                    {{$note.title}}</div>
                 <div id="test-editormd-view2">
                     <textarea id="append-test" style="display: none">{{$note.text}}</textarea>
                 </div>
             </div>
             <div class="card2">
-                <div style="border-bottom:1px solid #e0e0e0;display: flex;justify-content: space-between;padding:.5em 1em 1em;font-size: .95em">
+                <div
+                    style="border-bottom:1px solid #e0e0e0;display: flex;justify-content: space-between;padding:.5em 1em 1em;font-size: .95em">
                     <b>{{count($comments)}}条评论</b>
                     <span style="color: grey">切换顺序</span>
                 </div>
                 <div style="margin:1em">
                     <div style="display: flex;justify-content: space-between;">
                         <div contenteditable="true"
-                             style="padding:0 .5em;outline:none;border:1px solid #dbdbdb;line-height:2em;height: 2em;width:90%;margin-right: .5em;border-radius: 5px"></div>
+                            style="padding:0 .5em;outline:none;border:1px solid #dbdbdb;line-height:2em;height: 2em;width:90%;margin-right: .5em;border-radius: 5px">
+                        </div>
                         <div style="width: 10%;min-width: 3em;">
-                            <button style="height: 100%;cursor:pointer;outline: none;width:100%;border:none;background-color: #4F70F6;color: white;border-radius: 5px">
+                            <button
+                                style="height: 100%;cursor:pointer;outline: none;width:100%;border:none;background-color: #4F70F6;color: white;border-radius: 5px">
                                 发布
                             </button>
                         </div>
@@ -52,9 +60,9 @@
                         <div style="margin: 1em 0 0;font-size: 14px;">
                             <div style="display: flex;justify-content: space-between;line-height: 2em;height: 2em">
                                 <div><img src="/static/img/logo.png" alt=""
-                                          style="width: 2em;height: 2em;border-radius: 50%"><b
+                                        style="width: 2em;height: 2em;border-radius: 50%"><b
                                         style="position:absolute;font-size:14px;height: 2em;margin-left:.5em">
-                                    {{$comment.name}}</b>
+                                        {{$comment.name}}</b>
                                 </div>
                                 <span style="color:grey;font-size: 13px">{{date('H:i:s')}}</span>
                             </div>
