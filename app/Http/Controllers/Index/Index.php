@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Index;
 
-use App\Http\{Controller, Middleware\IsLogin, Middleware\Login, Traits\Paginate};
+use App\Http\{Controller, Traits\Paginate};
 use App\Models\Notes;
 
 class Index extends Controller
@@ -10,10 +10,10 @@ class Index extends Controller
 
     use Paginate;
 
-    public $middleware = [
-        Login::class => ['index'],
-        IsLogin::class => ['index']
-    ];
+//    public $middleware = [
+//        Login::class => ['index'],
+//        IsLogin::class => ['index']
+//    ];
 
     public function index(Notes $notes)
     {
