@@ -7,7 +7,7 @@ PDO扩展
 MBString扩展
 ```
 
-## 使用composer安装：
+## 使用Composer安装：
 
 ```shell
 composer create-project chengyao/yao .
@@ -68,16 +68,17 @@ if ($rule_0 = "21"){
     - Controllers  控制器目录
     - Middleware 中间件目录
     - Validate 验证器目录
-    - Controller.php 基础控制器类
-    - Provider.php 服务注册类
+    - Controller.php 用户自定义基础控制器类
     - Validate.php 验证器类
   - Models 模型目录
-  - Services 服务目录
+  - Events 事件目录
   - Facade 用户自定义门面目录
   - common.php 用户自定义函数文件
 - config 配置文件目录
   - app.php 应用配置文件
+  - cache.php 缓存配置文件
   - database.php 数据库配置文件
+  - console.php 命令注册文件
   - cors.php 跨域支持默认配置文件
   - view.php 视图配置文件
 - extend 扩展类库目录【命名空间为\\】
@@ -130,7 +131,6 @@ AUTO_START=true
 如果需要自定义一个配置文件，可以在`/config`目录下新建例如`alipay.php`文件并返回一个数组。
 
 ```php
-\Yao\Facade\Config::load('alipay');         //加载配置（一次请求只需要加载一次）
 \Yao\Facade\Config::get('alipay.param');	   //获取配置
 ```
 
@@ -285,7 +285,7 @@ php yao route   //根据提示选择选项
 
 ## 其他规则路由
 
-**未匹配到路由**
+> 未匹配到路由
 
 使用
 
@@ -294,7 +294,7 @@ Route::none(function(){},$data = []);
 ```
 创建一个none路由，当所有路由未匹配到时会匹配该路由，需要给第一个参数传入一个闭包，第二个参数可选地传入一个索引数组，数组的每一个值都会按照数组的索引顺序传入闭包中，闭包中需要有相应形参或其他方式来获取传值。
 
-**可以直接定义视图路由**，
+> 可以直接定义视图路由
 
 ```php
 Route::view('index','index/index',['get']);
@@ -302,7 +302,7 @@ Route::view('index','index/index',['get']);
 
 该路由表示`get`方式请求的`/index`会被映射到`views`目录下的`index`目录下的`index.html`模板文件,分隔符后最后的部分为模板文件名，前面均为目录名。最后一个参数为可选参数，为空默认为`get`方式请求的路由；
 
-**可以定义重定向路由**
+> 可以定义重定向路由
 
 ```php
 Route::redirect('index','https://www.1kmb.com',['get'],302);
@@ -410,7 +410,8 @@ class Login
     public function handle($request, \Closure $next)
     {
         if(!Session::get('user')){
-            return view('index/404');
+            view('index/404');
+            exit;
         }
         $response = $next($request);
         echo '执行完了';
@@ -423,7 +424,7 @@ class Login
 
 ```php
     public $middleware = [
-        'edit' => \App\Http\Middleware\Login::class,
+        \App\Http\Middleware\Login::class => ['edit'],
     ];
 ```
 表示控制器中的方法edit会使用Login中间件
