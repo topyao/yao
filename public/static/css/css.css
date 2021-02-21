@@ -495,16 +495,38 @@ ul.bar {
 }
 
 ul.bar > li {
-    list-style: none;
-    padding: 0;
-    text-align: left;
-    border-bottom: 1px solid #f4faff;
-    padding-left: 20px;
-    display: block;
-    color: black;
-    height: 2.5em;
-    width: 100%;
     line-height: 2.5em;
+    height: 2.5em;
+    font-weight: bold;
+    list-style: none;
+    text-align: left;
+    padding: 0 5%;
+}
+
+
+ul.bar > li > a {
+    margin: 0 auto;
+    border-bottom: 1px solid #f4faff;
+    display: block;
+    color: grey;
+    border-top: 1px solid #eaeaea;
+}
+
+ul.bar > li input {
+    vertical-align: middle;
+    height: 75%;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    background-color: #eeeded;
+    padding: 0 .5em
+}
+
+ul.bar > li > input:focus {
+    border: 1px solid #4F70F6;
+    box-shadow: #4F70F6 0 0 3px 0;
 }
 
 #login {

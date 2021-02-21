@@ -2,12 +2,13 @@
 
 namespace App\Http\Traits;
 
-trait Paginate{
+trait Paginate
+{
 
     private function _paginate($page, $totalPage, $numberOfPages)
     {
         if ($page < 1 || $page > $totalPage) {
-            return view('index/error');
+            exit(view('index/error', ['message' => '没有结果']));
         }
         $pages = [];
         for ($i = 1; $i >= 0; $i--) {
@@ -25,8 +26,14 @@ trait Paginate{
         end($pages);
         $pages[key($pages)] = '尾页';
         $paginate = '';
-        foreach ($pages as $page => $name) {
-            $paginate .= '<li><a href="?p=' . $page . '">' . $name . '</a></li>';
+        $request = $this->request->get();
+        foreach ($pages as $p => $name) {
+            $query = '?p=' . $p;
+            if (!empty($request)) {
+                $request['p'] = $p;
+                $query = '?' . http_build_query($request);
+            }
+            $paginate .= ('<li><a href="' . $query . '">' . $name . '</a></li>');
         }
         return $paginate;
     }
