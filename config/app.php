@@ -20,12 +20,12 @@ return [
         'db' => \Yao\Database\Query::class,
         'view' => \Yao\View\Render::class
     ],
-    'events' => [
-        'app_start' => [
-            \App\Events\Start::class
-        ],
-        'response_sent' => [
-            \App\Events\End::class
-        ]
-    ]
+    // 'events' => [
+    //     'app_start' => [
+    //         \App\Events\Start::class
+    //     ],
+    //     'response_sent' => [
+    //         \App\Events\End::class
+    //     ]
+    // ]
 ];
