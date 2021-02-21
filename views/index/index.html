@@ -1,6 +1,5 @@
 {{extends file="index/layout/main.html"}}
 {{block name="body"}}
-{{if empty(\Yao\Facade\Request::get('p'))}}
 <div class="banner">
     <div id="banner-title"></div>
     <div id="banner-content">
@@ -19,34 +18,23 @@
         </div>
     </div>
 </div>
-{{/if}}
-{{if !empty(\Yao\Facade\Request::get('p'))}}
-<div id="banner-title"></div>
-{{/if}}
 <main id="app">
-    {{if empty(\Yao\Facade\Request::get('p'))}}
     <div style="display: flex;justify-content: space-around">
         <p style="width: 30%;text-align: center;font-weight: bolder;color: grey;font-size:1.5em">访问量：<span
                 style="color: #4F70F6">{{$stat|number_format}}</span></p>
         <p id="down" style="width: 30%;text-align: center;font-weight: bolder;color: grey;font-size:1.5em">
             Loading... </p>
     </div>
-
-    <div style="display: flex;justify-content: space-between;">
-        <div style="border:1px solid grey;height: 10em;padding: 2em;width: 30%;margin-right: 2em">
-            <div style="border: 1px solid red;height: 100%">
-
-            </div>
-        </div>
-        <div style="border:1px solid grey;height: 10em;padding: 2em;width: 30%;margin-right: 2em">
-
-        </div>
-        <div style="border:1px solid grey;height: 10em;padding: 2em;width: 30%;">
-
-        </div>
-    </div>
-
-
+<!--    <div style="display: flex;justify-content: space-between;">-->
+<!--        <div style="border:1px solid grey;height: 10em;padding: 2em;width: 30%;margin-right: 2em">-->
+<!--            <div style="border: 1px solid red;height: 100%">-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div style="border:1px solid grey;height: 10em;padding: 2em;width: 30%;margin-right: 2em">-->
+<!--        </div>-->
+<!--        <div style="border:1px solid grey;height: 10em;padding: 2em;width: 30%;">-->
+<!--        </div>-->
+<!--    </div>-->
     <p style="text-align: center;font-weight: bold;color:grey;margin: 0 0 1.5em"><i class="fa fa-link"></i> &nbsp;&nbsp;起步
     </p>
     <div id="step1" style="display: flex;justify-content: space-between;">
@@ -108,79 +96,7 @@
         " title="一刻模板" href="https://www.1kmb.com">一刻模板</a>
         </div>
     </div>
-    {{else}}
-    <div class="container">
-        <div class="left" style="width:72%;">
-            <div class="par-card">
-                <div class="card-sm">
-                    <div style="height: 10em;background: white url('/static/img/2.jpg') no-repeat ;background-size:cover;border-radius: 5px 5px 0 0">
 
-                    </div>
-                    <div style="height: 8em;padding:.5em;position: relative">
-                        <p style="margin: .5em;font-size: .95em;font-weight:bold;"><a style="color:#1E90FF"
-                                                                                      href="https://github.com/topyao/yao/blob/master/README.md">PHP框架YAO完全开发手册</a>
-                        </p>
-                        <p style="margin: .5em;font-size: .85em;color:#808080">
-                            一款简单易用的轻量PHP框架！
-                        </p>
-                        <div style="position:absolute;bottom:1em;margin:0 .5em;">
-                            <i class="fa fa-bars"> 这是分类</i>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-sm">
-                    <div style="height: 10em;background: white url('/static/img/3.jpg') no-repeat ;background-size:cover;border-radius: 5px 5px 0 0">
-
-                    </div>
-                    <div style="height: 8em;padding:.5em;position: relative">
-                        <p style="margin: .5em;height:1.2em;font-size: .95em;font-weight:bold;color:#1E90FF;overflow: hidden">
-                            这是标题这是标题这是标题这是标题这是标题这是标题这是标题</p>
-                        <p style="margin: .5em;height:4em;font-size: .85em;color:#808080;overflow: hidden">
-                            标题标题标题标题标题标题
-                            标题标题标题标题标题标题
-                            标题标题标题标题标题标题
-                            标题标题标题标题标题标题
-                            标题标题标题标题标题标题
-                        </p>
-                        <div style="position:absolute;bottom:1em;margin:0 .5em;">
-                            <i class="fa fa-bars"> 这是分类</i>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-sm">
-                    <div style="height: 10em;background: white url('/static/img/4.jpg') no-repeat ;background-size:cover;border-radius: 5px 5px 0 0">
-
-                    </div>
-                    <div style="height: 8em;padding:.5em;position: relative">
-                        <p style="margin: .5em;font-size: .95em;font-weight:bold;color:#1E90FF">这是标题</p>
-                        <p style="margin: .5em;font-size: .85em;color:#808080">
-                            标题标题标题标题标题标题
-                        </p>
-                        <div style="position:absolute;bottom:1em;margin:0 .5em;">
-                            <i class="fa fa-bars"> 这是分类</i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="content" style="padding:.5em">
-                    {{foreach from=$notes item=note}}
-                    <div class="tips">
-                        <a href="{{url('read',[$note.id])}}">{{$note.title}}</a>
-                    </div>
-                    <div class="description">
-                        {{$note.text|mb_substr:0:300}}
-                    </div>
-                    {{/foreach}}
-                </div>
-            </div>
-            <ul class="paginate" style="text-align: center">
-                {{$paginate}}
-            </ul>
-        </div>
-        {{include file="index/layout/aside.html"}}
-    </div>
-    {{/if}}
 </main>
 {{/block}}
 {{block name="js"}}
@@ -198,6 +114,5 @@
             }
         });
     })
-
 </script>
 {{/block}}

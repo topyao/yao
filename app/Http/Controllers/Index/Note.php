@@ -5,17 +5,14 @@ namespace App\Http\Controllers\Index;
 
 
 use App\Http\Controller;
-use App\Http\Middleware\Login;
+use App\Http\Traits\Paginate;
 use App\Models\Comments;
 use App\Models\Notes;
-use Yao\Facade\Db;
 
 class Note extends Controller
 {
 
-    public $middleware = [
-        'edit' => Login::class,
-    ];
+    use Paginate;
 
     public function read($id, Notes $notes, Comments $comments)
     {
@@ -47,46 +44,18 @@ class Note extends Controller
         }
     }
 
-    public function list($page, Notes $notes)
+    public function list(Notes $notes)
     {
+        $page = $this->request->get('p');
         $numberOfPages = 15;
-        $total = Db::name('notes')->count('*');
-        $totalPage = ceil($total / $numberOfPages);
+        $page = $this->request->get('p', 1);
+        $totalPage = ceil($notes->total() / $numberOfPages);
         $paginate = $this->_paginate($page, $totalPage, $numberOfPages);
         $hots = $notes->hots();
         $notes = $notes->list(['id', 'title', 'text'], $page, $numberOfPages);
-
-        return view('index/notes/list', compact(['notes', 'hots', 'totalPage', 'paginate']));
+        return view('index/notes/list', compact(['notes', 'hots', 'paginate']));
     }
 
-    private function _paginate($page, $totalPage, $numberOfPages)
-    {
-
-        if ($page < 1 || $page > $totalPage) {
-            return view('index/error');
-        }
-
-        $pages = [];
-        for ($i = 1; $i >= 0; $i--) {
-            if ($page - 1 - $i > 0) {
-                $pages[$page - 1 - $i] = $page - 1 - $i;
-            }
-        }
-        $pages[$page] = (int)$page;
-        for ($i = 0; $i <= 1; $i++) {
-            if ($page + 1 + $i <= $totalPage) {
-                $pages[$page + 1 + $i] = $page + 1 + $i;
-            }
-        }
-        $pages[key($pages)] = '首页';
-        end($pages);
-        $pages[key($pages)] = '尾页';
-        $paginate = '';
-        foreach ($pages as $page => $name) {
-            $paginate .= '<li><a href="/notes/' . $page . '.html">' . $name . '</a></li>';
-        }
-        return $paginate;
-    }
 
 
     public function create(Notes $notes)

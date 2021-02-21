@@ -546,9 +546,10 @@ ul.bar > li {
 }
 
 .team {
+    width: 80%;
+    margin: 0 auto 1em;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 1em;
     flex-wrap: wrap;
     align-items: flex-end;
 }

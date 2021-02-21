@@ -1,13 +1,63 @@
 {{extends file="index/layout/main.html"}}
-{{block name = "title"}}列表{{/block}}
 {{block name="body"}}
 <main id="app" style="margin-top: 3.5em">
     <div class="container">
         <div class="left" style="width:72%;">
+            <div class="par-card">
+                <div class="card-sm">
+                    <div style="height: 10em;background: white url('/static/img/2.jpg') no-repeat ;background-size:cover;border-radius: 5px 5px 0 0">
+
+                    </div>
+                    <div style="height: 8em;padding:.5em;position: relative">
+                        <p style="margin: .5em;font-size: .95em;font-weight:bold;"><a style="color:#1E90FF"
+                                                                                      href="https://github.com/topyao/yao/blob/master/README.md">PHP框架YAO完全开发手册</a>
+                        </p>
+                        <p style="margin: .5em;font-size: .85em;color:#808080">
+                            一款简单易用的轻量PHP框架！
+                        </p>
+                        <div style="position:absolute;bottom:1em;margin:0 .5em;">
+                            <i class="fa fa-bars"> 这是分类</i>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-sm">
+                    <div style="height: 10em;background: white url('/static/img/3.jpg') no-repeat ;background-size:cover;border-radius: 5px 5px 0 0">
+
+                    </div>
+                    <div style="height: 8em;padding:.5em;position: relative">
+                        <p style="margin: .5em;height:1.2em;font-size: .95em;font-weight:bold;color:#1E90FF;overflow: hidden">
+                            这是标题这是标题这是标题这是标题这是标题这是标题这是标题</p>
+                        <p style="margin: .5em;height:4em;font-size: .85em;color:#808080;overflow: hidden">
+                            标题标题标题标题标题标题
+                            标题标题标题标题标题标题
+                            标题标题标题标题标题标题
+                            标题标题标题标题标题标题
+                            标题标题标题标题标题标题
+                        </p>
+                        <div style="position:absolute;bottom:1em;margin:0 .5em;">
+                            <i class="fa fa-bars"> 这是分类</i>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-sm">
+                    <div style="height: 10em;background: white url('/static/img/4.jpg') no-repeat ;background-size:cover;border-radius: 5px 5px 0 0">
+
+                    </div>
+                    <div style="height: 8em;padding:.5em;position: relative">
+                        <p style="margin: .5em;font-size: .95em;font-weight:bold;color:#1E90FF">这是标题</p>
+                        <p style="margin: .5em;font-size: .85em;color:#808080">
+                            标题标题标题标题标题标题
+                        </p>
+                        <div style="position:absolute;bottom:1em;margin:0 .5em;">
+                            <i class="fa fa-bars"> 这是分类</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="card">
                 <div class="content" style="padding:.5em">
                     {{foreach from=$notes item=note}}
-                    <div class="tips">
+                    <div class="tips" style="border-left: 3px solid #1E90FF">
                         <a href="{{url('read',[$note.id])}}">{{$note.title}}</a>
                     </div>
                     <div class="description">
@@ -18,10 +68,27 @@
             </div>
             <ul class="paginate" style="text-align: center">
                 {{$paginate}}
-                共{{$totalPage}}页
             </ul>
         </div>
         {{include file="index/layout/aside.html"}}
     </div>
 </main>
+{{/block}}
+{{block name="js"}}
+<script>
+    $(function () {
+        $.get('https://api.github.com/repos/topyao/yao/tags', function (data, status) {
+            if ('success' === status) {
+                $('#download').html('<i class="fa fa-download"></i>立即下载').attr('href', data[0].zipball_url);
+                $('span#version').text('v' + data[0].name);
+            }
+        })
+        $.get('https://packagist.org/packages/chengyao/yao.json', function (data, status) {
+            if ('success' === status) {
+                $('#down').html('下载次数：<span style="color: #4F70F6">' + data.package.downloads.total + '</span>');
+            }
+        });
+    })
+
+</script>
 {{/block}}
