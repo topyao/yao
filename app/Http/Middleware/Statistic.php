@@ -10,13 +10,17 @@ class Statistic implements Middleware
 {
     public function handle($request, \Closure $next)
     {
+
+//        echo ('dd');
         try {
             $stat = (int)Cache::get('stat');
             Cache::set('stat', ++$stat);
         } catch (\Exception $e) {
             $stat = 0;
         }
-        return $next($request);
+        $response = $next($request);
+//        echo 'fs';
+        return $response;
     }
 
 }

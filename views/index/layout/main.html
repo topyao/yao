@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{block name = "title"}}YAO - 一款简单易用的轻量PHP框架!{{/block}}</title>
-    <link rel="stylesheet" href="/static/css/css.css?202102168">
+    <link rel="stylesheet" href="/static/css/css.css?202102169">
     <link rel="stylesheet" href="/static/font-awesome-4.7.0/css/font-awesome.css">
     {{block name="css"}}{{/block}}
 </head>
@@ -28,7 +28,7 @@
     width: 18em;
     outline: none;
     border: none;
-    border-radius: 5px;" type="text" name="kw" value="{{if isset($keyword)}}{{$keyword}}{{/if}}"/>
+    border-radius: 5px;" placeholder="Search..." type="text" name="kw" value="{{if isset($keyword)}}{{$keyword}}{{/if}}"/>
                     </form>
                 </li>
                 <li class=""><a href="https://github.com/topyao/yao/blob/master/README.md"><i
@@ -40,7 +40,7 @@
         <form action="/search">
             <ul id="sm-nav" class="bar">
                 <li>
-                    <input type="text" name="kw">
+                    <input type="text" placeholder="Search..." name="kw">
                 </li>
                 <li><a href="/login">登录</a></li>
                 <li><a href="/notes">笔记</a></li>

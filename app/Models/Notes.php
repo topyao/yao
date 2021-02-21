@@ -24,7 +24,7 @@ class Notes extends Model
 
     public function total()
     {
-        return $this->count('*');
+        return $this->value('count("*")');
     }
 
     public function hots($limit = 8)
@@ -61,9 +61,15 @@ class Notes extends Model
             ->toArray();
     }
 
-    public function search($kw)
+    public function search($kw, $limit, $offset)
     {
-        return Db::query("SELECT * FROM notes WHERE `title` LIKE ? OR MATCH(`title`,`text`) AGAINST(? IN BOOLEAN MODE)", ["%{$kw}%", "{$kw}"]);
+        return Db::query("SELECT * FROM notes WHERE `title` LIKE ? OR MATCH(`title`,`text`) AGAINST(? IN BOOLEAN MODE) LIMIT {$offset},{$limit}", ["%{$kw}%", "{$kw}"]);
+    }
+
+    public function searchCount($kw)
+    {
+        return Db::query("SELECT count(*) FROM notes WHERE `title` LIKE ? OR MATCH(`title`,`text`) AGAINST(? IN BOOLEAN MODE)", ["%{$kw}%", "{$kw}"])[0]['count(*)'];
+
     }
 
 }

@@ -47,7 +47,7 @@ class Note extends Controller
     public function list(Notes $notes)
     {
         $page = $this->request->get('p');
-        $numberOfPages = 15;
+        $numberOfPages = 8;
         $page = $this->request->get('p', 1);
         $totalPage = ceil($notes->total() / $numberOfPages);
         $paginate = $this->_paginate($page, $totalPage, $numberOfPages);
@@ -55,7 +55,6 @@ class Note extends Controller
         $notes = $notes->list(['id', 'title', 'text'], $page, $numberOfPages);
         return view('index/notes/list', compact(['notes', 'hots', 'paginate']));
     }
-
 
 
     public function create(Notes $notes)
@@ -95,11 +94,11 @@ class Note extends Controller
             return view('index/error', ['message' => '关键词不存在！']);
         }
         $hots = $notes->hots();
-        $notes = $notes->search($keyword);
+        $count = $notes->searchCount($keyword);
+        $numberOfPages = 8;
+        $totalPage = ceil($count / $numberOfPages);
         $page = $this->request->get('p', 1);
-        $numberOfPages = 15;
-        $total = count($notes);
-        $totalPage = ceil($total / $numberOfPages);
+        $notes = $notes->search($keyword, $numberOfPages, ($page - 1) * 8);
         $paginate = $this->_paginate($page, $totalPage, $numberOfPages);
         return view('index/notes/list', compact(['notes', 'hots', 'keyword', 'paginate', 'totalPage']));
     }
