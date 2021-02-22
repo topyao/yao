@@ -16,9 +16,7 @@ return [
 
     //类别名
     'alias' => [
-        'alias' => \Yao\Http\Route\Alias::class,
-        'db' => \Yao\Database\Query::class,
-        'view' => \Yao\View\Render::class
+
     ],
 
     /**
@@ -31,12 +29,12 @@ return [
     /**
      * 事件
      */
-     'events' => [
-         'app_start' => [
-             \App\Events\Start::class
-         ],
-         'response_sent' => [
-             \App\Events\End::class
-         ]
-     ]
+    'events' => [
+        'app_start' => [
+            \App\Events\Start::class
+        ],
+        'response_sent' => [
+            \App\Events\End::class
+        ]
+    ]
 ];
