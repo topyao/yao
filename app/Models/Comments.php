@@ -19,7 +19,7 @@ class Comments
         return Db::name('comments')
             ->where(['note_id' => $id])
             ->order(['id' => 'DESC'])
-            ->limit(($page - 1) * $limit, $limit)
+            ->limit($limit, ($page - 1) * $limit)
             ->select()
             ->toArray();
     }
