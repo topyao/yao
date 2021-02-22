@@ -505,11 +505,12 @@ ul.bar > li {
 
 
 ul.bar > li > a {
-    margin: 0 auto;
+    font-size: .9em;
+    padding-left: .5em;
     border-bottom: 1px solid #f4faff;
     display: block;
     color: grey;
-    border-top: 1px solid #eaeaea;
+    border-top: 1px solid #f8f7f7;
 }
 
 ul.bar > li input {

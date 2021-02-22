@@ -1,7 +1,7 @@
 {{extends file="index/layout/main.html"}}
 {{block name="title"}}{{$note.title}}{{/block}}
 {{block name="css"}}
-<link rel="stylesheet" href="/static/editor/css/editormd.preview.css" />
+<link rel="stylesheet" href="/static/editor/css/editormd.preview.css"/>
 <!--<link rel="stylesheet" href="/static/editor/css/editormd.css"/>-->
 {{/block}}
 {{block name="body"}}
@@ -23,48 +23,49 @@
                 <p style="text-align: center;font-size: .9em;margin: 0"><i
                         class="fa fa-clock-o"></i>&nbsp;{{$note.create_time|time_convert}}&nbsp;&nbsp;
                     <i class="fa fa-user"></i>&nbsp;Yao&nbsp;&nbsp;<i
-                        class="fa fa-eye"></i>&nbsp;{{$note.hits}}&nbsp;&nbsp;<i
-                        class="fa fa-comment"></i>&nbsp;{{count($comments)}}
+                            class="fa fa-eye"></i>&nbsp;{{$note.hits}}&nbsp;&nbsp;<i
+                            class="fa fa-comment"></i>&nbsp;{{count($comments)}}
                 </p>
             </div>
 
             <div class="card2">
                 <div class="tips"><i class="fa fa-bars"></i>&nbsp;&nbsp;<a href="/">首页</a> / <a href="/notes">笔记</a> /
-                    {{$note.title}}</div>
+                    {{$note.title}}
+                </div>
                 <div id="test-editormd-view2">
                     <textarea id="append-test" style="display: none">{{$note.text}}</textarea>
                 </div>
             </div>
             <div class="card2">
                 <div
-                    style="border-bottom:1px solid #e0e0e0;display: flex;justify-content: space-between;padding:.5em 1em 1em;font-size: .95em">
+                        style="border-bottom:1px solid #e0e0e0;display: flex;justify-content: space-between;padding:.5em 1em 1em;font-size: .95em">
                     <b>{{count($comments)}}条评论</b>
                     <span style="color: grey">切换顺序</span>
                 </div>
-                <div style="margin:1em">
-                    <div style="display: flex;justify-content: space-between;">
-                        <div contenteditable="true"
-                            style="padding:0 .5em;outline:none;border:1px solid #dbdbdb;line-height:2em;height: 2em;width:90%;margin-right: .5em;border-radius: 5px">
+                <div style="margin:1em 1em .5em">
+                    <form action="" name="form">
+                        <div style="display: flex;justify-content: space-between;box-sizing: border-box">
+                        <textarea
+                                style="font-weight:bold;padding:0 .5em;outline:none;border:1px solid #dbdbdb;line-height:2em;height: 2em;width:90%;min-height:2em;margin-right: .5em;border-radius: 5px;resize:vertical"
+                                name="comment" placeholder="留下你的手迹..."></textarea>
+                            <input type="hidden" name="note_id" value="{{$note.id}}">
+                            <div style="width: 10%;min-width: 3em;">
+                                <input type="button"
+                                       style="height: 100%;cursor:pointer;outline: none;width:100%;border:none;background-color: #4F70F6;color: white;border-radius: 5px"
+                                       id="comment" value="发布">
+                            </div>
                         </div>
-                        <div style="width: 10%;min-width: 3em;">
-                            <button
-                                style="height: 100%;cursor:pointer;outline: none;width:100%;border:none;background-color: #4F70F6;color: white;border-radius: 5px">
-                                发布
-                            </button>
-                        </div>
-                    </div>
-
-
+                    </form>
                     <div>
                         {{foreach from=$comments item=comment}}
                         <div style="margin: 1em 0 0;font-size: 14px;">
                             <div style="display: flex;justify-content: space-between;line-height: 2em;height: 2em">
                                 <div><img src="/static/img/logo.png" alt=""
-                                        style="width: 2em;height: 2em;border-radius: 50%"><b
+                                          style="width: 2em;height: 2em;border-radius: 50%"><b
                                         style="position:absolute;font-size:14px;height: 2em;margin-left:.5em">
-                                        {{$comment.name}}</b>
+                                    {{$comment.name}}</b>
                                 </div>
-                                <span style="color:grey;font-size: 13px">{{date('H:i:s')}}</span>
+                                <span style="color:grey;font-size: 13px">{{$comment.create_time|time_convert}}</span>
                             </div>
                             <div style="padding:.5em 0 0 2.5em;word-break: break-all;word-wrap: break-word">
                                 <div style="border-bottom: 1px solid #dbdbdb;">
@@ -140,5 +141,31 @@
     //     flowChart: true,  // 默认不解析
     //     sequenceDiagram: true,  // 默认不解析
     // });
+</script>
+<script>
+    $(() => {
+        $('#comment').on('click', function () {
+            // $(this).prop('disabled', true);
+            let data = $(form).serialize();
+            $.ajax({
+                url: '/notes/comment',
+                type: 'post',
+                data: data,
+                dataType: 'json',
+                success: function (e) {
+
+                    if (e.status) {
+                        alert('评论成功!');
+                        window.location.reload();
+                    } else {
+                        alert(e.message);
+                    }
+                },
+                error: function (e) {
+                    alert('服务器异常!');
+                }
+            });
+        });
+    })
 </script>
 {{/block}}
