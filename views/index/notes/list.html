@@ -3,6 +3,19 @@
 <main id="app" style="margin-top: 3.5em">
     <div class="container">
         <div class="left" style="width:72%;">
+
+            <div class="card">
+                <div class="content" style="padding:.5em">
+                    {{foreach from=$notes item=note}}
+                    <div class="tips" style="border-left: 3px solid #1E90FF">
+                        <a href="{{url('read',[$note.id])}}">{{$note.title}}</a>
+                    </div>
+                    <div class="description">
+                        {{$note.text|mb_substr:0:300}}
+                    </div>
+                    {{/foreach}}
+                </div>
+            </div>
             <div class="par-card">
                 <div class="card-sm">
                     <div style="height: 10em;background: white url('/static/img/2.jpg') no-repeat ;background-size:cover;border-radius: 5px 5px 0 0">
@@ -54,21 +67,10 @@
                     </div>
                 </div>
             </div>
-            <div class="card">
-                <div class="content" style="padding:.5em">
-                    {{foreach from=$notes item=note}}
-                    <div class="tips" style="border-left: 3px solid #1E90FF">
-                        <a href="{{url('read',[$note.id])}}">{{$note.title}}</a>
-                    </div>
-                    <div class="description">
-                        {{$note.text|mb_substr:0:300}}
-                    </div>
-                    {{/foreach}}
-                </div>
-            </div>
             <ul class="paginate" style="text-align: center">
                 {{$paginate}}
             </ul>
+
         </div>
         {{include file="index/layout/aside.html"}}
     </div>

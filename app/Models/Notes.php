@@ -56,7 +56,7 @@ class Notes extends Model
     {
         return $this->field($fields)
             ->order(['update_time' => 'DESC', '`create_time`' => 'DESC', 'hits' => 'DESC'])
-            ->limit(($page - 1) * $limit, $limit)
+            ->limit($limit, ($page - 1) * $limit)
             ->select()
             ->toArray();
     }

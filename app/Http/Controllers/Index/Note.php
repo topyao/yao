@@ -14,6 +14,8 @@ class Note extends Controller
 
     use Paginate;
 
+    private const NUMBER_OF_PAGES = 8;
+
     public function read($id, Notes $notes, Comments $comments)
     {
         if ($this->request->isMethod('get')) {
@@ -46,13 +48,11 @@ class Note extends Controller
 
     public function list(Notes $notes)
     {
-        $page = $this->request->get('p');
-        $numberOfPages = 8;
         $page = $this->request->get('p', 1);
-        $totalPage = ceil($notes->total() / $numberOfPages);
-        $paginate = $this->_paginate($page, $totalPage, $numberOfPages);
+        $totalPage = ceil($notes->total() / self::NUMBER_OF_PAGES);
+        $paginate = $this->_paginate($page, $totalPage, self::NUMBER_OF_PAGES);
         $hots = $notes->hots();
-        $notes = $notes->list(['id', 'title', 'text'], $page, $numberOfPages);
+        $notes = $notes->list(['id', 'title', 'text'], $page, self::NUMBER_OF_PAGES);
         return view('index/notes/list', compact(['notes', 'hots', 'paginate']));
     }
 
@@ -95,11 +95,10 @@ class Note extends Controller
         }
         $hots = $notes->hots();
         $count = $notes->searchCount($keyword);
-        $numberOfPages = 8;
-        $totalPage = ceil($count / $numberOfPages);
+        $totalPage = ceil($count / self::NUMBER_OF_PAGES);
         $page = $this->request->get('p', 1);
-        $notes = $notes->search($keyword, $numberOfPages, ($page - 1) * 8);
-        $paginate = $this->_paginate($page, $totalPage, $numberOfPages);
+        $notes = $notes->search($keyword, self::NUMBER_OF_PAGES, ($page - 1) * 8);
+        $paginate = $this->_paginate($page, $totalPage, self::NUMBER_OF_PAGES);
         return view('index/notes/list', compact(['notes', 'hots', 'keyword', 'paginate', 'totalPage']));
     }
 }

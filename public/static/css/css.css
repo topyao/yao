@@ -520,6 +520,7 @@ ul.bar > li input {
     box-sizing: border-box;
     border-radius: 5px;
     outline: none;
+    margin-bottom: .2em;
     border: none;
     background-color: #eeeded;
     padding: 0 .5em
