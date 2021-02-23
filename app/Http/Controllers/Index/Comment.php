@@ -7,7 +7,6 @@ namespace App\Http\Controllers\Index;
 use App\Http\Controller;
 use App\Models\Comments;
 use App\Models\Hearts;
-use Yao\Facade\Session;
 
 class Comment extends Controller
 {
