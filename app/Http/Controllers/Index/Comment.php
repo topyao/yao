@@ -15,9 +15,10 @@ class Comment extends Controller
     {
         $comment = $this->request->post(['comment', 'note_id', 'name' => 'zhangsan']);
         try {
+            $this->validate(\App\Http\Validate\Comment::class, $comment)->throwAble(true)->check();
             $id = $comments->add($comment);
         } catch (\Exception $e) {
-            return ['status' => 0, 'message' => 'InvalidArgument.'];
+            return ['status' => 0, 'message' => $e->getMessage()];
         }
         return ['status' => 1, 'message' => 'Success', 'id' => $id];
     }
