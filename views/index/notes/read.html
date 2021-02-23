@@ -68,10 +68,15 @@
                                 <span style="color:grey;font-size: 13px">{{$comment.create_time|time_convert}}</span>
                             </div>
                             <div style="padding:.5em 0 0 2.5em;word-break: break-all;word-wrap: break-word">
-                                <div style="border-bottom: 1px solid #dbdbdb;">
+                                <div>
                                     <div style="margin-bottom: 1em">
                                         {{$comment.comment}}
                                     </div>
+                                </div>
+                                <div style="text-align:right;border-bottom: 1px solid #dbdbdb;"><i
+                                        class="fa {{if \Yao\Facade\Db::name('hearts')->where(['comment_id' => $comment.id,'user_id' => \Yao\Facade\Request::ip()])->find()->isEmpty()}}fa-heart-o{{else}}fa-heart{{/if}} like"
+                                        data-id="{{$comment.id}}"
+                                        style="color: red;cursor:pointer;"></i> <span>{{$comment.hearts}}</span>
                                 </div>
                             </div>
                         </div>
@@ -146,6 +151,9 @@
     $(() => {
         $('#comment').on('click', function () {
             // $(this).prop('disabled', true);
+            if ($('textarea[name=comment]').val() === '') {
+                return false;
+            }
             let data = $(form).serialize();
             $.ajax({
                 url: '/notes/comment',
@@ -153,7 +161,6 @@
                 data: data,
                 dataType: 'json',
                 success: function (e) {
-
                     if (e.status) {
                         alert('评论成功!');
                         window.location.reload();
@@ -166,6 +173,25 @@
                 }
             });
         });
+        $('.like').on('click', function () {
+            let heart = $(this);
+            let count = heart.siblings('span').text();
+            $.ajax({
+                url: '/notes/heart/' + heart.attr('data-id'),
+                type: 'get',
+                dataType: 'json',
+                success: function (e) {
+                    if (e.status) {
+                        heart.removeClass('fa-heart-o').addClass('fa-heart').siblings('span').text(++count);
+                    } else {
+                        heart.removeClass('fa-heart').addClass('fa-heart-o').siblings('span').text(--count);
+                    }
+                },
+                error: function (e) {
+                    alert('服务器异常!');
+                }
+            });
+        })
     })
 </script>
 {{/block}}

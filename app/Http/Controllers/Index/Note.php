@@ -8,6 +8,7 @@ use App\Http\Controller;
 use App\Http\Traits\Paginate;
 use App\Models\Comments;
 use App\Models\Notes;
+use Yao\Facade\Session;
 
 class Note extends Controller
 {

@@ -23,5 +23,8 @@ Route::rule('notes/edit/(\d+)', 'index/note/edit')->alias('edit');
 Route::get('search', 'index/note/search');
 Route::post('/notes/comment', 'index/comment/create');
 
+//点赞功能api
+Route::get('/notes/heart/(\d+)', 'index/comment/heart');
+
 //用户路由
 Route::rule('users/add', 'index/user/create');
