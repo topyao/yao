@@ -15,7 +15,7 @@ class Hearts extends Model
 
     public function has($id, $user_id)
     {
-        return $this->where(['comment_id' => $id, 'user_id' => $user_id])->find();
+        return !$this->where(['comment_id' => $id, 'user_id' => $user_id])->find()->isEmpty();
     }
 
     public function remove($id, $user_id)
