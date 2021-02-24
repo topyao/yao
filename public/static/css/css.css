@@ -628,6 +628,11 @@ ul.bar > li > input:focus {
     }
 }
 
+
+.swiper-img{
+    height: 20em;
+}
+
 @media screen and (max-width: 500px) {
     .banner-right {
         display: none;
@@ -721,6 +726,10 @@ ul.bar > li > input:focus {
 
     #step1 {
         flex-wrap: wrap-reverse;
+    }
+
+    .swiper-img{
+        height: 13em !important;
     }
 }
 

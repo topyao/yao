@@ -45,7 +45,7 @@
                 <div style="margin:1em .5em .5em">
                     <form action="" name="form">
                         <textarea
-                                style="font-size:14px;box-sizing:border-box;padding:0 .5em;outline:none;border:1px solid #dbdbdb;line-height:2em;height: 2em;width:100%;min-height:8em;border-radius: 5px;resize:vertical;margin-bottom: .5em;"
+                                style="font-size:14px;box-sizing:border-box;padding:.5em .5em;outline:none;border:1px solid #dbdbdb;line-height:1.4em;height: 2em;width:100%;min-height:8em;border-radius: 5px;resize:vertical;margin-bottom: .5em;"
                                 name="comment" placeholder="留下你的笔迹..."></textarea>
                         <div style="display: flex;justify-content: space-between;box-sizing: border-box">
 
@@ -76,7 +76,7 @@
                             <div style="padding:.5em 0 0 2.5em;word-break: break-all;word-wrap: break-word">
                                 <div>
                                     <div style="margin-bottom: .5em">
-                                        {{$comment.comment}}
+                                        {{$comment.comment|nl2br}}
                                     </div>
                                 </div>
                                 <div style="text-align:right;padding:0 .5em .3em 0;border-bottom: 1px solid #dbdbdb;"><i
