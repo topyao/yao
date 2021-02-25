@@ -18,37 +18,37 @@ class Note extends Controller
 
     public function read($id, Notes $notes, Comments $comments)
     {
-        if ($this->request->isMethod('get')) {
-            try {
-                $note = $notes->oneNote($id);
-                $comments = $comments->read($id, 1, 10);
-                $hots = $notes->hots();
-            } catch (\Exception $e) {
-                return view('index/error', ['message' => '查询失败！']);
-            }
-            if (false === $note) {
-                return view('index/error', ['message' => '结果为空！']);
-            }
-            if (!empty($note['tags'])) {
-                $note['tags'] = explode(',', $note['tags']);
-            }
-            return view('index/notes/read', compact(['note', 'hots', 'comments']));
+//        if ($this->request->isMethod('get')) {
+        try {
+            $note = $notes->oneNote($id);
+            $comments = $comments->read($id, 1, 10);
+            $hots = $notes->hots();
+        } catch (\Exception $e) {
+            return view('index/error', ['message' => '查询失败！']);
         }
-        return $this->_comment($id, new Comments());
+        if (false === $note) {
+            return view('index/error', ['message' => '结果为空！']);
+        }
+        if (!empty($note['tags'])) {
+            $note['tags'] = explode(',', $note['tags']);
+        }
+        return view('index/notes/read', compact(['note', 'hots', 'comments']));
+//        }
+//        return $this->_comment($id, new Comments());
     }
 
 
-    private function _comment($id, Comments $comments)
-    {
-        $comment = $this->request->post(['name', 'email', 'site', 'comment', 'note_id']);
-        if ($comments->add($comment)) {
-            return redirect(url('list', [$id]), 302);
-        }
-    }
+//    private function _comment($id, Comments $comments)
+//    {
+//        $comment = $this->request->post(['name', 'email', 'site', 'comment', 'note_id']);
+//        if ($comments->add($comment)) {
+//            return redirect(url('list', [$id]), 302);
+//        }
+//    }
 
     public function list(Notes $notes)
     {
-        $page = $this->request->get('p', 1);
+        $page = (int)$this->request->get('p', 1);
         $totalPage = ceil($notes->total() / self::NUMBER_OF_PAGES);
         $paginate = $this->_paginate($page, $totalPage, self::NUMBER_OF_PAGES);
         $hots = $notes->hots();
@@ -96,7 +96,7 @@ class Note extends Controller
         $hots = $notes->hots();
         $count = $notes->searchCount($keyword);
         $totalPage = ceil($count / self::NUMBER_OF_PAGES);
-        $page = $this->request->get('p', 1);
+        $page = (int)$this->request->get('p', 1);
         $notes = $notes->search($keyword, self::NUMBER_OF_PAGES, ($page - 1) * 8);
         $paginate = $this->_paginate($page, $totalPage, self::NUMBER_OF_PAGES);
         return view('index/notes/list', compact(['notes', 'hots', 'keyword', 'paginate', 'totalPage']));

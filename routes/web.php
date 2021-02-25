@@ -18,7 +18,7 @@ Route::redirect('document', 'http://www.chengyao.xyz/note/125.html');
 Route::rule('notes/add', 'index/note/create');
 Route::get('notes', 'index/note/list')->alias('list');
 Route::get('list', 'index/note/list');
-Route::rule('note/(\d+)\.html', 'index/note/read')->alias('read');
+Route::get('note/(\d+)\.html', 'index/note/read')->alias('read');
 Route::rule('notes/edit/(\d+)', 'index/note/edit')->alias('edit');
 Route::get('search', 'index/note/search');
 Route::post('/notes/comment', 'index/comment/create');
@@ -28,3 +28,6 @@ Route::get('/notes/heart/(\d+)', 'index/comment/heart');
 
 //用户路由
 Route::rule('users/add', 'index/user/create');
+
+
+Route::get('log', 'index/index/log');

@@ -1,0 +1,16 @@
+{{extends file="index/layout/main.html"}}
+
+{{block name="css"}}
+{{/block}}
+{{block name="body"}}
+<main id="app" style="margin-top: 4em">
+    <p style="text-align: center;font-weight: bold;color:grey;margin: 1.5em 0;"><i class="fa fa-link"></i> &nbsp;&nbsp;感谢贡献bug</p>
+    <div class="card">
+        {{foreach from=$log item=l}}
+        <div class="tips" style="border-left: 3px solid #4F70F6;margin-bottom: .5em">
+            {{$l}}
+        </div>
+        {{/foreach}}
+    </div>
+</main>
+{{/block}}
