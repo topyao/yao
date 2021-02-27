@@ -89,7 +89,8 @@
                                         class="fa {{if \Yao\Facade\Db::name('hearts')->where(['comment_id' => $comment.id,'user_id' => \Yao\Facade\Request::ip()])->find()->isEmpty()}}fa-heart-o{{else}}fa-heart{{/if}} like"
                                         data-id="{{$comment.id}}"
                                         style="color: red;cursor:pointer;"></i> <span class="count-heart">{{$comment.hearts}}</span>
-                                    <i class="fa fa-comment-o" style="margin-left: 1em"></i> <span>回复</span>
+                                    <i class="fa fa-comment-o" style="margin-left: 1em"></i> <span
+                                            class="review">回复</span>
                                 </div>
                                 {{foreach from=$sub_comments item="sub"}}
                                 {{if $sub.parent_id == $comment.id}}
@@ -282,6 +283,11 @@
                 }
             });
         })
+
+        $('.review').on('click', function () {
+            let html = $('<form action="" name="form"><textarea style="font-size:14px;box-sizing:border-box;padding:.5em .5em;outline:none;border:1px solid #dbdbdb;line-height:1.4em;height: 2em;width:100%;min-height:8em;border-radius: 5px;resize:vertical;margin-bottom: .5em;" name="comment" placeholder="留下你的笔迹..."></textarea><div style="display: flex;justify-content: space-between;box-sizing: border-box"><input type="text" placeholder="用户名" name="name" style="font-size:13px;padding:0 .6em;width: 90%;outline:none;border:1px solid #dbdbdb;line-height:2.5em;height: 2.5em;border-radius: 5px;"><input type="hidden" name="note_id" value="122"><div style="font-size: 2.1em;color: #4F70F6;cursor:pointer;" title="输入{狗头}可以发送狗头表情" class="fa fa-smile-o"></i></div><div style="width: 10%;min-width: 3em;"><input type="button" style="height: 100%;cursor:pointer;outline: none;width:100%;border:none;background-color: #4F70F6;color: white;border-radius: 5px" id="comment" value="发布"></div></div></form>');
+            html.insertAfter($(this));
+        });
     })
 </script>
 {{/block}}
