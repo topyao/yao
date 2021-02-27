@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{block name = "title"}}YAO - 一款简单易用的轻量PHP框架!{{/block}}</title>
-    <link rel="stylesheet" href="/static/css/css.css?202102183">
+    <link rel="stylesheet" href="/static/css/css.css?202102184">
     <link rel="stylesheet" href="/static/font-awesome-4.7.0/css/font-awesome.css">
     {{block name="css"}}{{/block}}
 </head>
@@ -36,7 +36,12 @@
                 <li class=""><a href="https://www.kancloud.cn/cheng-yao/yaophp/2161148"><i
                         class="fa fa-book"></i> 文档</a></li>
                 <li class="d-sm dropdown-btn"><a href="#" id="dropdown"><i class="fa fa-bars"></i></a></li>
-                <li class="d-bg" style="min-width:2.5em"><a href="/login"><i class="fa fa-sign-in"></i></a></li>
+                {{if \Yao\Facade\Session::has('user.id')}}
+                <li class="d-bg" style="min-width:2.5em"><a href="/logout" title="退出"><i class="fa fa-sign-out"></i></a>
+                </li>
+                {{else}}
+                <li class="d-bg" style="min-width:2.5em"><a href="/login" title="登录"><i class="fa fa-sign-in"></i></a></li>
+                {{/if}}
             </ul>
         </nav>
         <form action="/search">

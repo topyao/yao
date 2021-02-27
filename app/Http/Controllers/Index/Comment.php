@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Index;
 use App\Http\Controller;
 use App\Models\Comments;
 use App\Models\Hearts;
+use Yao\Facade\Db;
 
 class Comment extends Controller
 {
@@ -34,5 +35,10 @@ class Comment extends Controller
         }
         $hearts->add($id, $user_id);
         return ['status' => 1, 'message' => '喜欢成功!'];
+    }
+
+    public function page($note_id, $page, Comments $comments)
+    {
+        return $comments->read($note_id, $page);
     }
 }

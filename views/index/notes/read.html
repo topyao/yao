@@ -24,7 +24,7 @@
                         class="fa fa-clock-o"></i>&nbsp;{{$note.create_time|time_convert}}&nbsp;&nbsp;
                     <i class="fa fa-user"></i>&nbsp;Yao&nbsp;&nbsp;<i
                             class="fa fa-eye"></i>&nbsp;{{$note.hits}}&nbsp;&nbsp;<i
-                            class="fa fa-comment"></i>&nbsp;{{count($comments)}}
+                            class="fa fa-comment"></i>&nbsp;{{$comments_count}}
                     {{if \Yao\Facade\Session::get('user.id') eq $note.user_id}}
                     <a href="/notes/edit/{{$note.id}}">编辑</a>
                     {{/if}}
@@ -42,7 +42,7 @@
             <div class="card2">
                 <div
                         style="border-bottom:1px solid #e0e0e0;display: flex;justify-content: space-between;padding:.5em 1em 1em;font-size: .95em">
-                    <b>{{count($comments)}}条评论</b>
+                    <b>{{$comments_count}}条评论</b>
                     <span style="color: grey">切换顺序</span>
                 </div>
                 <div style="margin:1em .5em .5em">
@@ -65,7 +65,7 @@
                             </div>
                         </div>
                     </form>
-                    <div>
+                    <div id="comments">
                         {{foreach from=$comments item=comment}}
                         <div style="margin: 1em 0 0;font-size: 14px;">
                             <div style="display: flex;justify-content: space-between;line-height: 2em;height: 2em">
@@ -92,7 +92,10 @@
                         </div>
                         {{/foreach}}
                     </div>
-
+                    <p id="comments-more"
+                       style="font-size:.8em;text-align: center;font-weight: bold;color:grey;margin: 1em 0 .5em;cursor: pointer">
+                        <i class="fa fa-long-arrow-down"></i> &nbsp;&nbsp;加载更多
+                    </p>
                 </div>
             </div>
         </div>
@@ -159,15 +162,30 @@
 </script>
 <script>
     $(() => {
+        var comment_page = 2;
+        $('#comments-more').on('click', function () {
+            $.get('/note/{{$note.id}}/comment/p/' + comment_page++, function (data, status) {
+                if ('success' === status) {
+                    console.log(data)
+                    if (0 === data.length) {
+                        $('#comments-more').remove();
+                        return false;
+                    }
+                    for (let i in data) {
+                        let div = $('<div style="margin: 1em 0 0;font-size: 14px;"></div>');
+                        div.html('<div style="display: flex;justify-content: space-between;line-height: 2em;height: 2em"><div><img src="/static/img/logo.png" alt="" style="width: 2em;height: 2em;border-radius: 50%"><b style="position:absolute;font-size:14px;height: 2em;margin-left:.5em">' + data[i].name + '</b></div><span style="color:grey;font-size: 13px">' + data[i].create_time + '</span></div><div style="padding:.5em 0 0 2.5em;word-break: break-all;word-wrap: break-word"><div><div style="margin-bottom: .5em;display: flex">' + data[i].comment.replace(/\n/g,'<br>') + '</div></div><div style="text-align:right;padding:0 .5em .3em 0;border-bottom: 1px solid #dbdbdb;"><i class="fa fa-heart-o like" data-id="' + data[i].id + '" style="color: red;cursor:pointer;"></i> <spanid="count-heart">' + data[i].hearts + '</span><i class="fa fa-comment-o" style="margin-left: 1em"></i> <span>回复</span></div></div></div>');
+                        $('#comments').append(div);
+                    }
+                }
+            });
+        });
+
+
         $('#test-editormd-view2 h1,h2,h3,h4,h5,h6').hover(function () {
             $(this).html('<i class="fa fa-link">&nbsp;</i>' + $(this).html());
         }, function () {
             $(this).children('i').remove();
-            // $(this).html('<i class="fa fa-link"></i>' + $(this).html());
         });
-        // $(document).on('hover', '#test-editormd-view2 h1', function () {
-        //     $(this).html('<i class="fa fa-link"></i>' + $(this).text());
-        // });
 
 
         $('#comment').on('click', function () {
@@ -194,7 +212,9 @@
                 }
             });
         });
-        $('.like').on('click', function () {
+
+        $('#comments').on('click', '.like', function () {
+            console.log($(this));
             let heart = $(this);
             let count = heart.siblings('span#count-heart').text();
             $.ajax({

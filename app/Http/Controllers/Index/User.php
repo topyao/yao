@@ -5,12 +5,19 @@ namespace App\Http\Controllers\Index;
 
 
 use App\Http\Controller;
+use App\Http\Middleware\Logined;
 use App\Http\Validate\LoginCheck;
 use App\Models\Users;
 use Yao\Facade\Session;
 
 class User extends Controller
 {
+
+    protected $middleware = [
+        Logined::class => [
+            'login'
+        ]
+    ];
 
     public function login(Users $users)
     {
@@ -23,7 +30,7 @@ class User extends Controller
         if ($result) {
             if ($users->login($user)) {
                 Session::set('user', $users->one($user));
-                redirect('/');
+                return redirect('/');
             } else {
                 return view('index/error', ['message' => '用户名或者密码错误!']);
             }
@@ -32,6 +39,12 @@ class User extends Controller
         }
     }
 
+
+    public function logout()
+    {
+        Session::destroy();
+        return redirect($this->request->server('http_referer'));
+    }
 
     public function create(Users $users)
     {

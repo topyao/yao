@@ -28,7 +28,8 @@ class Note extends Controller
     {
         try {
             $note = $notes->oneNote($id);
-            $comments = $comments->read($id, 1, 10);
+            $comments_count = $comments->count($id);
+            $comments = $comments->read($id, 1, 5);
             $hots = $notes->hots();
         } catch (\Exception $e) {
             return view('index/error', ['message' => '查询失败！']);
@@ -39,7 +40,7 @@ class Note extends Controller
         if (!empty($note['tags'])) {
             $note['tags'] = explode(',', $note['tags']);
         }
-        return view('index/notes/read', compact(['note', 'hots', 'comments']));
+        return view('index/notes/read', compact(['note', 'hots', 'comments','comments_count']));
     }
 
 

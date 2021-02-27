@@ -9,6 +9,7 @@ use \Yao\Facade\Route;
 Route::get('/', 'index/index/index')->alias('home');
 
 Route::rule('login', 'index/user/login');
+Route::get('logout', 'index/user/logout');
 
 Route::view('test', 'test/dd');
 
@@ -23,6 +24,8 @@ Route::rule('notes/edit/(\d+)', 'index/note/edit')->alias('edit');
 Route::get('search', 'index/note/search');
 Route::post('/notes/comment', 'index/comment/create');
 
+//评论分页
+Route::get('note/(\d+)/comment/p/(\d+)', 'index/comment/page');
 //点赞功能api
 Route::get('/notes/heart/(\d+)', 'index/comment/heart');
 

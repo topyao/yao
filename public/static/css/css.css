@@ -31,12 +31,14 @@ html, body {
     box-sizing: border-box;
 }
 
+
 #test-editormd-view2 {
     color: #626262;
     box-sizing: border-box;
     padding: 1em !important;
     transition: all .5s;
 }
+
 
 .card2 {
     background-color: white;
