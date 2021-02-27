@@ -41,7 +41,7 @@ class Note extends Controller
         if (!empty($note['tags'])) {
             $note['tags'] = explode(',', $note['tags']);
         }
-        return view('index/notes/read', compact(['note', 'hots', 'comments', 'comments_count']));
+        return view('index/notes/read', ['note' => $note, 'hots' => $hots, 'comments' => $comments['top'], 'comments_count' => $comments_count, 'sub_comments' => $comments['sub']]);
     }
 
 
