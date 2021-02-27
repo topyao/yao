@@ -22,7 +22,7 @@ class User extends Controller
         $result = $this->validate(LoginCheck::class, $user);
         if ($result) {
             if ($users->login($user)) {
-                Session::set('user', $user);
+                Session::set('user', $users->one($user));
                 redirect('/');
             } else {
                 return view('index/error', ['message' => '用户名或者密码错误!']);

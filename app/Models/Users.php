@@ -11,4 +11,9 @@ class Users extends Model
     {
         return Db::name('users')->where($user)->find()->toArray();
     }
+
+    public function one($condition)
+    {
+        return $this->where($condition)->find()->toArray();
+    }
 }

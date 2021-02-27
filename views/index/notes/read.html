@@ -25,6 +25,9 @@
                     <i class="fa fa-user"></i>&nbsp;Yao&nbsp;&nbsp;<i
                             class="fa fa-eye"></i>&nbsp;{{$note.hits}}&nbsp;&nbsp;<i
                             class="fa fa-comment"></i>&nbsp;{{count($comments)}}
+                    {{if \Yao\Facade\Session::get('user.id') eq $note.user_id}}
+                    <a href="/notes/edit/{{$note.id}}">编辑</a>
+                    {{/if}}
                 </p>
             </div>
 
@@ -156,6 +159,17 @@
 </script>
 <script>
     $(() => {
+        $('#test-editormd-view2 h1,h2,h3,h4,h5,h6').hover(function () {
+            $(this).html('<i class="fa fa-link">&nbsp;</i>' + $(this).html());
+        }, function () {
+            $(this).children('i').remove();
+            // $(this).html('<i class="fa fa-link"></i>' + $(this).html());
+        });
+        // $(document).on('hover', '#test-editormd-view2 h1', function () {
+        //     $(this).html('<i class="fa fa-link"></i>' + $(this).text());
+        // });
+
+
         $('#comment').on('click', function () {
             // $(this).prop('disabled', true);
             if ($('textarea[name=comment]').val() === '') {

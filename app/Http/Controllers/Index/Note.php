@@ -5,20 +5,27 @@ namespace App\Http\Controllers\Index;
 
 
 use App\Http\Controller;
+use App\Http\Middleware\Login;
 use App\Http\Traits\Paginate;
 use App\Models\Comments;
 use App\Models\Notes;
+use Yao\Facade\Session;
 
 class Note extends Controller
 {
 
     use Paginate;
 
+    protected $middleware = [
+        Login::class => [
+            'edit', 'create'
+        ]
+    ];
+
     private const NUMBER_OF_PAGES = 8;
 
     public function read($id, Notes $notes, Comments $comments)
     {
-//        if ($this->request->isMethod('get')) {
         try {
             $note = $notes->oneNote($id);
             $comments = $comments->read($id, 1, 10);
@@ -33,18 +40,8 @@ class Note extends Controller
             $note['tags'] = explode(',', $note['tags']);
         }
         return view('index/notes/read', compact(['note', 'hots', 'comments']));
-//        }
-//        return $this->_comment($id, new Comments());
     }
 
-
-//    private function _comment($id, Comments $comments)
-//    {
-//        $comment = $this->request->post(['name', 'email', 'site', 'comment', 'note_id']);
-//        if ($comments->add($comment)) {
-//            return redirect(url('list', [$id]), 302);
-//        }
-//    }
 
     public function list(Notes $notes)
     {
@@ -74,8 +71,11 @@ class Note extends Controller
 
     public function edit($id, Notes $notes)
     {
+        $note = $notes->oneNote($id);
+        if ($note['user_id'] !== Session::get('user.id')) {
+            return view('index/error', ['message' => '没有权限']);
+        }
         if ($this->request->isMethod('get')) {
-            $note = $notes->oneNote($id);
             return view('index/notes/edit', compact(['note']));
         }
         $note = $this->request->post(['title', 'text', 'tags']);

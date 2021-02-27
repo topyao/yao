@@ -35,6 +35,7 @@ html, body {
     color: #626262;
     box-sizing: border-box;
     padding: 1em !important;
+    transition: all .5s;
 }
 
 .card2 {
@@ -629,7 +630,7 @@ ul.bar > li > input:focus {
 }
 
 
-.swiper-img{
+.swiper-img {
     height: 20em;
 }
 
@@ -728,7 +729,7 @@ ul.bar > li > input:focus {
         flex-wrap: wrap-reverse;
     }
 
-    .swiper-img{
+    .swiper-img {
         height: 13em !important;
     }
 }
@@ -846,5 +847,3 @@ a.tags:hover {
         transform: rotateX(0deg);
     }
 }
-
-
