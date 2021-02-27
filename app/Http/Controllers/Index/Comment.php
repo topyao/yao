@@ -39,6 +39,7 @@ class Comment extends Controller
 
     public function page($note_id, $page, Comments $comments)
     {
-        return $comments->read($note_id, $page);
+        $order = $this->request->get('order', 0);
+        return $comments->read($note_id, $page, $order);
     }
 }

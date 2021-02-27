@@ -16,7 +16,10 @@ if (!function_exists('time_convert')) {
         if (!is_string($time)) {
             return '发布时间太远了！';
         }
-        $diff = time() - strtotime($time);
+        if (mb_strlen($time) != 10) {
+            $time = strtotime($time);
+        }
+        $diff = time() - $time;
         if ($diff < 60) {
             return $diff . '秒前';
         } elseif ($diff > 60 && $diff < 3600) {

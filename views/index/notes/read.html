@@ -43,7 +43,11 @@
                 <div
                         style="border-bottom:1px solid #e0e0e0;display: flex;justify-content: space-between;padding:.5em 1em 1em;font-size: .95em">
                     <b>{{$comments_count}}条评论</b>
-                    <span style="color: grey">切换顺序</span>
+                    {{if \Yao\Facade\Request::get('order') == 1}}
+                    <a id="sort" data-id="1" href="?order=0"><span style="color: grey">按发布时间排序</span></a>
+                    {{else}}
+                    <a id="sort" data-id="0" href="?order=1"><span style="color: grey">按点赞排序</span></a>
+                    {{/if}}
                 </div>
                 <div style="margin:1em .5em .5em">
                     <form action="" name="form">
@@ -51,7 +55,6 @@
                                 style="font-size:14px;box-sizing:border-box;padding:.5em .5em;outline:none;border:1px solid #dbdbdb;line-height:1.4em;height: 2em;width:100%;min-height:8em;border-radius: 5px;resize:vertical;margin-bottom: .5em;"
                                 name="comment" placeholder="留下你的笔迹..."></textarea>
                         <div style="display: flex;justify-content: space-between;box-sizing: border-box">
-
                             <input type="text" placeholder="用户名" name="name"
                                    style="font-size:13px;padding:0 .6em;width: 90%;outline:none;border:1px solid #dbdbdb;line-height:2.5em;height: 2.5em;border-radius: 5px;">
                             <input type="hidden" name="note_id" value="{{$note.id}}">
@@ -161,20 +164,35 @@
     // });
 </script>
 <script>
+    function time_convert(timestamp) {
+        let time = parseInt(new Date().getTime() / 1000);
+        let diff = time - timestamp;
+        if (diff < 60) {
+            return diff + '秒前';
+        } else if (diff < 3600) {
+            return parseInt(diff / 60) + '分钟前';
+        } else if (diff > 3600 && diff < 86400) {
+            return parseInt(diff / 3600) + '小时前';
+        } else if (diff > 86400 && diff < 86400 * 5) {
+            return parseInt(diff / 86400) + '天前';
+        }
+        let date = new Date(timestamp * 1000);
+        return date.getFullYear() + '/' + date.getMonth() + '/' + date.getDay();
+    }
+
     $(() => {
         var comment_page = 2;
         $('#comments-more').on('click', function () {
-            $.get('/note/{{$note.id}}/comment/p/' + comment_page++, function (data, status) {
+            $.get('/note/{{$note.id}}/comment/p/' + comment_page++ + '?order=' + $('#sort').attr('data-id'), function (data, status) {
                 if ('success' === status) {
-                    console.log(data)
-                    if (0 === data.length) {
+                    if (data.length < 5) {
                         $('#comments-more').remove();
-                        return false;
                     }
                     for (let i in data) {
+                        data[i].create_time = time_convert(data[i].create_time);
                         let div = $('<div style="margin: 1em 0 0;font-size: 14px;"></div>');
-                        div.html('<div style="display: flex;justify-content: space-between;line-height: 2em;height: 2em"><div><img src="/static/img/logo.png" alt="" style="width: 2em;height: 2em;border-radius: 50%"><b style="position:absolute;font-size:14px;height: 2em;margin-left:.5em">' + data[i].name + '</b></div><span style="color:grey;font-size: 13px">' + data[i].create_time + '</span></div><div style="padding:.5em 0 0 2.5em;word-break: break-all;word-wrap: break-word"><div><div style="margin-bottom: .5em;display: flex">' + data[i].comment.replace(/\n/g,'<br>') + '</div></div><div style="text-align:right;padding:0 .5em .3em 0;border-bottom: 1px solid #dbdbdb;"><i class="fa fa-heart-o like" data-id="' + data[i].id + '" style="color: red;cursor:pointer;"></i> <spanid="count-heart">' + data[i].hearts + '</span><i class="fa fa-comment-o" style="margin-left: 1em"></i> <span>回复</span></div></div></div>');
-                        $('#comments').append(div);
+                        div.html('<div style="display: flex;justify-content: space-between;line-height: 2em;height: 2em"><div><img src="/static/img/logo.png" alt="" style="width: 2em;height: 2em;border-radius: 50%"><b style="position:absolute;font-size:14px;height: 2em;margin-left:.5em">' + data[i].name + '</b></div><span style="color:grey;font-size: 13px">' + data[i].create_time + '</span></div><div style="padding:.5em 0 0 2.5em;word-break: break-all;word-wrap: break-word"><div><div style="margin-bottom: .5em;display: flex">' + data[i].comment.replace(/\n/g, '<br>') + '</div></div><div style="text-align:right;padding:0 .5em .3em 0;border-bottom: 1px solid #dbdbdb;"><i class="fa fa-heart-o like" data-id="' + data[i].id + '" style="color: red;cursor:pointer;"></i> <spanid="count-heart">' + data[i].hearts + '</span><i class="fa fa-comment-o" style="margin-left: 1em"></i> <span>回复</span></div></div></div>');
+                        div.appendTo('#comments');
                     }
                 }
             });

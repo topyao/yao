@@ -489,8 +489,8 @@ ul.bar {
     width: 90%;
     overflow: hidden;
     padding: 0;
-    background-color: white;
-    border-radius: 5px;
+    background-color: #4F70F6;
+    border-radius: 0 0 5px 5px;
     margin: 0 5%;
     position: absolute;
     top: calc(3em - 4px);
@@ -512,9 +512,9 @@ ul.bar > li > a {
     padding-left: .5em;
     border-bottom: 1px solid #f4faff;
     display: block;
-    color: grey;
-    border-top: 1px solid #f8f7f7;
+    color: white;
 }
+
 
 ul.bar > li input {
     vertical-align: middle;
@@ -531,7 +531,7 @@ ul.bar > li input {
 
 ul.bar > li > input:focus {
     border: 1px solid #4F70F6;
-    box-shadow: #4F70F6 0 0 3px 0;
+    box-shadow: #ffffff 0 0 2px 0;
 }
 
 #login {

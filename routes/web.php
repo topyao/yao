@@ -11,10 +11,6 @@ Route::get('/', 'index/index/index')->alias('home');
 Route::rule('login', 'index/user/login');
 Route::get('logout', 'index/user/logout');
 
-Route::view('test', 'test/dd');
-
-Route::redirect('document', 'http://www.chengyao.xyz/note/125.html');
-
 //note路由
 Route::rule('notes/add', 'index/note/create');
 Route::get('notes', 'index/note/list')->alias('list');
