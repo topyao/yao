@@ -22,9 +22,9 @@ trait Paginate
                 $pages[$page + 1 + $i] = $page + 1 + $i;
             }
         }
-        $pages[key($pages)] = '首页';
-        end($pages);
-        $pages[key($pages)] = '尾页';
+        $pages[1] = '首页';
+        $pages[$totalPage] = '尾页';
+        ksort($pages);
         $paginate = '';
         $request = $this->request->get();
         foreach ($pages as $p => $name) {
@@ -33,7 +33,7 @@ trait Paginate
                 $request['p'] = $p;
                 $query = '?' . http_build_query($request);
             }
-            $paginate .= ('<li><a href="' . $query . '">' . $name . '</a></li>');
+            $paginate .= '<li><a href="' . $query . '">' . $name . '</a></li>';
         }
         return $paginate;
     }

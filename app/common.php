@@ -19,7 +19,7 @@ if (!function_exists('time_convert')) {
         if (mb_strlen($time) != 10) {
             $time = strtotime($time);
         }
-        $diff = time() - $time;
+        $diff = time() - (int)$time;
         if ($diff < 60) {
             return $diff . '秒前';
         } elseif ($diff > 60 && $diff < 3600) {

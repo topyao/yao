@@ -2,12 +2,17 @@
 {{block name="title"}}{{$note.title}}{{/block}}
 {{block name="css"}}
 <link rel="stylesheet" href="/static/editor/css/editormd.preview.css"/>
-<!--<link rel="stylesheet" href="/static/editor/css/editormd.css"/>-->
 {{/block}}
 {{block name="body"}}
 <main id="app" style="margin-top: 3.5em">
     <div class="container">
-        <div class="left" style="width:72%;">
+        <div class="card d-bg"
+             style="width: 13em;margin-right: .5em;height: 100%">
+            <div class="tips" style="border-left: 3px solid #4F70F6">目录</div>
+            <div id="catalog" style="padding:.5em;">
+            </div>
+        </div>
+        <div class="left" style="width:60%;">
             <div id="top">
                 {{if !empty($note.tags)}}
                 <div style="display:flex;justify-content: space-between;">
@@ -20,7 +25,7 @@
                 </div>
                 {{/if}}
                 <p class="title">{{$note.title}}</p>
-                <p style="text-align: center;font-size: .9em;margin: 0"><i
+                <p style="text-align: center;font-size: .9em;margin: 0;color: grey"><i
                         class="fa fa-clock-o"></i>&nbsp;{{$note.create_time|time_convert}}&nbsp;&nbsp;
                     <i class="fa fa-user"></i>&nbsp;Yao&nbsp;&nbsp;<i
                             class="fa fa-eye"></i>&nbsp;{{$note.hits}}&nbsp;&nbsp;<i
@@ -31,14 +36,18 @@
                 </p>
             </div>
 
+
             <div class="card2">
-                <div class="tips"><i class="fa fa-bars"></i>&nbsp;&nbsp;<a href="/">首页</a> / <a href="/notes">笔记</a> /
+                <div class="tips"><i class="fa fa-bars"></i>&nbsp;&nbsp;<a href="/">首页</a> / <a href="/notes">笔记</a>
+                    /
                     {{$note.title}}
                 </div>
                 <div id="test-editormd-view2">
                     <textarea id="append-test" style="display: none">{{$note.text}}</textarea>
                 </div>
             </div>
+
+
             <div class="card2">
                 <div
                         style="border-bottom:1px solid #e0e0e0;display: flex;justify-content: space-between;padding:.5em 1em 1em;font-size: .95em">
@@ -85,7 +94,7 @@
                                         {{$comment.comment|nl2br}}
                                     </div>
                                 </div>
-                                <div style="text-align:right;padding:0 .5em .3em 0;border-bottom: 1px solid #dbdbdb;"><i
+                                <div style="font-size:.9em;text-align:right;padding:0 0 .3em;border-bottom: 1px solid #dbdbdb;"><i
                                         class="fa {{if \Yao\Facade\Db::name('hearts')->where(['comment_id' => $comment.id,'user_id' => \Yao\Facade\Request::ip()])->find()->isEmpty()}}fa-heart-o{{else}}fa-heart{{/if}} like"
                                         data-id="{{$comment.id}}"
                                         style="color: red;cursor:pointer;"></i> <span class="count-heart">{{$comment.hearts}}</span>
@@ -122,10 +131,12 @@
                         </div>
                         {{/foreach}}
                     </div>
+                    {{if count($comments) == 5}}
                     <p id="comments-more"
                        style="font-size:.8em;text-align: center;font-weight: bold;color:grey;margin: 1em 0 .5em;cursor: pointer">
                         <i class="fa fa-long-arrow-down"></i> &nbsp;&nbsp;加载更多
                     </p>
+                    {{/if}}
                 </div>
             </div>
         </div>
@@ -288,6 +299,31 @@
             let html = $('<form action="" name="form"><textarea style="font-size:14px;box-sizing:border-box;padding:.5em .5em;outline:none;border:1px solid #dbdbdb;line-height:1.4em;height: 2em;width:100%;min-height:8em;border-radius: 5px;resize:vertical;margin-bottom: .5em;" name="comment" placeholder="留下你的笔迹..."></textarea><div style="display: flex;justify-content: space-between;box-sizing: border-box"><input type="text" placeholder="用户名" name="name" style="font-size:13px;padding:0 .6em;width: 90%;outline:none;border:1px solid #dbdbdb;line-height:2.5em;height: 2.5em;border-radius: 5px;"><input type="hidden" name="note_id" value="122"><div style="font-size: 2.1em;color: #4F70F6;cursor:pointer;" title="输入{狗头}可以发送狗头表情" class="fa fa-smile-o"></i></div><div style="width: 10%;min-width: 3em;"><input type="button" style="height: 100%;cursor:pointer;outline: none;width:100%;border:none;background-color: #4F70F6;color: white;border-radius: 5px" id="comment" value="发布"></div></div></form>');
             html.insertAfter($(this));
         });
+
+
+        $('#test-editormd-view2 > h1,h2,h3,h4,h5,h6').each(function (index, element) {
+            if ($(element).is('h1')) {
+                $('<a style="font-weight: bold" href="#' + $(element).attr('id') + '">' + element.innerText + '</a>').appendTo('#catalog');
+            } else if ($(element).is('h2')) {
+                $('<a href="#' + $(element).attr('id') + '">&nbsp;' + element.innerText + '</a>').appendTo('#catalog');
+            } else if ($(element).is('h3')) {
+                $('<a href="#' + $(element).attr('id') + '">&nbsp;&nbsp;' + element.innerText + '</a>').appendTo('#catalog');
+            } else if ($(element).is('h4')) {
+                $('<a href="#' + $(element).attr('id') + '">&nbsp;&nbsp;&nbsp;' + element.innerText + '</a>').appendTo('#catalog');
+            } else if ($(element).is('h5')) {
+                $('<a href="#' + $(element).attr('id') + '">&nbsp;&nbsp;&nbsp;&nbsp;' + element.innerText + '</a>').appendTo('#catalog');
+            } else if ($(element).is('h6')) {
+                $('<a href="#' + $(element).attr('id') + '">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + element.innerText + '</a>').appendTo('#catalog');
+            }
+        });
+
+
+        // let h1 = $('#test-editormd-view2 > h1');
+        // for (let i in h1) {
+        //
+        // }
+        // $('#catalog')
+
     })
 </script>
 {{/block}}

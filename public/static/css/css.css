@@ -105,7 +105,7 @@ html, body {
 }
 
 aside {
-    width: 27%;
+    width: 15em;
     margin-left: .5em;
     border-radius: 5px;
 }
@@ -270,7 +270,7 @@ a.right {
 
 main {
     margin: .7em auto;
-    width: 80%;
+    width: 70%;
 }
 
 .main {
@@ -527,6 +527,13 @@ ul.bar > li input {
     border: none;
     background-color: #eeeded;
     padding: 0 .5em
+}
+
+#catalog > a {
+    display: block;
+    font-size: .85em;
+    /*font-weight: bold;*/
+    color: grey
 }
 
 ul.bar > li > input:focus {

@@ -10,7 +10,7 @@ class Notes extends Model
 {
     public function oneNote($id)
     {
-        $note = $this->field(['title', 'id', 'text', 'hits', 'tags', 'create_time','user_id'])
+        $note = $this->field(['title', 'id', 'text', 'hits', 'tags', 'UNIX_TIMESTAMP(`create_time`) create_time','user_id'])
             ->where(['id' => $id])
             ->find();
         $note['qrcode'] = base64_encode((new QrCode('https://www.chengyao.xyz' . url('read', [$note['id']])))->writeString());
