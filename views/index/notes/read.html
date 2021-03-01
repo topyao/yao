@@ -94,12 +94,13 @@
                                         {{$comment.comment|nl2br}}
                                     </div>
                                 </div>
-                                <div style="font-size:.9em;text-align:right;padding:0 0 .3em;border-bottom: 1px solid #dbdbdb;"><i
-                                        class="fa {{if \Yao\Facade\Db::name('hearts')->where(['comment_id' => $comment.id,'user_id' => \Yao\Facade\Request::ip()])->find()->isEmpty()}}fa-heart-o{{else}}fa-heart{{/if}} like"
-                                        data-id="{{$comment.id}}"
-                                        style="color: red;cursor:pointer;"></i> <span class="count-heart">{{$comment.hearts}}</span>
+                                <div style="font-size:.9em;text-align:right;padding:0 0 .3em;border-bottom: 1px solid #dbdbdb;">
+                                    <i
+                                            class="fa {{if \Yao\Facade\Db::name('hearts')->where(['comment_id' => $comment.id,'user_id' => \Yao\Facade\Request::ip()])->find()->isEmpty()}}fa-heart-o{{else}}fa-heart{{/if}} like"
+                                            data-id="{{$comment.id}}"
+                                            style="color: red;cursor:pointer;"></i> <span class="count-heart">{{$comment.hearts}}</span>
                                     <i class="fa fa-comment-o" style="margin-left: 1em"></i> <span
-                                            class="review">回复</span>
+                                        class="review">回复</span>
                                 </div>
                                 {{foreach from=$sub_comments item="sub"}}
                                 {{if $sub.parent_id == $comment.id}}
@@ -227,15 +228,14 @@
                         $('#comments-more').remove();
                     }
                     for (let i in data.top) {
-                        data.top[i].create_time = time_convert(data.top[i].create_time);
                         let div = $('<div style="margin: 1em 0 0;font-size: 14px;"></div>');
-                        div.html('<div style="display: flex;justify-content: space-between;line-height: 2em;height: 2em"><div><img src="/static/img/logo.png" alt="" style="width: 2em;height: 2em;border-radius: 50%"><b style="position:absolute;font-size:14px;height: 2em;margin-left:.5em">' + data.top[i].name + '</b></div><span style="color:grey;font-size: 13px">' + data.top[i].create_time + '</span></div><div data-id="' + data.top[i].id + '" style="padding:.5em 0 0 2.5em;word-break: break-all;word-wrap: break-word"><div><div style="margin-bottom: .5em;display: flex">' + data.top[i].comment.replace(/\n/g, '<br>') + '</div></div><div style="text-align:right;padding:0 .5em .3em 0;border-bottom: 1px solid #dbdbdb;"><i class="fa fa-heart-o like" data-id="' + data.top[i].id + '" style="color: red;cursor:pointer;"></i> <span class="count-heart">' + data.top[i].hearts + '</span><i class="fa fa-comment-o" style="margin-left: 1em"></i> <span>回复</span></div></div></div>');
+                        div.html('<div style="display: flex;justify-content: space-between;line-height: 2em;height: 2em"><div><img src="/static/img/logo.png" alt="" style="width: 2em;height: 2em;border-radius: 50%"><b style="position:absolute;font-size:14px;height: 2em;margin-left:.5em">' + data.top[i].name + '</b></div><span style="color:grey;font-size: 13px">' + time_convert(data.top[i].create_time) + '</span></div><div data-id="' + data.top[i].id + '" style="padding:.5em 0 0 2.5em;word-break: break-all;word-wrap: break-word"><div><div style="margin-bottom: .5em;display: flex">' + data.top[i].comment.replace(/\n/g, '<br>') + '</div></div><div style="text-align:right;padding:0 .5em .3em 0;border-bottom: 1px solid #dbdbdb;"><i class="fa fa-heart-o like" data-id="' + data.top[i].id + '" style="color: red;cursor:pointer;"></i> <span class="count-heart">' + data.top[i].hearts + '</span><i class="fa fa-comment-o" style="margin-left: 1em"></i> <span>回复</span></div></div></div>');
                         div.appendTo('#comments');
                     }
                     for (let j in data.sub) {
                         let div = $('<div style="margin: 1em 0 0;font-size: 14px;"></div>');
-                        div.html('<div style="display: flex;justify-content: space-between;line-height: 2em;height: 2em"><div><img src="/static/img/logo.png" alt="" style="width: 2em;height: 2em;border-radius: 50%"><b style="position:absolute;font-size:14px;height: 2em;margin-left:.5em">' + data.sub[j].name + '</b></div><span style="color:grey;font-size: 13px">' + data.sub[j].create_time + '</span></div><div style="padding:.5em 0 0 2.5em;word-break: break-all;word-wrap: break-word"><div><div style="margin-bottom: .5em;display: flex">' + data.sub[j].comment.replace(/\n/g, '<br>') + '</div></div><div style="text-align:right;padding:0 .5em .3em 0;border-bottom: 1px solid #dbdbdb;"><i class="fa fa-heart-o like" data-id="' + data.sub[j].id + '" style="color: red;cursor:pointer;"></i> <span class="count-heart">' + data.sub[j].hearts + '</span><i class="fa fa-comment-o" style="margin-left: 1em"></i> <span>回复</span></div></div></div>');
-                        div.appendTo('div[data-id=' + data.sub[j].id + ']');
+                        div.html('<div style="display: flex;justify-content: space-between;line-height: 2em;height: 2em"><div><img src="/static/img/logo.png" alt="" style="width: 2em;height: 2em;border-radius: 50%"><b style="position:absolute;font-size:14px;height: 2em;margin-left:.5em">' + data.sub[j].name + '</b></div><span style="color:grey;font-size: 13px">' + time_convert(data.sub[j].create_time) + '</span></div><div style="padding:.5em 0 0 2.5em;word-break: break-all;word-wrap: break-word"><div><div style="margin-bottom: .5em;display: flex">' + data.sub[j].comment.replace(/\n/g, '<br>') + '</div></div><div style="text-align:right;padding:0 .5em .3em 0;border-bottom: 1px solid #dbdbdb;"><i class="fa fa-heart-o like" data-id="' + data.sub[j].id + '" style="color: red;cursor:pointer;"></i> <span class="count-heart">' + data.sub[j].hearts + '</span><i class="fa fa-comment-o" style="margin-left: 1em"></i> <span>回复</span></div></div></div>');
+                        div.appendTo('div[data-id=' + data.sub[j].parent_id + ']');
                     }
                 }
             });
@@ -316,13 +316,6 @@
                 $('<a href="#' + $(element).attr('id') + '">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + element.innerText + '</a>').appendTo('#catalog');
             }
         });
-
-
-        // let h1 = $('#test-editormd-view2 > h1');
-        // for (let i in h1) {
-        //
-        // }
-        // $('#catalog')
 
     })
 </script>
