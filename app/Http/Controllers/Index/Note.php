@@ -67,7 +67,7 @@ class Note extends Controller
         } catch (\Exception $e) {
             return '新增失败';
         }
-        return redirect('/');
+        return redirect('/notes');
     }
 
 

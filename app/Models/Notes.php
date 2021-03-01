@@ -55,7 +55,7 @@ class Notes extends Model
     public function list($fields, $page, $limit)
     {
         return $this->field($fields)
-            ->order(['update_time' => 'DESC', '`create_time`' => 'DESC', 'hits' => 'DESC'])
+            ->order(['create_time' => 'DESC'])
             ->limit($limit, ($page - 1) * $limit)
             ->select()
             ->toArray();
@@ -63,7 +63,7 @@ class Notes extends Model
 
     public function search($kw, $limit, $offset)
     {
-        return Db::query("SELECT * FROM notes WHERE `title` LIKE ? OR MATCH(`title`,`text`) AGAINST(? IN BOOLEAN MODE) LIMIT {$offset},{$limit}", ["%{$kw}%", "{$kw}"]);
+        return Db::query("SELECT * FROM notes WHERE `title` LIKE ? OR MATCH(`title`,`text`) AGAINST(? IN BOOLEAN MODE) ORDER BY create_time LIMIT {$offset},{$limit}", ["%{$kw}%", "{$kw}"]);
     }
 
     public function searchCount($kw)
