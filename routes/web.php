@@ -20,6 +20,9 @@ Route::rule('notes/edit/(\d+)', 'index/note/edit')->alias('edit');
 Route::get('search', 'index/note/search');
 Route::post('/notes/comment', 'index/comment/create');
 
+
+Route::redirect('document','/note/132.html');
+
 //评论分页
 Route::get('note/(\d+)/comment/p/(\d+)', 'index/comment/page');
 //点赞功能api
