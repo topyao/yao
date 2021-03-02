@@ -6,13 +6,14 @@
 {{block name="body"}}
 <main id="app" style="margin-top: 3.5em">
     <div class="container">
-        <div class="card d-bg"
-             style="width: 13em;margin-right: .5em;height: 100%">
-            <div class="tips" style="border-left: 3px solid #4F70F6">目录</div>
-            <div id="catalog" style="padding:.5em;">
+        <div id="catalog-box" class="card d-bg" style="width: 28%;margin-right: .5em;display: none;margin-bottom: 0">
+            <div style="height: 68%;position: fixed;overflow-y:auto;width: 15%">
+                <div class="tips" style="border-left: 3px solid #4F70F6;width: 5em">目录</div>
+                <div id="catalog" style="padding:.5em;">
+                </div>
             </div>
         </div>
-        <div class="left" style="width:60%;">
+        <div class="left" style="width:80%;">
             <div id="top">
                 {{if !empty($note.tags)}}
                 <div style="display:flex;justify-content: space-between;">
@@ -315,8 +316,8 @@
             } else if ($(element).is('h6')) {
                 $('<a href="#' + $(element).attr('id') + '">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + element.innerText + '</a>').appendTo('#catalog');
             }
+            $('#catalog-box').show();
         });
-
     })
 </script>
 {{/block}}

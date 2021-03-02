@@ -21,7 +21,6 @@ Route::get('search', 'index/note/search');
 Route::post('/notes/comment', 'index/comment/create');
 
 
-Route::redirect('document','/note/132.html');
 
 //评论分页
 Route::get('note/(\d+)/comment/p/(\d+)', 'index/comment/page');
@@ -33,3 +32,5 @@ Route::rule('users/add', 'index/user/create');
 
 
 Route::get('log', 'index/index/log');
+
+Route::redirect('document','/note/132.html');
