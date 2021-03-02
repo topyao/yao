@@ -32,4 +32,4 @@ composer install
 > 如果你安装的是开发版本，安装完成后可能需要手动删除`vendor/chengyao`下的包中的`.git`文件夹。强烈不建议使用开发版本
 
 
-开发文档:https://www.kancloud.cn/cheng-yao/yaophp/2161148
+<a href="https://www.chengyao.xyz/document">开发文档</a>
