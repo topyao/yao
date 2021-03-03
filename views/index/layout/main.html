@@ -90,15 +90,15 @@
         });
     });
 
-    $(window).on('keyup', function (e) {
-        var topSearch = $('#top-search');
-        if (topSearch.is(':focus') && 13 === e.keyCode) {
-            if (topSearch.val() === '') {
-                return false;
-            }
-            window.location.href = '/search?kw=' + topSearch.val();
-        }
-    });
+    // $(window).on('keyup', function (e) {
+    //     var topSearch = $('#top-search');
+    //     if (topSearch.is(':focus') && 13 === e.keyCode) {
+    //         if (topSearch.val() === '') {
+    //             return false;
+    //         }
+    //         window.location.href = '/search?kw=' + topSearch.val();
+    //     }
+    // });
 
 </script>
 {{block name="js"}}{{/block}}

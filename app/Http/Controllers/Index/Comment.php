@@ -7,7 +7,6 @@ namespace App\Http\Controllers\Index;
 use App\Http\Controller;
 use App\Models\Comments;
 use App\Models\Hearts;
-use Yao\Facade\Db;
 
 class Comment extends Controller
 {
@@ -25,7 +24,7 @@ class Comment extends Controller
 
     public function heart($id, Hearts $hearts, Comments $comments)
     {
-        if (!$comments->has('id', $id)) {
+        if (!$comments->has(['id' => $id])) {
             return ['status' => -1, 'message' => '评论不存在'];
         }
         $user_id = $this->request->ip();

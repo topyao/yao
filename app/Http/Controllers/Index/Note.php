@@ -55,13 +55,13 @@ class Note extends Controller
         return view('index/notes/list', compact(['notes', 'hots', 'paginate']));
     }
 
-
     public function create(Notes $notes)
     {
         if ($this->request->isMethod('get')) {
             return view('index/notes/add');
         }
         $data = $this->request->post(['title', 'text', 'tags']);
+        $data['user_id'] = Session::get('user.id');
         try {
             $notes->create($data);
         } catch (\Exception $e) {
@@ -70,6 +70,13 @@ class Note extends Controller
         return redirect('/notes');
     }
 
+    public function delete($id, Notes $notes)
+    {
+        if ($notes->delete($id)) {
+            return redirect('/notes');
+        }
+        return view('index/error', ['message' => '删除失败']);
+    }
 
     public function edit($id, Notes $notes)
     {

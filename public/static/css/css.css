@@ -95,7 +95,6 @@ html, body {
     transition: all .3s;
 }
 
-
 #top .title {
     font-size: 1.5em;
     margin: 0.5em 0;
@@ -654,6 +653,20 @@ ul.bar > li > input:focus {
 }
 
 @media screen and (max-width: 880px) {
+
+    .editormd-dialog, .editormd-code-block-dialog {
+        left: 5% !important;
+        width: 90% !important;
+    }
+
+    .editormd-html-entities-box {
+        overflow-x: scroll !important;
+        width: 319px !important;
+    }
+
+    .editormd-dialog, .editormd-table-dialog {
+        min-height: 425px !important;
+    }
 
     #test-editormd-view2 {
         padding: .5em !important;

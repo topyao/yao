@@ -35,9 +35,9 @@ class Comments extends Model
 //        return Db::query("select c.id,replace(c.comment,'{狗头}','<img src=\"/static/img/dog.gif\" style=\"width:1.5em;height:1.5em\">') as comment,UNIX_TIMESTAMP(create_time) create_time,c.name,count(f.user_id) hearts from comments c left join hearts f on c.id = f.comment_id where note_id = ? group by c.id order by {$order} limit {$offset},{$limit}", [$id]);
     }
 
-    public function has($field, $value)
+    public function has($condition)
     {
-        return !$this->where([$field => $value])->find()->isEmpty();
+        return !$this->where($condition)->find()->isEmpty();
     }
 
     public function count($id)

@@ -5,12 +5,13 @@ namespace App\Models;
 use Yao\Facade\Db;
 use Yao\Database\Model;
 use Endroid\QrCode\QrCode;
+use Yao\Facade\Session;
 
 class Notes extends Model
 {
     public function oneNote($id)
     {
-        $note = $this->field(['title', 'id', 'text', 'hits', 'tags', 'UNIX_TIMESTAMP(`create_time`) create_time','user_id'])
+        $note = $this->field(['title', 'id', 'text', 'hits', 'tags', 'UNIX_TIMESTAMP(`create_time`) create_time', 'user_id'])
             ->where(['id' => $id])
             ->find();
         $note['qrcode'] = base64_encode((new QrCode('https://www.chengyao.xyz' . url('read', [$note['id']])))->writeString());
@@ -39,7 +40,12 @@ class Notes extends Model
 
     public function delete($id)
     {
-        return $this->whereIn(['id' => $id])->delete();
+        $note = $this->where(['id' => $id])->find()->toArray();
+        if (!isset($note['user_id']) || ($note['user_id'] != Session::get('user.id'))) {
+            throw new \Exception('笔记不存在');
+        }
+        $this->where(['id' => $id])->delete();
+        return true;
     }
 
     public function create($data)

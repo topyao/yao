@@ -7,7 +7,7 @@
 <main id="app" style="margin-top: 3.5em">
     <div class="container">
         <div id="catalog-box" class="card d-bg" style="width: 28%;margin-right: .5em;display: none;margin-bottom: 0">
-            <div style="height: 68%;position: fixed;overflow-y:auto;width: 15%">
+            <div id="catalog-box2" style="height: 68%;position: fixed;overflow-y:auto;width: 15%">
                 <div class="tips" style="border-left: 3px solid #4F70F6;width: 5em">目录</div>
                 <div id="catalog" style="padding:.5em;">
                 </div>
@@ -33,11 +33,10 @@
                             class="fa fa-comment"></i>&nbsp;{{$comments_count}}
                     {{if \Yao\Facade\Session::get('user.id') eq $note.user_id}}
                     <a href="/notes/edit/{{$note.id}}">编辑</a>
+                    <a href="/notes/delete/{{$note.id}}">删除</a>
                     {{/if}}
                 </p>
             </div>
-
-
             <div class="card2">
                 <div class="tips"><i class="fa fa-bars"></i>&nbsp;&nbsp;<a href="/">首页</a> / <a href="/notes">笔记</a>
                     /
@@ -89,13 +88,13 @@
                                 </div>
                                 <span style="color:grey;font-size: 13px">{{$comment.create_time|time_convert}}</span>
                             </div>
-                            <div style="padding:.5em 0 0 2.5em;word-break: break-all;word-wrap: break-word">
+                            <div style="padding:.5em 0 0 2.5em;word-break: break-all;word-wrap: break-word;color: #626262">
                                 <div>
-                                    <div style="margin-bottom: .5em;display: flex">
+                                    <div style="margin-bottom: .5em;display: flex;color: #626262">
                                         {{$comment.comment|nl2br}}
                                     </div>
                                 </div>
-                                <div style="font-size:.9em;text-align:right;padding:0 0 .3em;border-bottom: 1px solid #dbdbdb;">
+                                <div style="font-size:.9em;text-align:right;padding:0 0 .3em;border-bottom: 1px solid #dbdbdb;color: grey">
                                     <i
                                             class="fa {{if \Yao\Facade\Db::name('hearts')->where(['comment_id' => $comment.id,'user_id' => \Yao\Facade\Request::ip()])->find()->isEmpty()}}fa-heart-o{{else}}fa-heart{{/if}} like"
                                             data-id="{{$comment.id}}"
@@ -116,11 +115,11 @@
                                     </div>
                                     <div style="padding:.5em 0 0 2.5em;word-break: break-all;word-wrap: break-word">
                                         <div>
-                                            <div style="margin-bottom: .5em;display: flex">
+                                            <div style="margin-bottom: .5em;display: flex;color: #626262">
                                                 {{$sub.comment}}
                                             </div>
                                         </div>
-                                        <div style="text-align:right;padding:0 .5em .3em 0;border-bottom: 1px solid #dbdbdb;">
+                                        <div style="text-align:right;padding:0 .5em .3em 0;border-bottom: 1px solid #dbdbdb;color: grey">
                                             <i class="fa fa-heart like" data-id="{{$sub.id}}"
                                                style="color: red;cursor:pointer;"></i> <span class="count-heart">{{$sub.hearts}}</span>
                                             <i class="fa fa-comment-o" style="margin-left: 1em"></i> <span>回复</span>
@@ -230,12 +229,12 @@
                     }
                     for (let i in data.top) {
                         let div = $('<div style="margin: 1em 0 0;font-size: 14px;"></div>');
-                        div.html('<div style="display: flex;justify-content: space-between;line-height: 2em;height: 2em"><div><img src="/static/img/logo.png" alt="" style="width: 2em;height: 2em;border-radius: 50%"><b style="position:absolute;font-size:14px;height: 2em;margin-left:.5em">' + data.top[i].name + '</b></div><span style="color:grey;font-size: 13px">' + time_convert(data.top[i].create_time) + '</span></div><div data-id="' + data.top[i].id + '" style="padding:.5em 0 0 2.5em;word-break: break-all;word-wrap: break-word"><div><div style="margin-bottom: .5em;display: flex">' + data.top[i].comment.replace(/\n/g, '<br>') + '</div></div><div style="text-align:right;padding:0 .5em .3em 0;border-bottom: 1px solid #dbdbdb;"><i class="fa fa-heart-o like" data-id="' + data.top[i].id + '" style="color: red;cursor:pointer;"></i> <span class="count-heart">' + data.top[i].hearts + '</span><i class="fa fa-comment-o" style="margin-left: 1em"></i> <span>回复</span></div></div></div>');
+                        div.html('<div style="display: flex;justify-content: space-between;line-height: 2em;height: 2em"><div><img src="/static/img/logo.png" alt="" style="width: 2em;height: 2em;border-radius: 50%"><b style="position:absolute;font-size:14px;height: 2em;margin-left:.5em">' + data.top[i].name + '</b></div><span style="color:grey;font-size: 13px">' + time_convert(data.top[i].create_time) + '</span></div><div data-id="' + data.top[i].id + '" style="padding:.5em 0 0 2.5em;word-break: break-all;word-wrap: break-word"><div><div style="margin-bottom: .5em;display: flex;color: #626262">' + data.top[i].comment.replace(/\n/g, '<br>') + '</div></div><div style="text-align:right;padding:0 .5em .3em 0;border-bottom: 1px solid #dbdbdb;color: grey"><i class="fa fa-heart-o like" data-id="' + data.top[i].id + '" style="color: red;cursor:pointer;"></i> <span class="count-heart">' + data.top[i].hearts + '</span><i class="fa fa-comment-o" style="margin-left: 1em"></i> <span>回复</span></div></div></div>');
                         div.appendTo('#comments');
                     }
                     for (let j in data.sub) {
                         let div = $('<div style="margin: 1em 0 0;font-size: 14px;"></div>');
-                        div.html('<div style="display: flex;justify-content: space-between;line-height: 2em;height: 2em"><div><img src="/static/img/logo.png" alt="" style="width: 2em;height: 2em;border-radius: 50%"><b style="position:absolute;font-size:14px;height: 2em;margin-left:.5em">' + data.sub[j].name + '</b></div><span style="color:grey;font-size: 13px">' + time_convert(data.sub[j].create_time) + '</span></div><div style="padding:.5em 0 0 2.5em;word-break: break-all;word-wrap: break-word"><div><div style="margin-bottom: .5em;display: flex">' + data.sub[j].comment.replace(/\n/g, '<br>') + '</div></div><div style="text-align:right;padding:0 .5em .3em 0;border-bottom: 1px solid #dbdbdb;"><i class="fa fa-heart-o like" data-id="' + data.sub[j].id + '" style="color: red;cursor:pointer;"></i> <span class="count-heart">' + data.sub[j].hearts + '</span><i class="fa fa-comment-o" style="margin-left: 1em"></i> <span>回复</span></div></div></div>');
+                        div.html('<div style="display: flex;justify-content: space-between;line-height: 2em;height: 2em"><div><img src="/static/img/logo.png" alt="" style="width: 2em;height: 2em;border-radius: 50%"><b style="position:absolute;font-size:14px;height: 2em;margin-left:.5em">' + data.sub[j].name + '</b></div><span style="color:grey;font-size: 13px">' + time_convert(data.sub[j].create_time) + '</span></div><div style="padding:.5em 0 0 2.5em;word-break: break-all;word-wrap: break-word"><div><div style="margin-bottom: .5em;display: flex;color: grey">' + data.sub[j].comment.replace(/\n/g, '<br>') + '</div></div><div style="text-align:right;padding:0 .5em .3em 0;border-bottom: 1px solid #dbdbdb;color: #626262"><i class="fa fa-heart-o like" data-id="' + data.sub[j].id + '" style="color: red;cursor:pointer;"></i> <span class="count-heart">' + data.sub[j].hearts + '</span><i class="fa fa-comment-o" style="margin-left: 1em"></i> <span>回复</span></div></div></div>');
                         div.appendTo('div[data-id=' + data.sub[j].parent_id + ']');
                     }
                 }

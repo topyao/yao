@@ -19,7 +19,7 @@ Route::get('note/(\d+)\.html', 'index/note/read')->alias('read');
 Route::rule('notes/edit/(\d+)', 'index/note/edit')->alias('edit');
 Route::get('search', 'index/note/search');
 Route::post('/notes/comment', 'index/comment/create');
-
+Route::get('notes/delete/(\d+)', 'index/note/delete');
 
 
 //评论分页
@@ -33,4 +33,4 @@ Route::rule('users/add', 'index/user/create');
 
 Route::get('log', 'index/index/log');
 
-Route::redirect('document','/note/132.html');
+Route::redirect('document', '/note/132.html');
