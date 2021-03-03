@@ -99,8 +99,8 @@
                                             class="fa {{if \Yao\Facade\Db::name('hearts')->where(['comment_id' => $comment.id,'user_id' => \Yao\Facade\Request::ip()])->find()->isEmpty()}}fa-heart-o{{else}}fa-heart{{/if}} like"
                                             data-id="{{$comment.id}}"
                                             style="color: red;cursor:pointer;"></i> <span class="count-heart">{{$comment.hearts}}</span>
-                                    <i class="fa fa-comment-o" style="margin-left: 1em"></i> <span
-                                        class="review">回复</span>
+                                    <i class="fa fa-comment-o" style="margin-left: 1em"></i><!-- <span
+                                        class="review">回复</span>-->
                                 </div>
                                 {{foreach from=$sub_comments item="sub"}}
                                 {{if $sub.parent_id == $comment.id}}
@@ -113,16 +113,16 @@
                                         </div>
                                         <span style="color:grey;font-size: 13px">{{$sub.create_time|time_convert}}</span>
                                     </div>
-                                    <div style="padding:.5em 0 0 2.5em;word-break: break-all;word-wrap: break-word">
+                                    <div style="padding:.5em 0 0 2.5em;word-break: break-all;word-wrap: break-word;">
                                         <div>
                                             <div style="margin-bottom: .5em;display: flex;color: #626262">
                                                 {{$sub.comment}}
                                             </div>
                                         </div>
-                                        <div style="text-align:right;padding:0 .5em .3em 0;border-bottom: 1px solid #dbdbdb;color: grey">
+                                        <div style="text-align:right;padding:0 0 .3em 0;border-bottom: 1px solid #dbdbdb;color: grey;font-size:.9em;">
                                             <i class="fa fa-heart like" data-id="{{$sub.id}}"
                                                style="color: red;cursor:pointer;"></i> <span class="count-heart">{{$sub.hearts}}</span>
-                                            <i class="fa fa-comment-o" style="margin-left: 1em"></i> <span>回复</span>
+                                            <i class="fa fa-comment-o" style="margin-left: 1em"></i> 
                                         </div>
                                     </div>
                                 </div>
@@ -229,12 +229,12 @@
                     }
                     for (let i in data.top) {
                         let div = $('<div style="margin: 1em 0 0;font-size: 14px;"></div>');
-                        div.html('<div style="display: flex;justify-content: space-between;line-height: 2em;height: 2em"><div><img src="/static/img/logo.png" alt="" style="width: 2em;height: 2em;border-radius: 50%"><b style="position:absolute;font-size:14px;height: 2em;margin-left:.5em">' + data.top[i].name + '</b></div><span style="color:grey;font-size: 13px">' + time_convert(data.top[i].create_time) + '</span></div><div data-id="' + data.top[i].id + '" style="padding:.5em 0 0 2.5em;word-break: break-all;word-wrap: break-word"><div><div style="margin-bottom: .5em;display: flex;color: #626262">' + data.top[i].comment.replace(/\n/g, '<br>') + '</div></div><div style="text-align:right;padding:0 .5em .3em 0;border-bottom: 1px solid #dbdbdb;color: grey"><i class="fa fa-heart-o like" data-id="' + data.top[i].id + '" style="color: red;cursor:pointer;"></i> <span class="count-heart">' + data.top[i].hearts + '</span><i class="fa fa-comment-o" style="margin-left: 1em"></i> <span>回复</span></div></div></div>');
+                        div.html('<div style="display: flex;justify-content: space-between;line-height: 2em;height: 2em"><div><img src="/static/img/logo.png" alt="" style="width: 2em;height: 2em;border-radius: 50%"><b style="position:absolute;font-size:14px;height: 2em;margin-left:.5em">' + data.top[i].name + '</b></div><span style="color:grey;font-size: 13px">' + time_convert(data.top[i].create_time) + '</span></div><div data-id="' + data.top[i].id + '" style="padding:.5em 0 0 2.5em;word-break: break-all;word-wrap: break-word"><div><div style="margin-bottom: .5em;display: flex;color: #626262">' + data.top[i].comment.replace(/\n/g, '<br>') + '</div></div><div style="text-align:right;padding:0 0 .3em 0;border-bottom: 1px solid #dbdbdb;color: grey;font-size: .9em"><i class="fa fa-heart-o like" data-id="' + data.top[i].id + '" style="color: red;cursor:pointer;"></i> <span class="count-heart">' + data.top[i].hearts + '</span><i class="fa fa-comment-o" style="margin-left: 1em"></i> </div></div></div>');
                         div.appendTo('#comments');
                     }
                     for (let j in data.sub) {
                         let div = $('<div style="margin: 1em 0 0;font-size: 14px;"></div>');
-                        div.html('<div style="display: flex;justify-content: space-between;line-height: 2em;height: 2em"><div><img src="/static/img/logo.png" alt="" style="width: 2em;height: 2em;border-radius: 50%"><b style="position:absolute;font-size:14px;height: 2em;margin-left:.5em">' + data.sub[j].name + '</b></div><span style="color:grey;font-size: 13px">' + time_convert(data.sub[j].create_time) + '</span></div><div style="padding:.5em 0 0 2.5em;word-break: break-all;word-wrap: break-word"><div><div style="margin-bottom: .5em;display: flex;color: grey">' + data.sub[j].comment.replace(/\n/g, '<br>') + '</div></div><div style="text-align:right;padding:0 .5em .3em 0;border-bottom: 1px solid #dbdbdb;color: #626262"><i class="fa fa-heart-o like" data-id="' + data.sub[j].id + '" style="color: red;cursor:pointer;"></i> <span class="count-heart">' + data.sub[j].hearts + '</span><i class="fa fa-comment-o" style="margin-left: 1em"></i> <span>回复</span></div></div></div>');
+                        div.html('<div style="display: flex;justify-content: space-between;line-height: 2em;height: 2em"><div><img src="/static/img/logo.png" alt="" style="width: 2em;height: 2em;border-radius: 50%"><b style="position:absolute;font-size:14px;height: 2em;margin-left:.5em">' + data.sub[j].name + '</b></div><span style="color:grey;font-size: 13px">' + time_convert(data.sub[j].create_time) + '</span></div><div style="padding:.5em 0 0 2.5em;word-break: break-all;word-wrap: break-word"><div><div style="margin-bottom: .5em;display: flex;color: grey">' + data.sub[j].comment.replace(/\n/g, '<br>') + '</div></div><div style="text-align:right;padding:0 0 .3em 0;border-bottom: 1px solid #dbdbdb;color: #626262;font-size: .9em"><i class="fa fa-heart-o like" data-id="' + data.sub[j].id + '" style="color: red;cursor:pointer;"></i> <span class="count-heart">' + data.sub[j].hearts + '</span><i class="fa fa-comment-o" style="margin-left: 1em"></i></div></div></div>');
                         div.appendTo('div[data-id=' + data.sub[j].parent_id + ']');
                     }
                 }
