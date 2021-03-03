@@ -40,11 +40,7 @@ class Notes extends Model
 
     public function delete($id)
     {
-        $note = $this->where(['id' => $id])->find()->toArray();
-        if (!isset($note['user_id']) || ($note['user_id'] != Session::get('user.id'))) {
-            throw new \Exception('笔记不存在');
-        }
-        $this->where(['id' => $id])->delete();
+        $this->where(['id' => $id, 'user_id' => Session::get('user.id')])->delete();
         return true;
     }
 
