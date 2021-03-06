@@ -18,7 +18,7 @@ composer create-project chengyao/yao .
 > 你可以使用Git安装，安装完成后会自动启动服务
 
 ```
-git clone https://github.com/topyao/yao.git . && php yao serve
+git clone https://github.com/topyao/yao.git . ; php yao serve
 ```
 
 你也可以直接在项目目录更新依赖
