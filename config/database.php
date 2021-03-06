@@ -1,6 +1,8 @@
 <?php
 
 return [
+
+    //默认数据库配置
     'default' => env('database.default', 'mysql'),
 
     'mysql' => [
