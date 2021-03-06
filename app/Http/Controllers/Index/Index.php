@@ -7,6 +7,7 @@ use Yao\Cache\Setter;
 
 class Index extends Controller
 {
+
 //    protected $middleware = [
 //        Login::class => ['index']
 //    ];
