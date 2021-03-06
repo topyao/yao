@@ -11,7 +11,7 @@ html, body {
     word-break: break-word;
     background-color: white;
     border-radius: 5px;
-    box-shadow: rgb(226, 225, 225) 0 0 3px 0;
+    box-shadow: rgb(236 236 236) 0 0 12px 0;
     position: relative;
     display: block;
     padding: .5em;

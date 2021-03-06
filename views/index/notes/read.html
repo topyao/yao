@@ -32,8 +32,8 @@
                             class="fa fa-eye"></i>&nbsp;{{$note.hits}}&nbsp;&nbsp;<i
                             class="fa fa-comment"></i>&nbsp;{{$comments_count}}
                     {{if \Yao\Facade\Session::get('user.id') eq $note.user_id}}
-                    <a href="/notes/edit/{{$note.id}}">编辑</a>
-                    <a href="/notes/delete/{{$note.id}}">删除</a>
+                    <a href="/notes/edit/{{$note.id}}">&nbsp;&nbsp;<i style="color: grey" class="fa fa-edit"></i></a>
+                    <a id="delete" href="javascript:void(0)">&nbsp;&nbsp;<i style="color: red" class="fa fa-remove"></i></a>
                     {{/if}}
                 </p>
             </div>
@@ -122,7 +122,7 @@
                                         <div style="text-align:right;padding:0 0 .3em 0;border-bottom: 1px solid #dbdbdb;color: grey;font-size:.9em;">
                                             <i class="fa fa-heart like" data-id="{{$sub.id}}"
                                                style="color: red;cursor:pointer;"></i> <span class="count-heart">{{$sub.hearts}}</span>
-                                            <i class="fa fa-comment-o" style="margin-left: 1em"></i> 
+                                            <i class="fa fa-comment-o" style="margin-left: 1em"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -316,6 +316,13 @@
                 $('<a href="#' + $(element).attr('id') + '">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + element.innerText + '</a>').appendTo('#catalog');
             }
             $('#catalog-box').show();
+        });
+
+        $('#delete').on('click', function () {
+            if (confirm('确认要删除吗？')) {
+                window.location.href = '/notes/delete/{{$note.id}}';
+            }
+            return false;
         });
     })
 </script>
