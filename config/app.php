@@ -24,6 +24,7 @@ return [
      * 全局中间件
      */
     'middleware' => [
+        \Yao\Http\Middleware\AllowCors::class,
         \App\Http\Middleware\Statistic::class
     ],
 
