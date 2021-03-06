@@ -33,7 +33,11 @@ trait Paginate
                 $request['p'] = $p;
                 $query = '?' . http_build_query($request);
             }
-            $paginate .= '<li><a href="' . $query . '">' . $name . '</a></li>';
+            if ($p == $page) {
+                $paginate .= '<li style="background-color: white;"><a style="color: black" >' . $name . '</a></li>';
+            } else {
+                $paginate .= '<li><a href="' . $query . '">' . $name . '</a></li>';
+            }
         }
         return $paginate;
     }
