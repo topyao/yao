@@ -13,23 +13,23 @@ if (!function_exists('time_convert')) {
      */
     function time_convert($time): string
     {
-        if (!is_string($time)) {
-            return '发布时间太远了！';
-        }
-        if (mb_strlen($time) != 10) {
-            $time = strtotime($time);
-        }
+//        if (!is_string($time)) {
+//            return '发布时间太远了！';
+//        }
+//        if (mb_strlen($time) != 10) {
+//            $time = strtotime($time);
+//        }
         $diff = time() - (int)$time;
         if ($diff < 60) {
             return $diff . '秒前';
-        } elseif ($diff > 60 && $diff < 3600) {
+        } elseif ($diff < 3600) {
             return round($diff / 60) . '分钟前';
-        } elseif ($diff > 3600 && $diff < 86400) {
+        } elseif ($diff < 86400) {
             return round($diff / 3600) . '小时前';
-        } elseif ($diff > 86400 && $diff < 86400 * 5) {
+        } elseif ($diff < 86400 * 5) {
             return round($diff / 86400) . '天前';
         }
-        return date('Y/n/j', strtotime($time));
+        return date('Y/n/j', $time);
     }
 }
 
