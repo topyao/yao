@@ -17,7 +17,7 @@
                         <div class="description">
                             {{$note.text|mb_substr:0:300}}
                         </div>
-                        <div style="color: grey;font-size: .8em;text-align: right;padding: 0 1em"><i class="fa fa-clock-o"></i>&nbsp;{{$note.create_time|time_convert}}&nbsp;&nbsp;<i class="fa fa-eye"></i>&nbsp;{{$note.hits}}</div>
+                        <div style="color: grey;font-size: .8em;text-align: right;padding: 0 1em .5em"><i class="fa fa-clock-o"></i>&nbsp;{{$note.create_time|time_convert}}&nbsp;&nbsp;<i class="fa fa-eye"></i>&nbsp;{{$note.hits}}</div>
                     </div>
 
                     {{/foreach}}
