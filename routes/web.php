@@ -6,7 +6,7 @@
 
 use \Yao\Facade\Route;
 
-Route::get('/', 'index/index/index')->alias('home');
+Route::get('/', 'index/index/index')->alias('home')->cors('*');
 
 Route::rule('login', 'index/user/login');
 Route::get('logout', 'index/user/logout');
