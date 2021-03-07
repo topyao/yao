@@ -142,7 +142,7 @@ $obj = \Yao\Facade\App::make('class_name',$arguments = [],$singleInstance = fals
         
     *   console.php 命令注册文件
         
-    *   cors.php 跨域支持默认配置文件
+    *   cors.php 跨域支持默认配置文件 [暂时不用]
         
     *   view.php 视图配置文件
         
@@ -431,15 +431,13 @@ Route::redirect('index','https://www.1kmb.com',302,['get']);
 
 ## 跨域支持
 
-> 文档和实际有些出入，而且想将跨域支持放入全局中间件中实现，但是中间件目前不完善，所以没有优化，暂时不要用。
-
-可以在定义路由的时候设置允许跨域
+> 可以在定义路由的时候设置允许跨域
 
 ~~~
 Route::get('/','index/index/index')->cors('*'); 
 ~~~
 
-> 注意：这里cors() 方法的参数可选，默认为cors.php配置文件中的值，如果需要修改可以给该方法传递参数，参数一：$AllowOrigin 允许跨域域名，参数二：$AllowCredentials 是否可以将对请求的响应暴露给页面，参数三：$AllowHeaders 允许的头信息
+> 注意：这里cors() 方法的参数可选，如果需要修改可以给该方法传递参数，参数一：$AllowOrigin 允许跨域域名，参数二：$AllowCredentials 是否可以将对请求的响应暴露给页面，参数三：$AllowHeaders 允许的头信息
 
 # 请求
 

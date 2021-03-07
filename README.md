@@ -1,10 +1,13 @@
-# 安装
+# Yao
+是一款基于PHP的简单轻量的MVC框架，视图和框架分离，还可以用作API开发，方便快速。
 
-## 要求
+## 安装要求
+> 因为使用了大量的变量类型声明或者返回类型声明来提高性能(官方号称可以提高3-4倍)，所以不支持PHP版本低于7.4。
+
+同时要求环境安装了以下扩展（如果你需要使用相应功能的话需要开启）
 ```
-PHP >= 7.4
-PDO扩展
-MBString扩展
+PDO扩展 （数据库操作）
+MBString扩展 （验证器验证字符长度）
 ```
 
 ## 使用composer安装：
@@ -21,15 +24,6 @@ composer create-project chengyao/yao .
 git clone https://github.com/topyao/yao.git . ; php yao serve
 ```
 
-你也可以直接在项目目录更新依赖
-
-```
-composer install
-```
-
-安装完成后就可以使用 `php yao serve` 运行程序。框架强制路由，所以在编写控制器前应该先定义路由规则，如果你的环境是`windows`需要修改`public/.htaccess`中的`RewriteRule`或者`nginx`伪静态规则，在`index.php`后面加上`?`。框架对数据类型比较敏感，例如在该设置为`true`时候不要设置`1`。否则会报错。
-
-> 如果你安装的是开发版本，安装完成后可能需要手动删除`vendor/chengyao`下的包中的`.git`文件夹。强烈不建议使用开发版本
-
+> 欢迎各位大佬参与开发
 
 <a href="https://www.chengyao.xyz/document">开发文档</a>
