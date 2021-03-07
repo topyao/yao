@@ -10,12 +10,16 @@
             <div class="card">
                 <div class="content" style="padding:.5em">
                     {{foreach from=$notes item=note}}
-                    <div class="tips" style="border-left: 3px solid #1E90FF">
-                        <a href="{{url('read',[$note.id])}}">{{$note.title}}</a>
+                    <div>
+                        <div class="tips" style="border-left: 3px solid #1E90FF">
+                            <a href="{{url('read',[$note.id])}}">{{$note.title}}</a>
+                        </div>
+                        <div class="description">
+                            {{$note.text|mb_substr:0:300}}
+                        </div>
+                        <div style="color: grey;font-size: .8em;text-align: right;padding: 0 1em"><i class="fa fa-clock-o"></i>&nbsp;{{$note.create_time|time_convert}}&nbsp;&nbsp;<i class="fa fa-eye"></i>&nbsp;{{$note.hits}}</div>
                     </div>
-                    <div class="description">
-                        {{$note.text|mb_substr:0:300}}
-                    </div>
+
                     {{/foreach}}
                 </div>
             </div>

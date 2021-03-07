@@ -151,7 +151,7 @@ header {
 }
 
 .description {
-    padding: .5em 1em 1em;
+    padding: .5em 1em .5em;
     color: grey;
     font-size: .85em
 }

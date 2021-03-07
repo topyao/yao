@@ -51,7 +51,7 @@ class Note extends Controller
         $totalPage = ceil($notes->total() / self::NUMBER_OF_PAGES);
         $paginate = $this->_paginate($page, $totalPage, self::NUMBER_OF_PAGES);
         $hots = $notes->hots();
-        $notes = $notes->list(['id', 'title', 'text'], $page, self::NUMBER_OF_PAGES);
+        $notes = $notes->list(['id', 'title', 'text','hits','UNIX_TIMESTAMP(`create_time`) create_time'], $page, self::NUMBER_OF_PAGES);
         return view('index/notes/list', compact(['notes', 'hots', 'paginate']));
     }
 
