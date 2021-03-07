@@ -10,7 +10,8 @@ if (!file_exists('./vendor/autoload.php')) {
         exit('没有安装框架核心，请使用composer install安装依赖!');
     }
 }
-require('./vendor/autoload.php');
+
+require_once './vendor/autoload.php';
 
 $console = new \Yao\Console\Console($argv);
 
