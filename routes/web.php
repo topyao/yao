@@ -4,9 +4,9 @@
  * 路由定义文件
  */
 
-use \Yao\Facade\Route;
+use Yao\Facade\Route;
 
-Route::get('/', 'index/index/index')->alias('home')->cors('*');
+Route::rule('/', 'index/index/index')->alias('home')->cors('*');
 
 Route::rule('login', 'index/user/login');
 Route::get('logout', 'index/user/logout');

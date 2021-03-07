@@ -46,17 +46,17 @@
         </nav>
         <form action="/search">
             <ul id="sm-nav" class="bar">
+                <li>
+                    <input type="text" placeholder="Search..." value="{{if isset($keyword)}}{{$keyword}}{{/if}}"
+                           name="kw">
+                </li>
+                <li><a href="/notes">笔记</a></li>
+                <li><a href="/log">日志</a></li>
                 {{if \Yao\Facade\Session::has('user.id')}}
                 <li><a href="/logout">退出</a></li>
                 {{else}}
                 <li><a href="/login">登录</a></li>
                 {{/if}}
-                <li><a href="/notes">笔记</a></li>
-                <li><a href="/log">日志</a></li>
-                <li>
-                    <input type="text" placeholder="Search..." value="{{if isset($keyword)}}{{$keyword}}{{/if}}"
-                           name="kw">
-                </li>
             </ul>
         </form>
     </header>
