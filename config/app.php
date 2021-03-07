@@ -23,7 +23,6 @@ return [
      * 全局中间件
      */
     'middleware' => [
-        \Yao\Http\Middleware\AllowCors::class
     ],
 
     /**
