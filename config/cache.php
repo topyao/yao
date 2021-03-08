@@ -7,7 +7,7 @@ return [
 
     // redis缓存
     'redis' => [
-        'host' => 'localhost',
+        'host' => '127.0.0.1',
         'port' => 6379,
         'timeout' => 2,
         'auth' => 'cheng',
@@ -20,7 +20,7 @@ return [
 
     //memcached缓存
     'memcached' => [
-        'host' => 'localhost',
+        'host' => '127.0.0.1',
         'port' => 11211
     ]
 ];
