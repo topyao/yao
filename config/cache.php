@@ -7,8 +7,11 @@ return [
     'redis' => [
         'host' => 'localhost',
         'port' => 6379,
+        //默认db
+        'default' => 0,
         'auth' => 'cheng',
-        'timeout' => 10
+        'timeout' => 10,
+        'retry' => 0
     ],
     //文件缓存
     'file' => [
