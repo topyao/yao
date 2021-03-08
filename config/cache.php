@@ -7,8 +7,12 @@ return [
 
     // redis缓存
     'redis' => [
+        //主机
         'host' => '127.0.0.1',
+        //端口
         'port' => 6379,
+        //默认db
+        'default' => 0,
         //连接超时时间
         'timeout' => 2,
         //认证用密码
