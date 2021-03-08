@@ -9,7 +9,7 @@ class Users extends Model
 {
     public function login($user)
     {
-        return Db::name('users')->where($user)->find()->toArray();
+        return Db::name('users')->where($user)->find()->throwWhenEmpty(true)->toArray();
     }
 
     public function one($condition)

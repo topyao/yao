@@ -13,7 +13,8 @@ class Notes extends Model
     {
         $note = $this->field(['title', 'id', 'text', 'hits', 'tags', 'UNIX_TIMESTAMP(`create_time`) create_time', 'user_id'])
             ->where(['id' => $id])
-            ->find();
+            ->find()
+            ->throwWhenEmpty(true);
         $note['qrcode'] = base64_encode((new QrCode('https://www.chengyao.xyz' . url('read', [$note['id']])))->writeString());
         $note = $note->toArray();
         if (!empty($note)) {

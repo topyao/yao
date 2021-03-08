@@ -33,10 +33,7 @@ class Note extends Controller
             $comments = $comments->read($id, 1, $order);
             $hots = $notes->hots();
         } catch (\Exception $e) {
-            return view('index/error', ['message' => '查询失败！']);
-        }
-        if (false === $note) {
-            return view('index/error', ['message' => '结果为空！']);
+            return view('index/error', ['message' => '今日份的笔记不存在！']);
         }
         if (!empty($note['tags'])) {
             $note['tags'] = explode(',', $note['tags']);
@@ -51,7 +48,7 @@ class Note extends Controller
         $totalPage = ceil($notes->total() / self::NUMBER_OF_PAGES);
         $paginate = $this->_paginate($page, $totalPage, self::NUMBER_OF_PAGES);
         $hots = $notes->hots();
-        $notes = $notes->list(['id', 'title', 'text','hits','UNIX_TIMESTAMP(`create_time`) create_time'], $page, self::NUMBER_OF_PAGES);
+        $notes = $notes->list(['id', 'title', 'text', 'hits', 'UNIX_TIMESTAMP(`create_time`) create_time'], $page, self::NUMBER_OF_PAGES);
         return view('index/notes/list', compact(['notes', 'hots', 'paginate']));
     }
 

@@ -26,17 +26,14 @@ class User extends Controller
         }
         $user = $this->request->post(['username', 'password']);
         $user['password'] = md5($user['password']);
-        $result = $this->validate(LoginCheck::class, $user);
-        if ($result) {
-            if ($users->login($user)) {
-                Session::set('user', $users->one($user));
-                return redirect('/');
-            } else {
-                return view('index/error', ['message' => '用户名或者密码错误!']);
-            }
-        } else {
-            return view('index/error', ['message' => $result]);
+        try {
+            $this->validate(LoginCheck::class, $user)->check();
+            $users->login($user);
+        } catch (\Exception $e) {
+            return view('index/error', ['message' => '用户名或者密码错误！']);
         }
+        Session::set('user', $users->one($user));
+        return redirect('/');
     }
 
 
