@@ -62,6 +62,9 @@ if ($rule_0 = "21"){
 }
 ~~~
 
+# 写在前面
+不要在框架的任何位置使用exit或者die终止脚本，如果需要在一个位置停止，可以使用response()或者Response::send() 方法，否则可能会存在一些问题。
+
 # 容器
 
 可以使用容器实例化类并实现依赖注入或者调用类的方法并实现依赖注入
@@ -142,7 +145,7 @@ $obj = \Yao\Facade\App::make('class_name',$arguments = [],$singleInstance = fals
         
     *   console.php 命令注册文件
         
-    *   cors.php 跨域支持默认配置文件 [暂时不用]
+    *   cors.php 跨域支持默认配置文件
         
     *   view.php 视图配置文件
         
@@ -438,6 +441,9 @@ Route::get('/','index/index/index')->cors('*');
 ~~~
 
 > 注意：这里cors() 方法的参数可选，如果需要修改可以给该方法传递参数，参数一：$AllowOrigin 允许跨域域名，参数二：$AllowCredentials 是否可以将对请求的响应暴露给页面，参数三：$AllowHeaders 允许的头信息
+
+可以设置全局跨域，在config/cors.php 中将global置为true即可开启
+
 
 # 请求
 
