@@ -1,6 +1,8 @@
 <?php
 
 return [
+    //全局跨域允许
+    'global' => false,
     //允许跨域的地址
     'origin' => '*',
 
