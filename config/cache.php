@@ -11,7 +11,7 @@ return [
         'default' => 0,
         'auth' => 'cheng',
         'timeout' => 10,
-        'retry' => 0
+        'retry' => 1
     ],
     //文件缓存
     'file' => [

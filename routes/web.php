@@ -6,7 +6,7 @@
 
 use Yao\Facade\Route;
 
-Route::rule('/', 'index/index/index')->alias('home')->cors('*');
+Route::rule('/', 'index/index/index')->alias('home');
 
 Route::rule('login', 'index/user/login');
 Route::get('logout', 'index/user/logout');
@@ -34,3 +34,10 @@ Route::rule('users/add', 'index/user/create');
 Route::get('log', 'index/index/log');
 
 Route::redirect('document', '/note/132.html');
+
+
+Route::get('test', function (\Yao\Http\Request $request) {
+    dump($request);
+    return ['fff'];
+
+});
