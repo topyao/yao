@@ -1,6 +1,7 @@
 {
   "name": "chengyao/yao",
   "description": "一个简单易用的轻量PHP框架。",
+  "version": "1.0.0",
   "keywords": [
     "PHP框架",
     "YAO",
@@ -27,7 +28,7 @@
   "require": {
     "php": ">=7.4",
     "ext-pdo": "*",
-    "chengyao/framework": "dev-master",
+    "chengyao/framework": "^1.0.0",
     "twig/twig": "3.1.1"
   }
 }
