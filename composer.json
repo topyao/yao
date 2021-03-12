@@ -1,6 +1,7 @@
 {
   "name": "chengyao/yao",
   "description": "一个简单易用的轻量PHP框架。",
+  "version": "1.0.0",
   "keywords": [
     "PHP框架",
     "YAO",
